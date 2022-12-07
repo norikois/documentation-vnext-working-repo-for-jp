@@ -85,12 +85,12 @@ const config = {
             title: 'Documentation',
             items: [
               {
-                label: 'WPF SDK',
-                to: 'https://github.com/RevealBi/Reveal.Sdk.Dom',
+                label: 'Web SDK',
+                to: 'web',
               },
               {
-                label: 'Web SDK',
-                to: '/web',
+                label: 'WPF SDK',
+                to: 'wpf',
               },
               {
                 label: 'DOM',

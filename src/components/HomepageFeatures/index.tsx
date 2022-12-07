@@ -23,7 +23,7 @@ const FeatureList: FeatureItem[] = [
   {
     title: 'WPF SDK Documentation',
     Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
-    link: "https://github.com/RevealBi/Reveal.Sdk.Dom",
+    link: "wpf",
     description: (
       <>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
