@@ -9,7 +9,7 @@ const config = {
   title: 'Reveal',
   tagline: 'Embedded Analytics & Business Intelligence Tools',
   url: 'https://revealbi.io',
-  baseUrl: '/',
+  baseUrl: '/documentation-vnext/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'throw',
   favicon: 'img/favicon.ico',
