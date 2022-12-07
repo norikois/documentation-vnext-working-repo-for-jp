@@ -21,18 +21,19 @@ const config = {
 
   i18n: {
     defaultLocale: 'en',
-    locales: ['en', 'ja'],
-    localeConfigs: {
-      en: {
-        label: "English",
-        htmlLang: 'en-US',
-      },
-      ja: {
-        label: "日本語",
-        htmlLang: 'ja-JP',
-        path: 'ja'
-      }
-    },
+    locales: ['en'],
+    // locales: ['en', 'ja'],
+    // localeConfigs: {
+    //   en: {
+    //     label: "English",
+    //     htmlLang: 'en-US',
+    //   },
+    //   ja: {
+    //     label: "日本語",
+    //     htmlLang: 'ja-JP',
+    //     path: 'ja'
+    //   }
+    // },
   },
 
   presets: [
@@ -71,10 +72,10 @@ const config = {
           //   type: "docsVersionDropdown",
           //   position: "left",
           // },
-          { 
-            type: "localeDropdown",
-            position: "right"
-          },
+          // { 
+          //   type: "localeDropdown",
+          //   position: "right"
+          // },
         ],
       },
       footer: {
@@ -85,11 +86,11 @@ const config = {
             items: [
               {
                 label: 'WPF SDK',
-                to: '/docs/wpf',
+                to: 'https://github.com/RevealBi/Reveal.Sdk.Dom',
               },
               {
                 label: 'Web SDK',
-                to: '/docs/web',
+                to: '/web',
               },
               {
                 label: 'DOM',
