@@ -1,6 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import styles from './styles.module.css';
+import Translate from '@docusaurus/Translate';
 
 type FeatureItem = {
   title: string;
@@ -12,31 +13,34 @@ type FeatureItem = {
 const FeatureList: FeatureItem[] = [
   {
     title: 'Web SDK Documentation',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    Svg: require('@site/static/img/video-girl.svg').default,
     link: "web",
     description: (
       <>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        <Translate id="homepage.feature.web"
+          description="The words used to describe the web sdk on the homepage">Embed data analytics into your HTML/JavaScript, Angular, React, or ASP.NET web applications.</Translate>
       </>
     ),
   },
   {
     title: 'WPF SDK Documentation',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    Svg: require('@site/static/img/developer.svg').default,
     link: "wpf",
     description: (
       <>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        <Translate id="homepage.feature.wpf"
+          description="The words used to describe the wpf sdk on the homepage">Easily integrate data analytics into your WPF or WinForms applications.</Translate>
       </>
     ),
   },
   {
-    title: 'Samples',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
-    link: "https://github.com/RevealBi/sdk-samples-javascript",
+    title: 'Training Videos',
+    Svg: require('@site/static/img/empty-states.svg').default,
+    link: "https://www.youtube.com/playlist?list=PLZ4rRHIJepBt-USWdh-9BimHh-GjPAGUH",
     description: (
       <>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        <Translate id="homepage.feature.video"
+          description="The words used to describe the video section on the homepage">Follow walkthrough videos and start using our sample visualizations and sample data to help you get up and running.</Translate>
       </>
     ),
   },
