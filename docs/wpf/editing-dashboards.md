@@ -68,8 +68,11 @@ The `RVChartType` enum has The following values:
 - TimeSeriesChart
 - TreeMap
 
-> [!NOTE]
-> If you invoke the `AvailableChartTypes.Clear` method, but do not add any chart types to the collection, then all supported chart types will still be available.
+:::info
+
+If you invoke the `AvailableChartTypes.Clear` method, but do not add any chart types to the collection, then all supported chart types will still be available.
+
+:::
 
 ### CanAddCalculatedFields
 

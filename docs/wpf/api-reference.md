@@ -1,3 +1,5 @@
+# API Reference
+
 <h2><a href="https://help.revealbi.io//api/wpf/latest/Reveal.Sdk.html" target="_blank" rel="noopener\">Desktop .NET API Reference </a></h2>  
 Here you will find technical information about Reveal SDK, specifically about the Desktop .NET API.
 For a complete reference, please follow the <a href="https://help.revealbi.io//api/wpf/latest/Reveal.Sdk.html" target="_blank" rel="noopener\">link </a>

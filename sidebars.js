@@ -15,7 +15,7 @@
 const sidebars = {
   webSidebar: [
     /* -------------------- General -------------------- */
-    { type: "html", value: "<span class='sidebar__header'>General</span>", defaultStyle: false },
+    { type: "html", value: "General",  className: "sidebar__header"},
     { type: "doc", label: "Overview", id: "web/overview" },
     { type: "doc", label: "Installation", id: "web/installation" },
     {
@@ -89,7 +89,7 @@ const sidebars = {
 
   wpfSidebar: [
     /* -------------------- General -------------------- */
-    { type: "html", value: "<span class='sidebar__header'>General</span>", defaultStyle: false },
+    { type: "html", value: "General", className: "sidebar__header" },
     { type: "doc", label: "Installation", id: "wpf/installation" },
     { type: "doc", label: "Getting Started", id: "wpf/getting-started" },
     
@@ -131,7 +131,7 @@ const sidebars = {
 
     /* -------------------- Release Information -------------------- */
     { type: "html", value: "Release Information", className: "sidebar__header" },
-    { type: "doc", label: "API Reference - Server", id: "wpf/api-reference" },
+    { type: "doc", label: "API Reference", id: "wpf/api-reference" },
     { type: "doc", label: "Known Issues", id: "wpf/known-issues" },
     { type: "doc", label: "Release Notes", id: "wpf/release-notes" },
     { type: "doc", label: "Third-Party Software", id: "wpf/third-party-software" },

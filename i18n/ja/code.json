@@ -293,5 +293,9 @@
   "homepage.feature.video.title": {
     "message": "トレーニング ビデオ",
     "description": "The title of the Training Videos feature on the homepage"
+  },
+  "General": {
+    "message": "General",
+    "description": "The label for the General header in sidebar webSideBar"
   }
 }

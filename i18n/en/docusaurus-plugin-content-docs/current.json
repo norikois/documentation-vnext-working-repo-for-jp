@@ -247,8 +247,8 @@
     "message": "Tooltips",
     "description": "The label for the doc item Tooltips in sidebar wpfSidebar, linking to the doc wpf/tooltips"
   },
-  "sidebar.wpfSidebar.doc.API Reference - Server": {
-    "message": "API Reference - Server",
+  "sidebar.wpfSidebar.doc.API Reference": {
+    "message": "API Reference",
     "description": "The label for the doc item API Reference - Server in sidebar wpfSidebar, linking to the doc wpf/api-reference"
   },
   "sidebar.wpfSidebar.doc.Known Issues": {

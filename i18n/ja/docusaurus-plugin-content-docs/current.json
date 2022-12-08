@@ -164,67 +164,67 @@
     "description": "The label for the doc item Data Limits in sidebar webSidebar, linking to the doc web/data-size-limits"
   },
   "sidebar.wpfSidebar.category.Adding Data Sources": {
-    "message": "Adding Data Sources",
+    "message": "データ ソースの追加",
     "description": "The label for category Adding Data Sources in sidebar wpfSidebar"
   },
   "sidebar.wpfSidebar.category.Replacing Data Sources": {
-    "message": "Replacing Data Sources",
+    "message": "データ ソースの置き換え",
     "description": "The label for category Replacing Data Sources in sidebar wpfSidebar"
   },
   "sidebar.wpfSidebar.doc.Installation": {
-    "message": "Installation",
+    "message": "インストール",
     "description": "The label for the doc item Installation in sidebar wpfSidebar, linking to the doc wpf/installation"
   },
   "sidebar.wpfSidebar.doc.Getting Started": {
-    "message": "Getting Started",
+    "message": "作業の開始",
     "description": "The label for the doc item Getting Started in sidebar wpfSidebar, linking to the doc wpf/getting-started"
   },
   "sidebar.wpfSidebar.doc.Creating": {
-    "message": "Creating",
+    "message": "作成",
     "description": "The label for the doc item Creating in sidebar wpfSidebar, linking to the doc wpf/creating-dashboards"
   },
   "sidebar.wpfSidebar.doc.Loading": {
-    "message": "Loading",
+    "message": "読み込み",
     "description": "The label for the doc item Loading in sidebar wpfSidebar, linking to the doc wpf/loading-dashboards"
   },
   "sidebar.wpfSidebar.doc.Filtering": {
-    "message": "Filtering",
+    "message": "フィルタリング",
     "description": "The label for the doc item Filtering in sidebar wpfSidebar, linking to the doc wpf/filtering-dashboards"
   },
   "sidebar.wpfSidebar.doc.Editing": {
-    "message": "Editing",
+    "message": "編集",
     "description": "The label for the doc item Editing in sidebar wpfSidebar, linking to the doc wpf/editing-dashboards"
   },
   "sidebar.wpfSidebar.doc.Saving": {
-    "message": "Saving",
+    "message": "保存",
     "description": "The label for the doc item Saving in sidebar wpfSidebar, linking to the doc wpf/saving-dashboards"
   },
   "sidebar.wpfSidebar.doc.Linking": {
-    "message": "Linking",
+    "message": "リンク",
     "description": "The label for the doc item Linking in sidebar wpfSidebar, linking to the doc wpf/linking-dashboards"
   },
   "sidebar.wpfSidebar.doc.Formatting Data": {
-    "message": "Formatting Data",
+    "message": "データの書式設定",
     "description": "The label for the doc item Formatting Data in sidebar wpfSidebar, linking to the doc wpf/formatting-data"
   },
   "sidebar.wpfSidebar.doc.Localizing": {
-    "message": "Localizing",
+    "message": "ローカライズ",
     "description": "The label for the doc item Localizing in sidebar wpfSidebar, linking to the doc wpf/localizing-dashboards"
   },
   "sidebar.wpfSidebar.doc.Exporting": {
-    "message": "Exporting",
+    "message": "エクスポート",
     "description": "The label for the doc item Exporting in sidebar wpfSidebar, linking to the doc wpf/exporting-dashboards"
   },
   "sidebar.wpfSidebar.doc.Theming": {
-    "message": "Theming",
+    "message": "テーマ設定",
     "description": "The label for the doc item Theming in sidebar wpfSidebar, linking to the doc wpf/theming-dashboards"
   },
   "sidebar.wpfSidebar.doc.Excel File": {
-    "message": "Excel File",
+    "message": "Excel ファイル",
     "description": "The label for the doc item Excel File in sidebar wpfSidebar, linking to the doc wpf/replacing-data-sources/excel-file"
   },
   "sidebar.wpfSidebar.doc.In Memory Data": {
-    "message": "In Memory Data",
+    "message": "インメモリ データ",
     "description": "The label for the doc item In Memory Data in sidebar wpfSidebar, linking to the doc wpf/adding-data-sources/in-memory-data"
   },
   "sidebar.wpfSidebar.doc.MS SQL Server": {
@@ -232,35 +232,35 @@
     "description": "The label for the doc item MS SQL Server in sidebar wpfSidebar, linking to the doc wpf/replacing-data-sources/ms-sql-server"
   },
   "sidebar.wpfSidebar.doc.Authentication": {
-    "message": "Authentication",
+    "message": "認証",
     "description": "The label for the doc item Authentication in sidebar wpfSidebar, linking to the doc wpf/authentication"
   },
   "sidebar.wpfSidebar.doc.Maximizing Visualizations": {
-    "message": "Maximizing Visualizations",
+    "message": "表示形式の最大化",
     "description": "The label for the doc item Maximizing Visualizations in sidebar wpfSidebar, linking to the doc wpf/maximizing-visualizations"
   },
   "sidebar.wpfSidebar.doc.Responding to Click Events": {
-    "message": "Responding to Click Events",
+    "message": "クリック イベントへの応答",
     "description": "The label for the doc item Responding to Click Events in sidebar wpfSidebar, linking to the doc wpf/click-events"
   },
   "sidebar.wpfSidebar.doc.Tooltips": {
-    "message": "Tooltips",
+    "message": "ツールチップ",
     "description": "The label for the doc item Tooltips in sidebar wpfSidebar, linking to the doc wpf/tooltips"
   },
-  "sidebar.wpfSidebar.doc.API Reference - Server": {
-    "message": "API Reference - Server",
+  "sidebar.wpfSidebar.doc.API Reference": {
+    "message": "API リファレンス",
     "description": "The label for the doc item API Reference - Server in sidebar wpfSidebar, linking to the doc wpf/api-reference"
   },
   "sidebar.wpfSidebar.doc.Known Issues": {
-    "message": "Known Issues",
+    "message": "既知の問題",
     "description": "The label for the doc item Known Issues in sidebar wpfSidebar, linking to the doc wpf/known-issues"
   },
   "sidebar.wpfSidebar.doc.Release Notes": {
-    "message": "Release Notes",
+    "message": "リリース ノート",
     "description": "The label for the doc item Release Notes in sidebar wpfSidebar, linking to the doc wpf/release-notes"
   },
   "sidebar.wpfSidebar.doc.Third-Party Software": {
-    "message": "Third-Party Software",
+    "message": "サードパーティ ソフトウェア",
     "description": "The label for the doc item Third-Party Software in sidebar wpfSidebar, linking to the doc wpf/third-party-software"
   }
 }

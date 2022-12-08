@@ -26,13 +26,16 @@ The steps below describe how to create a new ASP.NET Core Web App project. If yo
 
 ![](images/getting-started-nuget-packages-install.jpg)
 
-> [!NOTE]
-> If you are a trial user, you can install the **Reveal.Sdk.Web.AspNetCore.Trial** NuGet package found on [NuGet.org](https://www.nuget.org/packages/Reveal.Sdk.Web.AspNetCore.Trial/).
+:::info
+
+If you are a trial user, you can install the **Reveal.Sdk.Web.AspNetCore.Trial** NuGet package found on [NuGet.org](https://www.nuget.org/packages/Reveal.Sdk.Web.AspNetCore.Trial/).
+
+:::
 
 3 - Open and modify the `Program.cs` file to add the namespace `using Reveal.Sdk;`. Then, add the call to `IMcvBuilder.AddReveal()` as follows:
 
 ```cs
-using Reveal.Sdk;
+using Reveal.Sdk;f
 
 builder.Services.AddRazorPages().AddReveal();
 ```
