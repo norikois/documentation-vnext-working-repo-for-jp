@@ -17,20 +17,26 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
 
-.sidebar__header {
-  padding: 10px 0 0 0 !important;
+.sidebar__header > div > a {
+  padding: 15px 0 5px 0 !important;
   position: relative;
   font-size: 14px !important;
   color: #000 !important;
   font-weight: 500 !important;
   text-transform: uppercase !important;
-  margin-left: 5px;
+  margin-left: 2px;
+  pointer-events: none !important;
+}
+
+.sidebar__header > div:hover {
+  background: transparent !important;
+  
 }
 
 a.menu__link {
   font-size: 13px;
   font-weight: normal;
-  margin-left: 10px;
+  margin-left: -8px;
 }
 
 a.menu__link--active {
@@ -46,12 +52,6 @@ a.menu__link--active {
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
-[data-theme='dark'] .sidebar__header {
-  padding: 24px 0 0 0 !important;
-  position: relative;
-  font-size: 14px !important;
+[data-theme='dark'] .sidebar__header  > div > a {
   color: #fff !important;
-  font-weight: 500 !important;
-  text-transform: uppercase !important;
-  margin-left: 5px;
 }

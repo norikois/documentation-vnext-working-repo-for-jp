@@ -249,7 +249,7 @@
   },
   "sidebar.wpfSidebar.doc.API Reference": {
     "message": "API Reference",
-    "description": "The label for the doc item API Reference - Server in sidebar wpfSidebar, linking to the doc wpf/api-reference"
+    "description": "The label for the doc item API Reference in sidebar wpfSidebar, linking to the doc wpf/api-reference"
   },
   "sidebar.wpfSidebar.doc.Known Issues": {
     "message": "Known Issues",
@@ -262,5 +262,45 @@
   "sidebar.wpfSidebar.doc.Third-Party Software": {
     "message": "Third-Party Software",
     "description": "The label for the doc item Third-Party Software in sidebar wpfSidebar, linking to the doc wpf/third-party-software"
+  },
+  "sidebar.webSidebar.category.General": {
+    "message": "General",
+    "description": "The label for category General in sidebar webSidebar"
+  },
+  "sidebar.webSidebar.category.Working with Dashboards": {
+    "message": "Working with Dashboards",
+    "description": "The label for category Working with Dashboards in sidebar webSidebar"
+  },
+  "sidebar.webSidebar.category.Working with Data Sources": {
+    "message": "Working with Data Sources",
+    "description": "The label for category Working with Data Sources in sidebar webSidebar"
+  },
+  "sidebar.webSidebar.category.Working with Visualizations": {
+    "message": "Working with Visualizations",
+    "description": "The label for category Working with Visualizations in sidebar webSidebar"
+  },
+  "sidebar.webSidebar.category.Release Information": {
+    "message": "Release Information",
+    "description": "The label for category Release Information in sidebar webSidebar"
+  },
+  "sidebar.wpfSidebar.category.General": {
+    "message": "General",
+    "description": "The label for category General in sidebar wpfSidebar"
+  },
+  "sidebar.wpfSidebar.category.Working with Dashboards": {
+    "message": "Working with Dashboards",
+    "description": "The label for category Working with Dashboards in sidebar wpfSidebar"
+  },
+  "sidebar.wpfSidebar.category.Working with Data Sources": {
+    "message": "Working with Data Sources",
+    "description": "The label for category Working with Data Sources in sidebar wpfSidebar"
+  },
+  "sidebar.wpfSidebar.category.Working with Visualizations": {
+    "message": "Working with Visualizations",
+    "description": "The label for category Working with Visualizations in sidebar wpfSidebar"
+  },
+  "sidebar.wpfSidebar.category.Release Information": {
+    "message": "Release Information",
+    "description": "The label for category Release Information in sidebar wpfSidebar"
   }
 }
