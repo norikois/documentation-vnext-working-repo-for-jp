@@ -4,7 +4,7 @@ import styles from './styles.module.css';
 import Translate from '@docusaurus/Translate';
 
 type FeatureItem = {
-  title: string;
+  title: JSX.Element;
   Svg: React.ComponentType<React.ComponentProps<'svg'>>;
   description: JSX.Element;
   link: string;
@@ -12,7 +12,11 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Web SDK Documentation',
+    title: (
+      <>
+        <Translate id="homepage.feature.web.title" description="The title of the Web feature on the homepage">Web SDK Documentation</Translate>
+      </>
+    ),
     Svg: require('@site/static/img/video-girl.svg').default,
     link: "web",
     description: (
@@ -23,7 +27,11 @@ const FeatureList: FeatureItem[] = [
     ),
   },
   {
-    title: 'WPF SDK Documentation',
+    title: (
+      <>
+        <Translate id="homepage.feature.wpf.title" description="The title of the WPF feature on the homepage">WPF SDK Documentation</Translate>
+      </>
+    ),
     Svg: require('@site/static/img/developer.svg').default,
     link: "wpf",
     description: (
@@ -34,7 +42,11 @@ const FeatureList: FeatureItem[] = [
     ),
   },
   {
-    title: 'Training Videos',
+    title: (
+      <>
+        <Translate id="homepage.feature.video.title" description="The title of the Training Videos feature on the homepage">Training Videos</Translate>
+      </>
+    ),
     Svg: require('@site/static/img/empty-states.svg').default,
     link: "https://www.youtube.com/playlist?list=PLZ4rRHIJepBt-USWdh-9BimHh-GjPAGUH",
     description: (
