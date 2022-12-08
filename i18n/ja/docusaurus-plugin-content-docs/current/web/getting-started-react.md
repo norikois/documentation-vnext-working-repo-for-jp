@@ -1,70 +1,70 @@
-# Getting Started with Reveal SDK for React
+# Reveal SDK for React で作業を開始
 
-## Step 1 - Create the React App
+## 手順 1 - React アプリの作成
 
-1 - Open your favorite terminal
+1 - お気に入りのターミナルを開きます。
 
 ![](images/getting-started-angular-terminal.jpg)
 
-2 - Create a new React application using the "create-react-app" command
+2 - 「create-react-app」コマンドを使用して新しい React アプリケーションを作成します。
 
-```bash
-npx create-react-app getting-started --template typescript
-```
+<pre style="background:#141414;color:white;display:inline-block;padding:16x;margin-top:10px;font-family:'Consolas';border-radius:5px;width:100%">
+> npx create-react-app getting-started --template typescript
+</pre>
 
-3 - Change directories into the newly created app directory and open the project in your favorite Editor. In this example, we are using Visual Studio Code.
+3 - ディレクトリを新しく作成した app ディレクトリに移動し、お気に入りのエディターでプロジェクトを開きます。この例では、Visual Studio Code を使用しています。
 
-```bash
-cd getting-started
-code .
-```
+<pre style="background:#141414;color:white;display:inline-block;padding:16x;margin-top:10px;font-family:'Consolas';border-radius:5px;width:100%">
+> cd getting-started
+> code .
+</pre>
 
-## Step 2 - Add Reveal JavaScript API
+## 手順 2 - Reveal JavaScript API の追加
 
-1 - Expand the `public` folder and create a new folder called `assets`. Now, create another folder called `reveal` within the `assets` folder.
+1 - `public` フォルダーを展開し、`assets` と呼ばれる新しいフォルダーを作成します。`assets` フォルダー内に `reveal` と呼ばれる別のフォルダーを作成します。
 
 ![](images/react-create-reveal-folder.jpg)
 
-2 - Copy all the JavaScript files located at `%public%/Documents/Infragistics/Reveal/SDK/Web/JS/Client` into the `assets/reveal` folder you created previously.
+2 - `%public%/Documents/Infragistics/Reveal/SDK/Web/JS/Client` にあるすべての JavaScript ファイルを以前作成した `assets/reveal` フォルダーにコピーします。
 
 ![](images/react-copy-reveal-files.jpg)
 
-3 - Open and modify the `index.html` file to include the `infragistics.reveal.js` script at the bottom of the page just before the closing `</body>` tag.
+3 - `index.html` ファイルを開いて変更し、ページの下部に (`</body>` 終了タグの直前) `infragistics.reveal.js` スクリプトを含めます。
 
 ```html
 <script src="assets/reveal/infragistics.reveal.js"></script>
 ```
 
-4 - Install the remaining Reveal JavaScript API dependencies:
+4 - 残りの Reveal JavaScript API 依存関係をインストールします。
 
-- Jquery 2.2 or greater
+- jQuery 2.2 またはそれ以降
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
 ```
-- Day.js 1.8.15 or greater
+- Day.js 1.8.15 またはそれ以降
 
 ```html
 <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
 ```
 
-- Quill RTE 1.3.6 or greater
+- Quill RTE 1.3.6 またはそれ以降
 
 ```html
 <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet" type="text/css">    
 <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
 ```
 
-- Spectrum v 1.8.0 or newer (Optional) - this is only needed if you enable the UI for the end user to set the background color for a particular visualization.
+- Spectrum v1.8.0 またはそれ以降 (オプション) - これは、エンドユーザーが特定の表示形式の背景色を設定できるように UI を有効にする場合にのみ必要です。
 
 ``` html
 <link href="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.css" rel="stylesheet" type="text/css" >
 <script src="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.js"></script>
 ```
 
-The final `index.html` files should look similar to this:
+最終の `index.html` ファイルは以下のようになります。
 
-```html title="index.html"
+```html
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -91,7 +91,6 @@ The final `index.html` files should look similar to this:
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    //highlight-next-line
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet" type="text/css">  
     <title>React App</title>
   </head>
@@ -108,59 +107,58 @@ The final `index.html` files should look similar to this:
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-    //highlight-start
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
     <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
     <script src="assets/reveal/infragistics.reveal.js"></script>
-    //highlight-end
   </body>
 </html>
 ```
 
-## Step 3 - Initialize the Reveal view
+## 手順 3 - Reveal ビューの初期化
 
-1 - Open and modify the `src/app.tsx` file. Delete all the contents within the `return` statement and add a new `<div>` tag and set the `id` to `revealView`.
+1 - `src/app.tsx` ファイルを開いて変更します。`return` ステートメント内のすべてのコンテンツを削除し、新しい `<div>` タグを追加し、`id` を `revealView` に設定します。
 
-```ts title="src/app.tsx"
+```ts
 function App() {
   return (
-    //highlight-next-line
     <div id="revealView" style={{height: "100vh", width: "100%"}}></div>
   );
 }
 ```
 
-2 - First, we need to make sure that we can use jQuery by declaring a new variable named `$`, of type `any`, at the top of the file just under the import statements. This will make sure TypeScript will compile our JavaScript.
+2 - 最初に、import ステートメントの下のファイルの先頭で、タイプ `any` の `$` という名前の新しい変数を宣言することによって、jQuery を使用できることを確認する必要があります。これにより、TypeScript が JavaScript をコンパイルします。
 
 ```ts
 declare let $: any;
 ```
 
-3 - Within the `App()` function component, initialize the `revealView`.
+3 - `App()` 関数コンポーネント内で、`revealView` を初期化します。
 
 ```ts
-var revealView = new $.ig.RevealView("#revealView"); 
+  $.ig.RevealSdkSettings.ensureFontsLoadedAsync().then(() => {
+    var revealView = new $.ig.RevealView("#revealView");
+  }); 
 ```
 
-This JavaScript code first calls the `$.ig.RevealSdkSettings.ensureFontsLoadedAsync` to ensure that all fonts have been properly loaded. Next, we instantiate a new instance of the `RevealView` by creating a new `$.ig.RevealView` and passing in the `#revealView` selector.
+この JavaScript コードは最初に `$.ig.RevealSdkSettings.ensureFontsLoadedAsync` を呼び出してすべてのフォントが正しく読み込まれたことを確認します。次に、新しい `$.ig.RevealView` を作成し、`#revealView` セレクターを渡すことで、`RevealView` の新しいインスタンスを作成します。
 
-The final `app.tsx` file should look like this:
+最終の `index.html` ファイルは以下のようになります。
 
-```ts title="src/app.tsx"
+```ts
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-//highlight-next-line
 declare let $: any;
 
 function App() {
-  //highlight-next-line
-  var revealView = new $.ig.RevealView("#revealView");
+
+  $.ig.RevealSdkSettings.ensureFontsLoadedAsync().then(() => {
+    var revealView = new $.ig.RevealView("#revealView");
+  }); 
 
   return (
-    //highlight-next-line
     <div id="revealView" style={{height: "100vh", width: "100%"}}></div>
   );
 }
@@ -170,28 +168,28 @@ export default App;
 
 :::caution
 
-Clients apps must set the `$.ig.RevealSdkSettings.setBaseUrl("url-to-server");` to the server address hosting the dashboards if the client is being hosting on a different URL.
+クライアント アプリは、クライアントが別の URL でホストしている場合、`$.ig.RevealSdkSettings.setBaseUrl("url-to-server");` をダッシュボードをホストしているサーバー アドレスに設定する必要があります。
 
 :::
 
-## Step 4 - Run the Application
+## 手順 4 - アプリケーションの実行
 
-In the Visual Studio Code terminal, type the `npm start` command
+Visual Studio Code ターミナルで、`npm start` コマンドを入力します。
 
-```bash npm2yarn
-npm start
-```
+<pre style="background:#141414;color:white;display:inline-block;padding:16x;margin-top:10px;font-family:'Consolas';border-radius:5px;width:100%">
+> npm start
+</pre>
 
 ![](images/angular-app-running.jpg)
 
-**Congratulations!** You have written your first Reveal SDK React application.
+完了しました! 最初の Reveal SDK React アプリケーションを作成しました。
 
-Next Steps:
-- [Create New Dashboards](creating-dashboards.md)
-- [Load Existing Dashboards](loading-dashboards.md)
+次の手順:
+- [新しいダッシュボードの作成](creating-dashboards.md)
+- [既存のダッシュボードの読み込み](loading-dashboards.md)
 
 :::info Get the Code
 
-The source code to this sample can be found on [GitHub](https://github.com/RevealBi/sdk-samples-react/tree/main/01-GettingStarted).
+このサンプルのソース コードは [GitHub](https://github.com/RevealBi/sdk-samples-react/tree/main/01-GettingStarted) にあります。
 
 :::

@@ -1,42 +1,42 @@
-# Loading Dashboards
+# ダッシュボードの読み込み
 
-If you want to display an existing Reveal Dashboard in the `RevealView` control embedded within your application, you have four options to choose from.
-- Load the dashboard from a file path
-- Load the dashboard from a file stream
-- Load the dashboard from an embedded resource
-- Load the dashboard from json
+アプリケーションに埋め込まれた `RevealView` コントロールに既存の Reveal ダッシュボードを表示する場合は、4 つのオプションから選択できます。
+- ファイル パスからダッシュボードを読み込み
+- ファイル ストリームからダッシュボードを読み込み
+- 埋め込まれたリソースからダッシュボードを読み込み
+- json からダッシュボードを読み込み
 
-Dashboards are located on the server. The client application will make a call to the `$.ig.RVDashboard.loadDashboard` method passing in the name of the dashboard to load. The request for the dashboard is sent to the server and the server will respond to the client with the requested dashboard. The client will take the dashboard provided in the server response, and set the `RevealView.dashboard` property.
+ダッシュボードはサーバー上にあります。クライアント アプリケーションは `$.ig.RVDashboard.loadDashboard` メソッドを呼び出し、読み込むダッシュボードの名前を渡します。ダッシュボードのリクエストがサーバーに送信され、サーバーはリクエストされたダッシュボードでクライアントに応答します。クライアントは、サーバーの応答で提供されたダッシュボードを取得し、`RevealView.dashboard` プロパティを設定します。
 
-You can create **.rdash** dashboard files the following ways:
-- Export the dashboard as a .rdash file from the [Reveal BI website](https://app.revealbi.io/)
-- Export the dashboard as a .rdash file from one of the native Reveal applications
-- Save, or Export, a dashboard that was created in an application using the Reveal SDK.
-- Download these [sample dashboards](https://github.com/RevealBi/sdk-samples-wpf/raw/master/SampleDashboards.zip)
+**.rdash** ダッシュボード ファイルは次の方法で作成できます:
+- ダッシュボードを [Reveal BI Web サイト](https://app.revealbi.io/)から .rdash ファイルとしてエクスポートします。
+- ダッシュボードをネイティブの Reveal アプリケーションの 1 つから .rdash ファイルとしてエクスポートします。
+- Reveal SDK を使用してアプリケーションで作成されたダッシュボードを保存またはエクスポートします。
+- [サンプル ダッシュボード](https://github.com/RevealBi/sdk-samples-wpf/raw/master/SampleDashboards.zip)のダウンロード
 
-## Load from File Path
+## ファイル パスから読み込み
 
-By default, the Reveal SDK uses a convention to load dashboards from a file path. Specifically, the Reveal SDK will look for dashboards in a **Dashboards** folder on the server. You can learn how to create this folder in the [Setting Up the Server](getting-started-server.md#step-3---create-the-dashboards-folder) topic.
+デフォルトでは、Reveal SDK は規則を使用して、ファイル パスからダッシュボードを読み込みます。具体的には、Reveal SDK は、サーバーの **Dashboards** フォルダーでダッシュボードを検索します。このフォルダーの作成方法については、[サーバーの設定](getting-started-server.md#step-3---create-the-dashboards-folder)トピックを参照してください。
 
-1 - In the ASP.NET Core Web Api server application, create a folder named **Dashboards** and place a dashboard file within the folder.
+1 - ASP.NET Core Web Api サーバー アプリケーションで、**Dashboards** という名前のフォルダーを作成し、そのフォルダー内にダッシュボード ファイルを配置します。
 
 ![](images/loading-dashboards-default-directory.jpg)
 
-2 - In the client application, call the `$.ig.RevealSdkSettings.setBaseUrl` method and pass in your server URL. When debugging, the server URL will be `https://localhost` followed by a port number. For example:
+2 - クライアント アプリケーションで、`$.ig.RevealSdkSettings.setBaseUrl` メソッドを呼び出し、サーバーの URL を渡します。デバッグ時には、サーバーの URL は `https://localhost` の後にポート番号が続きます。例:
 
-```js
+```javascript
 $.ig.RevealSdkSettings.setBaseUrl("https://localhost:/7111");   
 ```
 
 :::caution
 
-Calling the `$.ig.RevealSdkSettings.setBaseUrl` is required when the server is running on a different URL than the client application. If both the server application and the client application are running on the same URL, this method is not required. This method only needs to be called once.
+サーバーがクライアント アプリケーションとは異なる URL で実行されている場合は、`$.ig.RevealSdkSettings.setBaseUrl` を呼び出す必要があります。サーバー アプリケーションとクライアント アプリケーションの両方が同じ URL で実行されている場合、このメソッドは必要ありません。このメソッドを呼び出す必要があるのは 1 回だけです。
 
 :::
 
-3 - Make a call to the `$.ig.RVDashboard.loadDashboard` method and pass the name of the dashboard file without the .rdash extension. This method has a callback which will provide the dashboard being requested from the server. Once you have received the dashboard from the callback, get an instance of the `$.ig.RevealView` and set the `RevealView.dashboard` property to the dashboard in the response.
+3 - `$.ig.RVDashboard.loadDashboard` メソッドを呼び出し、ダッシュボード ファイルの名前を .rdash 拡張子なしで渡します。このメソッドには、サーバーから要求されているダッシュボードを提供するコールバックがあります。コールバックからダッシュボードを受け取ったら、`$.ig.RevealView` のインスタンスを取得し、応答のダッシュボードに `RevealView.dashboard` プロパティを設定します。
 
-```js
+```javascript
 $.ig.RVDashboard.loadDashboard("Sales", (dashboard) => {
     var revealView = new $.ig.RevealView("#revealView");
     revealView.dashboard = dashboard;
@@ -45,15 +45,15 @@ $.ig.RVDashboard.loadDashboard("Sales", (dashboard) => {
 
 :::info Get the Code
 
-The source code to this sample can be found on [GitHub](https://github.com/RevealBi/sdk-samples-javascript/tree/main/LoadingDashboards).
+このサンプルのソース コードは [GitHub](https://github.com/RevealBi/sdk-samples-javascript/tree/main/LoadingDashboards) にあります。
 
 :::
 
-## Load from Custom File Path
+## カスタム ファイル パスから読み込み
 
-If the default **Dashboards** file directory is not an option for your application, you can provide a custom file path in which to load the dashboards instead.
+デフォルトの **Dashboards** ファイル ディレクトリがアプリケーションのオプションではない場合は、代わりにダッシュボードを読み込むためのカスタム ファイル パスを指定できます。
 
-1 - In the ASP.NET Core Web API server application, create a new class that implements the `IRVDashboardProvider` interface. Add the logic to load dashboards from your custom file directory in the `GetDashboardAsync` method. In this example, the ASP.NET Core Web API server application uses a folder named **MyDashboardsFolder** to store all dashboards.
+1 - ASP.NET Core Web API サーバー アプリケーションで、`IRVDashboardProvider`インターフェイスを実装する新しいクラスを作成します。`GetDashboardAsync` メソッドでカスタム ファイル ディレクトリからダッシュボードを読み込むロジックを追加します。この例では、ASP.NET Core Web API サーバー アプリケーションは **MyDashboardsFolder** という名前のフォルダーを使用してすべてのダッシュボードを格納します。
 
 ```cs
 public class DashboardProvider : IRVDashboardProvider
@@ -72,7 +72,7 @@ public class DashboardProvider : IRVDashboardProvider
 }
 ```
 
-2 - Update the `AddReveal` method in the `Program.cs` file to add the `IRVDashboardProvider` you just created to the `RevealSetupBuilder` using the `RevealSetupBuilder.AddDashboardProvider` method.
+2 - `Program.cs` ファイルの `AddReveal` メソッドを更新し、`RevealSetupBuilder.AddDashboardProvider` メソッドを使用して、作成したばかりの `IRVDashboardProvider` を  `RevealSetupBuilder` に追加します。
 
 ```cs
 builder.Services.AddControllers().AddReveal( builder =>
@@ -81,38 +81,38 @@ builder.Services.AddControllers().AddReveal( builder =>
 });
 ```
 
-3 - In the client application, call the `$.ig.RevealSdkSettings.setBaseUrl` method and pass in your server URL. When debugging, the server URL will be `https://localhost` followed by a port number. For example:
+3 - クライアント アプリケーションで、`$.ig.RevealSdkSettings.setBaseUrl` メソッドを呼び出し、サーバーの URL を渡します。デバッグ時には、サーバーの URL は `https://localhost` の後にポート番号が続きます。例:
 
-```js
+```javascript
 $.ig.RevealSdkSettings.setBaseUrl("https://localhost:/7111");   
 ```
 
 :::caution
 
-Calling the `$.ig.RevealSdkSettings.setBaseUrl` is required when the server is running on a different URL than the client application. If both the server application and the client application are running on the same URL, this method is not required. This method only needs to be called once.
+サーバーがクライアント アプリケーションとは異なる URL で実行されている場合は、`$.ig.RevealSdkSettings.setBaseUrl` を呼び出す必要があります。サーバー アプリケーションとクライアント アプリケーションの両方が同じ URL で実行されている場合、このメソッドは必要ありません。このメソッドを呼び出す必要があるのは 1 回だけです。
 
 :::
 
-4 - Make a call to the `$.ig.RVDashboard.loadDashboard` method and pass the name of the dashboard file without the .rdash extension. This method has a callback which will provide the dashboard being requested from the server. Once you have received the dashboard from the callback, get an instance of the `$.ig.RevealView` and set the `RevealView.dashboard` property to the dashboard in the response.
+4 - `$.ig.RVDashboard.loadDashboard` メソッドを呼び出し、ダッシュボード ファイルの名前を .rdash 拡張子なしで渡します。このメソッドには、サーバーから要求されているダッシュボードを提供するコールバックがあります。コールバックからダッシュボードを受け取ったら、`$.ig.RevealView` のインスタンスを取得し、応答のダッシュボードに `RevealView.dashboard` プロパティを設定します。
 
-```js
+```javascript
 $.ig.RVDashboard.loadDashboard("Sales", (dashboard) => {
     var revealView = new $.ig.RevealView("#revealView");
     revealView.dashboard = dashboard;
 });
 ```
 
-:::info
+:::info Get the Code
 
-The source code to this sample can be found on [GitHub](https://github.com/RevealBi/sdk-samples-javascript/tree/main/LoadingDashboards-File).
+このサンプルのソース コードは [GitHub](https://github.com/RevealBi/sdk-samples-javascript/tree/main/LoadingDashboards-File).
 
 :::
 
-## Load from File Stream
+## ファイル ストリームから読み込み
 
-Loading Reveal dashboards from a file stream is very similar to loading dashboards from a file path. In this case, once you have the file path of the dashboard file, you load it into a `FileStream` before creating the `Dashboard` object instance.
+ファイル ストリームからの Reveal ダッシュボードの読み込みは、ファイル パスからのダッシュボードの読み込みと非常によく似ています。この場合、ダッシュボード ファイルのファイル パスを取得したら `Dashboard` オブジェクト インスタンスを作成する前に、それを `FileStream` に読み込みます。
 
-1 - In the ASP.NET Core Web API server application, create a new class that implements the `IRVDashboardProvider` interface. Add the logic to load dashboards from your custom file directory in the `GetDashboardAsync` method. In this example, we are using the `File.OpenRead` method to load the dashboard files into a file stream. We then create a new `Dashboard` object by passing the file stream as a constructor argument and return the newly created `Dashboard` instance.
+1 - ASP.NET Core Web API サーバー アプリケーションで、`IRVDashboardProvider`インターフェイスを実装する新しいクラスを作成します。`GetDashboardAsync` メソッドでカスタム ファイル ディレクトリからダッシュボードを読み込むロジックを追加します。この例では、`File.OpenRead` メソッドを使用して、ダッシュボード ファイルをファイル ストリームに読み込んでいます。次に、コンストラクター引数としてファイル ストリームを渡すことにより、新しい `Dashboard` オブジェクトを作成し、新しく作成された `Dashboard` インスタンスを返します。
 
 ```cs
 public class DashboardProvider : IRVDashboardProvider
@@ -134,7 +134,7 @@ public class DashboardProvider : IRVDashboardProvider
 }
 ```
 
-2 - Update the `AddReveal` method in the `Program.cs` file to add the `IRVDashboardProvider` you just created to the `RevealSetupBuilder` using the `RevealSetupBuilder.AddDashboardProvider` method.
+2 - `Program.cs` ファイルの `AddReveal` メソッドを更新して、`RevealSetupBuilder.AddDashboardProvider` メソッドを使用して、作成したばかりの `IRVDashboardProvider` を  `RevealSetupBuilder` に追加します。
 
 ```cs
 builder.Services.AddControllers().AddReveal( builder =>
@@ -143,21 +143,21 @@ builder.Services.AddControllers().AddReveal( builder =>
 });
 ```
 
-3 - In the client application, call the `$.ig.RevealSdkSettings.setBaseUrl` method and pass in your server URL. When debugging, the server URL will be `https://localhost` followed by a port number. For example:
+3 - クライアント アプリケーションで、`$.ig.RevealSdkSettings.setBaseUrl` メソッドを呼び出し、サーバーの URL を渡します。デバッグ時には、サーバーの URL は `https://localhost` の後にポート番号が続きます。例:
 
-```js
+```javascript
 $.ig.RevealSdkSettings.setBaseUrl("https://localhost:/7111");   
 ```
 
 :::caution
 
-Calling the `$.ig.RevealSdkSettings.setBaseUrl` is required when the server is running on a different URL than the client application. If both the server application and the client application are running on the same URL, this method is not required. This method only needs to be called once.
+サーバーがクライアント アプリケーションとは異なる URL で実行されている場合は、`$.ig.RevealSdkSettings.setBaseUrl` を呼び出す必要があります。サーバー アプリケーションとクライアント アプリケーションの両方が同じ URL で実行されている場合、このメソッドは必要ありません。このメソッドを呼び出す必要があるのは 1 回だけです。
 
 :::
 
-4 - Make a call to the `$.ig.RVDashboard.loadDashboard` method and pass the name of the dashboard file without the .rdash extension. This method has a callback which will provide the dashboard being requested from the server. Once you have received the dashboard from the callback, get an instance of the `$.ig.RevealView` and set the `RevealView.dashboard` property to the dashboard in the response.
+4 - `$.ig.RVDashboard.loadDashboard` メソッドを呼び出し、ダッシュボード ファイルの名前を .rdash 拡張子なしで渡します。このメソッドには、サーバーから要求されているダッシュボードを提供するコールバックがあります。コールバックからダッシュボードを受け取ったら、`$.ig.RevealView` のインスタンスを取得し、応答のダッシュボードに `RevealView.dashboard` プロパティを設定します。
 
-```js
+```javascript
 $.ig.RVDashboard.loadDashboard("Sales", (dashboard) => {
     var revealView = new $.ig.RevealView("#revealView");
     revealView.dashboard = dashboard;
@@ -166,21 +166,21 @@ $.ig.RVDashboard.loadDashboard("Sales", (dashboard) => {
 
 :::info Get the Code
 
-The source code to this sample can be found on [GitHub](https://github.com/RevealBi/sdk-samples-javascript/tree/main/LoadingDashboards-FileStream).
+このサンプルのソース コードは [GitHub](https://github.com/RevealBi/sdk-samples-javascript/tree/main/LoadingDashboards-FileStream).
 
 :::
 
-## Load from Resource
+## リソースから読み込み
 
-Another option for distributing files in an application is to embed them into your server application as a resource.
+アプリケーションでファイルを配布するためのもう 1 つのオプションは、ファイルをリソースとしてサーバー アプリケーションに埋め込むことです。
 
-1 - To embed a Reveal dashboard **.rdash** file as a resource in your server application, open the Properties for the dashboard file in Visual Studio, and set the **Build Action** of the .rdash file to **EmbeddedResource**.
+1 - サーバー アプリケーションにリソースとして Reveal ダッシュボード **.rdash** ファイルを埋め込むには、Visual Studio でダッシュボードファイルのプロパティを開き、.rdash ファイルの **[ビルド アクション]** を **[理め込みリソース]** に設定します。
 
 ![](images/loading-dashboard-as-resource.jpg)
 
-Once your dashboards have been defined as an **EmbeddedResource**, you can load the dashboard by using the `Assembly.GetManifestResourceStream` method. This method will return a `Stream` object that you can then use to create the `Dashboard` object. It's important to note, that the `name` of the resource you will provide in the `Assembly.GetManifestResourceStream` method must include the `namespace` and file name of the .rdash file.
+ダッシュボードが**理め込みリソース**として定義されたら、`Assembly.GetManifestResourceStream` メソッドを使用してダッシュボードを読み込むことができます。このメソッドは、`Dashboard` オブジェクトの作成に使用できる `Stream` オブジェクトを返します。`Assembly.GetManifestResourceStream` メソッドで指定するリソースの`名前`には、.rdash ファイルの`名前空間`とファイル名が含まれている必要があることに注意してください。
 
-2 - In the ASP.NET Core Web API server application, create a new class that implements the `IRVDashboardProvider` interface. Add the logic to load dashboards from the embedded resources in the `GetDashboardAsync` method. In this example, the name of the resource starts with the application root namespace **RevealSdk.Server**, plus **Dashboards** which is the directory that contains the dashboard files, followed by the name of the .rdash file which is built using the `dashboardId` parameter.
+2 - ASP.NET Core Web API サーバー アプリケーションで、`IRVDashboardProvider`インターフェイスを実装する新しいクラスを作成します。`GetDashboardAsync` メソッドの埋め込みリソースからダッシュボードを読み込むロジックを追加します。この例では、リソースの名前は、アプリケーションのルート名前空間 **RevealSdk.Server** に加えて、ダッシュボード ファイルを含むディレクトリである **Dashboards** で始まり、その後に `dashboardId` パラメーターを使用して構築された .rdash ファイルの名前が続きます。
 
 ```cs
 public class DashboardProvider : IRVDashboardProvider
@@ -202,7 +202,7 @@ public class DashboardProvider : IRVDashboardProvider
 }
 ```
 
-3 - Update the `AddReveal` method in the `Program.cs` file to add the `IRVDashboardProvider` you just created to the `RevealSetupBuilder` using the `RevealSetupBuilder.AddDashboardProvider` method.
+3 - `Program.cs` ファイルの `AddReveal` メソッドを更新して、`RevealSetupBuilder.AddDashboardProvider` メソッドを使用して、作成したばかりの `IRVDashboardProvider` を  `RevealSetupBuilder` に追加します。
 
 ```cs
 builder.Services.AddControllers().AddReveal( builder =>
@@ -211,21 +211,21 @@ builder.Services.AddControllers().AddReveal( builder =>
 });
 ```
 
-4 - In the client application, call the `$.ig.RevealSdkSettings.setBaseUrl` method and pass in your server URL. When debugging, the server URL will be `https://localhost` followed by a port number. For example:
+4 - クライアント アプリケーションで、`$.ig.RevealSdkSettings.setBaseUrl` メソッドを呼び出し、サーバーの URL を渡します。デバッグ時には、サーバーの URL は `https://localhost` の後にポート番号が続きます。例:
 
-```js
+```javascript
 $.ig.RevealSdkSettings.setBaseUrl("https://localhost:/7111");   
 ```
 
 :::caution
 
-Calling the `$.ig.RevealSdkSettings.setBaseUrl` is required when the server is running on a different URL than the client application. If both the server application and the client application are running on the same URL, this method is not required. This method only needs to be called once.
+サーバーがクライアント アプリケーションとは異なる URL で実行されている場合は、`$.ig.RevealSdkSettings.setBaseUrl` を呼び出す必要があります。サーバー アプリケーションとクライアント アプリケーションの両方が同じ URL で実行されている場合、このメソッドは必要ありません。このメソッドを呼び出す必要があるのは 1 回だけです。
 
 :::
 
-5 - Make a call to the `$.ig.RVDashboard.loadDashboard` method and pass the name of the dashboard file without the .rdash extension. This method has a callback which will provide the dashboard being requested from the server. Once you have received the dashboard from the callback, get an instance of the `$.ig.RevealView` and set the `RevealView.dashboard` property to the dashboard in the response.
+5 - `$.ig.RVDashboard.loadDashboard` メソッドを呼び出し、ダッシュボード ファイルの名前を .rdash 拡張子なしで渡します。このメソッドには、サーバーから要求されているダッシュボードを提供するコールバックがあります。コールバックからダッシュボードを受け取ったら、`$.ig.RevealView` のインスタンスを取得し、応答のダッシュボードに `RevealView.dashboard` プロパティを設定します。
 
-```js
+```javascript
 $.ig.RVDashboard.loadDashboard("Sales", (dashboard) => {
     var revealView = new $.ig.RevealView("#revealView");
     revealView.dashboard = dashboard;
@@ -234,15 +234,15 @@ $.ig.RVDashboard.loadDashboard("Sales", (dashboard) => {
 
 :::info Get the Code
 
-The source code to this sample can be found on [GitHub](https://github.com/RevealBi/sdk-samples-javascript/tree/main/LoadingDashboards-Resource).
+このサンプルのソース コードは [GitHub](https://github.com/RevealBi/sdk-samples-javascript/tree/main/LoadingDashboards-Resource).
 
 :::
 
-## Load From JSON
+## JSON から読み込み
 
-For advanced users, or users that serialize Reveal dashboards into .json files instead of .rdash files, you can load these JSON based files using the `Dashboard.LoadFromJsonAsync` method on the server application.
+上級ユーザー、または Reveal ダッシュボードを .rdash ファイルではなく .json ファイルにシリアル化するユーザーの場合、サーバー アプリケーションで `Dashboard.LoadFromJsonAsync` メソッドを使用してこれらの JSON ベースのファイルを読み込むことができます。
 
-1 - In the ASP.NET Core Web API server application, create a new class that implements the `IRVDashboardProvider` interface. Add the logic to load dashboards from your json dashboard files in the `GetDashboardAsync` method. In this example, we are using the `File.ReadAllText` method to load the dashboard files into a JSON string. We then create a new `Dashboard` object by passing the JSON string as an argument to the `Dashboard.FromJsonString` method and return the newly created `Dashboard` instance.
+1 - ASP.NET Core Web API サーバー アプリケーションで、`IRVDashboardProvider`インターフェイスを実装する新しいクラスを作成します。`GetDashboardAsync` メソッドで json ダッシュボード ファイルからダッシュボードを読み込むロジックを追加します。この例では、`File.ReadAllText` メソッドを使用して、ダッシュボード ファイルを JSON 文字列に読み込んでいます。次に、JSON 文字列を引数として `Dashboard.FromJsonString` メソッドに渡すことにより、新しい `Dashboard` オブジェクトを作成し、新しく作成された `Dashboard`インスタンスを返します。
 
 ```cs
 public class DashboardProvider : IRVDashboardProvider
@@ -264,11 +264,11 @@ public class DashboardProvider : IRVDashboardProvider
 
 :::caution
 
-Manipulating or changing the contents of a Reveal dashboard after it has been serialized to JSON can break the integrity of the dashboard and cause irreversible damage to the contents of the dashboard. This could result in runtime exceptions being thrown in your application due to errors and/or a failure to load the dashboard.
+JSON にシリアル化された後に Reveal ダッシュボードのコンテンツを操作または変更すると、ダッシュボードの完全性が損なわれ、ダッシュボードのコンテンツに取り返しのつかない損傷が生じる可能性があります。これにより、エラーやダッシュボードの読み込みの失敗により、アプリケーションで実行時に例外がスローされる可能性があります。
 
 :::
 
-2 - Update the `AddReveal` method in the `Program.cs` file to add the `IRVDashboardProvider` you just created to the `RevealSetupBuilder` using the `RevealSetupBuilder.AddDashboardProvider` method.
+2 - `Program.cs` ファイルの `AddReveal` メソッドを更新して、`RevealSetupBuilder.AddDashboardProvider` メソッドを使用して、作成したばかりの `IRVDashboardProvider` を  `RevealSetupBuilder` に追加します。
 
 ```cs
 builder.Services.AddControllers().AddReveal( builder =>
@@ -277,19 +277,19 @@ builder.Services.AddControllers().AddReveal( builder =>
 });
 ```
 
-3 - In the client application, call the `$.ig.RevealSdkSettings.setBaseUrl` method and pass in your server URL. When debugging, the server URL will be `https://localhost` followed by a port number. For example:
+3 - クライアント アプリケーションで、`$.ig.RevealSdkSettings.setBaseUrl` メソッドを呼び出し、サーバーの URL を渡します。デバッグ時には、サーバーの URL は `https://localhost` の後にポート番号が続きます。例:
 
-```js
+```javascript
 $.ig.RevealSdkSettings.setBaseUrl("https://localhost:/7111");   
 ```
 
 :::caution
 
-Calling the `$.ig.RevealSdkSettings.setBaseUrl` is required when the server is running on a different URL than the client application. If both the server application and the client application are running on the same URL, this method is not required. This method only needs to be called once.
+サーバーがクライアント アプリケーションとは異なる URL で実行されている場合は、`$.ig.RevealSdkSettings.setBaseUrl` を呼び出す必要があります。サーバー アプリケーションとクライアント アプリケーションの両方が同じ URL で実行されている場合、このメソッドは必要ありません。このメソッドを呼び出す必要があるのは 1 回だけです。
 
 :::
 
-4 - Make a call to the `$.ig.RVDashboard.loadDashboard` method and pass the name of the dashboard file without the .rdash extension. This method has a callback which will provide the dashboard being requested from the server. Once you have received the dashboard from the callback, get an instance of the `$.ig.RevealView` and set the `RevealView.dashboard` property to the dashboard in the response.
+4 - `$.ig.RVDashboard.loadDashboard` メソッドを呼び出し、ダッシュボード ファイルの名前を .rdash 拡張子なしで渡します。このメソッドには、サーバーから要求されているダッシュボードを提供するコールバックがあります。コールバックからダッシュボードを受け取ったら、`$.ig.RevealView` のインスタンスを取得し、応答のダッシュボードに `RevealView.dashboard` プロパティを設定します。
 
 ```javascript
 $.ig.RVDashboard.loadDashboard("Sales", (dashboard) => {
@@ -300,6 +300,6 @@ $.ig.RVDashboard.loadDashboard("Sales", (dashboard) => {
 
 :::info Get the Code
 
-The source code to this sample can be found on [GitHub](https://github.com/RevealBi/sdk-samples-javascript/tree/main/LoadingDashboards-Json).
+このサンプルのソース コードは [GitHub](https://github.com/RevealBi/sdk-samples-javascript/tree/main/LoadingDashboards-Json).
 
 :::

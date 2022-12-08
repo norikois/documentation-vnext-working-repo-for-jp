@@ -1,6 +1,6 @@
-# Replacing MS Sql Server Data Source
+# MS SQL Server データ ソースの置き換え
 
-**Step 1** - In the ASP.NET Web API server application, create a class that implements `IRVDataSourceProvider`. This class will perform the actual replacement of the MS SQL Server settings. 
+**手順** 1 - ASP.NET Web API サーバー アプリケーションで、`IRVDataSourceProvider` を実装するクラスを作成します。このクラスは、MS SQL Server 設定の実際の置換を実行します。 
 
 ```cs
 public class MyDataSourceProvider : IRVDataSourceProvider
@@ -17,9 +17,9 @@ public class MyDataSourceProvider : IRVDataSourceProvider
 }
 ```
 
-The `ChangeDataSourceItemAsync` method of this class returns the `RVDataSourceItem` that the visualization will use to get its data. By modifying the `RVDataSourceItem` item that is provided as an argument in the `ChangeDataSourceItemAsync` method, you can change which server or table to get your data from.
+このクラスの `ChangeDataSourceItemAsync` メソッドは、表示形式がデータを取得するために使用する `RVDataSourceItem` を返します。`ChangeDataSourceItemAsync` メソッドで引数として提供される `RVDataSourceItem` 項目を変更することにより、データを取得するサーバーまたはテーブルを変更できます。
 
-**Step 2** - Update the `AddReveal` method in the `Program.cs` file to add the `IRVDataSourceProvider` you just created to the `RevealSetupBuilder` using the `RevealSetupBuilder.AddDataSourceProvider` method.
+**手順 2** - `Program.cs` ファイルの `AddReveal` メソッドを更新して、`RevealSetupBuilder.AddDataSourceProvider` メソッドを使用して作成した `IRVDataSourceProvider` を `RevealSetupBuilder` に追加します。
 
 ```cs
 builder.Services.AddControllers().AddReveal( builder =>
@@ -28,9 +28,9 @@ builder.Services.AddControllers().AddReveal( builder =>
 });
 ```
 
-## Example: Replace Host, Database, and Table
+## 例: ホスト、データベース、およびテーブルの置き換え
 
-You can change the MS SQL Server host, database, and table name of every MS SQL Server data source item in your dashboard by casting each `RVDataSourceItem` as a `RVSqlServerDataSourceItem` and modifying it's properties as follows:
+各 `RVDataSourceItem` を `RVSqlServerDataSourceItem` としてキャストし、そのプロパティを次のように変更することで、ダッシュボード内のすべての MS SQL Server データ ソース項目の MS SQL Server ホスト、データベース、およびテーブル名を変更できます。
 
 ```cs
 public class MyDataSourceProvider : IRVDataSourceProvider
@@ -67,6 +67,6 @@ public class MyDataSourceProvider : IRVDataSourceProvider
 
 :::info
 
-The database **Host** can only be changed on the `RVSqlServerDataSource` object. For all other properties use the `RVSqlServerDataSourceItem`.
+データベース **Host** は、`RVSqlServerDataSource` オブジェクトでのみ変更できます。他のすべてのプロパティには、`RVSqlServerDataSourceItem` を使用します。
 
 :::

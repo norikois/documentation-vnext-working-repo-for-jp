@@ -1,33 +1,33 @@
-# Editing Dashboards
+# ダッシュボードの編集
 
-While editing dashboards is primarily an end-user function, there are a number of APIs available to help developers respond to different editing events, control the editing experience by showing/hiding UI elements, or disable editing altogether.
+ダッシュボードの編集は主にエンドユーザー機能ですが、開発者がさまざまな編集イベントに応答したり、UI 要素を表示/非表示にして編集エクスペリエンスを制御したり、編集を完全に無効にしたりするのに役立つ API が多数あります。
 
-## Properties
+## プロパティ
 
 ### availableChartTypes
 
-This property is used to define which chart types are available to end-users for creating and editing visualizations.
+このプロパティは、表示形式を作成および編集するためにエンドユーザーが使用できるチャート タイプを定義するために使用されます。
 
 ![](images/editing-availablecharttypes.jpg)
 
-Only the chart types in the `RevealView.availableChartTypes` collection will be displayed to the end-user.
+`RevealView.availableChartTypes` コレクションのチャート タイプのみがエンドユーザーに表示されます。
 
-By default, all supported chart types are available.
+デフォルトでは、サポートされているすべてのチャート タイプを使用できます。
 
-Sometimes, when working with a small number of chart types, it's easier to remove all chart types and add only the charts you wish to make available. To do this, set the `RevealView.AvailableChartTypes` property to an array containing only the chart types you want to make available to your users.
+少数のチャート タイプを使用する場合は、すべてのチャート タイプを削除して、使用可能にしたいチャートのみを追加する方が簡単な場合があります。これを行うには、RevealView.AvailableChartTypes プロパティを、ユーザーが利用できるようにするチャートの種類のみを含む配列に設定します。
 
-```js
+```javascript
 revealView.availableChartTypes = [$.ig.RVChartType.BarChart, $.ig.RVChartType.ColumnChart];
 ```
 
-To remove specific chart types from the `RevealView.availableChartTypes`, you can use code similar to this example where we remove the `RVChartType.AreaChart`, `RVChartType.Indicator`, and `RVChartType.IndicatorTarget` (also known as KPIs) from the `RevealView.AvailableChartTypes`.
+`RevealView.availableChartTypes` から特定のチャート タイプを削除するには、この例のようなコードを使用して、`RevealView.AvailableChartTypes` から `RVChartType.AreaChart`、`RVChartType.Indicator`、および `RVChartType.IndicatorTarget` (KPI とも呼ばれます) を削除します。
 
-```js
+```javascript
 var chartTypesToRemove = [$.ig.RVChartType.AreaChart, $.ig.RVChartType.Indicator, $.ig.RVChartType.IndicatorTarget];
 revealView.availableChartTypes = revealView.availableChartTypes.filter(t => !chartTypesToRemove.includes(t));
 ```
 
-The `RVChartType` enum has The following values:
+`RVChartType` 列挙体の値は次のとおりです:
 - AreaChart
 - BarChart
 - BubbleChart
@@ -70,71 +70,71 @@ The `RVChartType` enum has The following values:
 
 :::info
 
-If you invoke the `AvailableChartTypes.Clear` method, but do not add any chart types to the collection, then all supported chart types will still be available.
+`AvailableChartTypes.Clear` メソッドを呼び出したが、コレクションにチャート タイプを追加しなかった場合、サポートされているすべてのチャート タイプが引き続き使用可能です。
 
 :::
 
 ### canAddCalculatedFields
 
-This property shows/hides the **Calculated Field** menu item for the Visualization Editor.
+このプロパティは、表示形式エディターの **[計算フィールド]** メニュー項目を表示/非表示にします。
 
 ![](images/editing-canaddcalculatedfields.jpg)
 
-```js
+```javascript
 revealView.canAddCalculatedFields = false;
 ```
 
 ### canAddDashboardFilter
 
-This property shows/hides the **Add Dashboard Filter** menu item for the Dashboard.
+このプロパティは、ダッシュボードの **[ダッシュボード フィルターの追加]** メニュー項目を表示/非表示にします。
 
 ![](images/editing-canadddashboardfilter.jpg)
 
-```js
+```javascript
 revealView.canAddDashboardFilter = false;
 ```
 
 ### canAddDateFilter
 
-This property shows/hides the **Add Date Filter** menu item for the Dashboard.
+このプロパティは、ダッシュボードの **[日付フィルターの追加]** メニュー項目を表示/非表示にします。
 
 ![](images/editing-canadddatefilter.jpg)
 
-```js
+```javascript
 revealView.canAddDateFilter = false;
 ```
 
 ### canAddPostCalculatedFields
 
-This property shows/hides the **F(x)** menu item in the "Visualization Fields" section of the Visualization Editor.
+このプロパティは、表示形式視覚化エディターのフィールド セクションの **F(x)** メニュー項目を表示/非表示にします。
 
 ![](images/editing-canaddpostcalculatedfields.jpg)
 
-```js
+```javascript
 revealView.canAddPostCalculatedFields = false;
 ```
 
 ### canAddVisualization
 
-This property shows/hides the dashboard's **+ Visualization** button when in edit mode.
+このプロパティは、編集モードのときにダッシュボードの **[+ 追加]** ボタンを表示/非表示にします。
 
-```js
+```javascript
 revealView.canAddVisualization = false;
 ```
 
 ### canChangeVisualizationBackgroundColor
 
-This property enables the ability to provide a background color for a visualization in the **Settings** tab of the visualization editor.
+このプロパティを使用すると、表示形式エディターの **[設定]** タブで表示形式の背景色を指定できます。
 
 ![](images/editing-canChangeVisualizationBackgroundColor.jpg)
 
-```js
+```javascript
 revealView.canChangeVisualizationBackgroundColor = true;
 ```
 
-When using this property, you must install the following dependencies into your client application:
+このプロパティを使用する場合は、次の依存関係をクライアント アプリケーションにインストールする必要があります:
 
-- Spectrum v 1.8.0 or newer
+- Spectrum v 1.8.0 以降
 
 ``` html
 <link href="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.css" rel="stylesheet" type="text/css" >
@@ -143,175 +143,175 @@ When using this property, you must install the following dependencies into your 
 
 ### canCopyVisualization
 
-This property shows/hides the **Copy** menu item for a Visualization.
+このプロパティは、表示形式の **[コピー]** メニュー項目を表示/非表示にします。
 
 ![](images/editing-cancopyvisualization.jpg)
 
-```js
+```javascript
 revealView.canCopyVisualization = false;
 ```
 
 ### canDuplicateVisualization
 
-This property shows/hides the **Duplicate** menu item for a Visualization.
+このプロパティは、表示形式の **[複製]** メニュー項目を表示/非表示にします。
 
 ![](images/editing-canduplicatevisualization.jpg)
 
-```js
+```javascript
 revealView.canDuplicateVisualization = false;
 ```
 
 ### canEdit
 
-This property shows/hides the **Edit** menu item for the Dashboard.
+このプロパティは、ダッシュボードの **[編集]** メニュー項目を表示/非表示にします。
 
 ![](images/editing-canedit.jpg)
 
-```js
+```javascript
 revealView.canEdit = false;
 ```
 
-When the `RevealView.canEdit` property is set to `false`, dashboard editing is completely disabled.
+`RevealView.canEdit` プロパティが `false` に設定されている場合、ダッシュボード編集は完全に無効になります。
 
 ### canMaximizeVisualization
 
-This property show/hides the **Maximize** button on a visualization.
+このプロパティは、表示形式の**最大化**ボタンを表示/非表示にします。
 
 ![](images/editing-canMaximizeVisualization.jpg)
 
-```js
+```javascript
 revealView.canMaximizeVisualization = false;
 ```
 
 ### canSaveAs
 
-This property shows/hides the **Save As** button in the dashboard menu.
+このプロパティは、ダッシュボード メニューの **[名前を付けて保存]** ボタンを表示/非表示にします。
 
 ![](images/editing-canSaveAs.jpg)
 
-```js
+```javascript
 revealView.canSaveAs = false;
 ```
 
 ### showChangeDataSource
 
-This property shows/hides the **Change Data Source** button on the Data tab in the visualization editor.
+このプロパティは、表示形式エディターの [データ] タブにある **[データ ソースの変更]** ボタンを表示/非表示にします。
 
 ![](images/editing-showChangeDataSource.jpg)
 
-```js
+```javascript
 revealView.showChangeDataSource = false;
 ```
 
 ### showEditDataSource
 
-This property shows/hides the **Edit** menu item for the DataSource in the Visualization Editor.
+このプロパティは、表示形式エディターでデータ ソースの **[編集]** メニュー項目を表示/非表示にします。
 
 ![](images/editing-showeditdatasource.jpg)
 
-```js
+```javascript
 revealView.showEditDataSource = false;
 ```
 
 ### showExportImage
 
-This property shows/hides the **Image** item from the export menu.
+このプロパティは、エクスポート メニューから **[画像]** 項目を表示/非表示にします。
 
 ![](images/editing-showExportImage.jpg)
 
-```js
+```javascript
 revealView.showExportImage = false;
 ```
 
 ### showExportToExcel
 
-This property shows/hides the **Excel** item from the export menu.
+このプロパティは、エクスポート メニューから **[Excel]** 項目を表示/非表示にします。
 
 ![](images/editing-showExportToExcel.jpg)
 
-```js
+```javascript
 revealView.showExportToExcel = false;
 ```
 
 ### showExportToPDF
 
-This property shows/hides the **PDF** item from the export menu.
+このプロパティは、エクスポート メニューから **[PDF]** 項目を表示/非表示にします。
 
 ![](images/editing-showExportToPDF.jpg)
 
-```js
+```javascript
 revealView.showExportToPDF = false;
 ```
 
 ### showExportToPowerPoint
 
-This property shows/hides the **PowerPoint** item from the export menu.
+このプロパティは、エクスポート メニューから **[PowerPoint]** 項目を表示/非表示にします。
 
 ![](images/editing-showExportToPowerPoint.jpg)
 
-```js
+```javascript
 revealView.showExportToPowerPoint = false;
 ```
 
 ### showFilters
 
-This property shows/hides the dashboard filters.
+このプロパティは、ダッシュボード フィルターを表示/非表示にします。
 
 ![](images/editing-showFilters.jpg)
 
-```js
+```javascript
 revealView.showFilters = false;
 ```
 
 ### showHeader
 
-This property shows/hides the entire dashboard header, which include the dashboard Title and the dashboard menu
+このプロパティは、ダッシュボードのタイトルとダッシュボード メニューを含むダッシュボード ヘッダー全体を表示/非表示にします。
 
-```js
+```javascript
 revealView.showHeader = false;
 ```
 
 ### showMenu
 
-This property shows/hides the dashboard menu that is placed in the top right corner of the `RevealView`
+このプロパティは、`RevealView` の右上隅に配置されているダッシュボード メニューを表示/非表示にします。
 
-```js
+```javascript
 revealView.showMenu = false;
 ```
 
 ### showRefresh
 
-This property shows/hides the **Refresh** button from the dashboard menu.
+このプロパティは、ダッシュボード メニューの **[更新]** ボタンを表示/非表示にします。
 
 ![](images/editing-showRefresh.jpg)
 
-```js
+```javascript
 revealView.showRefresh = false;
 ```
 
 ### startInEditMode
 
-When set to `true`, this property will place the `RevealView` into "Edit Mode" when a dashboard is first loaded.
+`true` に設定すると、このプロパティは、ダッシュボードが最初に読み込まれたときに `RevealView` を「編集モード」にします。
 
 ![](images/editing-startineditmode.jpg)
 
-```js
+```javascript
 revealView.startInEditMode = false;
 ```
 
 ### startWithNewVisualization
 
-When set to `true`, this property will immediately launch the "New Visualization" dialog prompting you to choose a data source.
+`true` に設定すると、このプロパティはすぐに [新しい表示形式] ダイアログを起動し、データ ソースを選択するように求めます。
 
 ![](images/editing-startwithnewvisualization.jpg)
 
-```js
+```javascript
 revealView.startWithNewVisualization = false;
 ```
 
 :::info
 
-This property will not function if you are loading an existing dashboard and have not set the `RevealView.startInEditMode` property to `true` 
+既存のダッシュボードを読み込んでいて、`RevealView.startInEditMode` プロパティを `true` に設定していない場合、このプロパティは機能しません。
 
 :::
 
@@ -319,9 +319,9 @@ This property will not function if you are loading an existing dashboard and hav
 
 ### onVisualizationEditorOpening
 
-There may be times when you want to execute some application logic **before** the visualization editor has opened, and you may want to even prevent the editor from opening until a condition is met. To do this, you can add an event handler to the `RevealView.onVisualizationEditorOpening` event.
+表示形式エディターが開く**前**にアプリケーション ロジックを実行したい場合や、条件が満たされるまでエディターが開かないようにしたい場合もあります。これを行うには、イベント ハンドラーを `RevealView.onVisualizationEditorOpening` イベントに追加します。
 
-```js
+```javascript
 revealView.onVisualizationEditorOpening = function (args) {
     if(args.isNewVisualization == false){ //the user is trying to edit an existing visualization
         args.cancel = true; //prevent it
@@ -329,22 +329,22 @@ revealView.onVisualizationEditorOpening = function (args) {
 };
 ```
 
-The `VisualizationEditorOpeningArgs` contains the following properties:
-- **cancel** - gets or sets a value indicating whether the event should be canceled. `true` if the event should be canceled; otherwise `false`
-- **isNewVisualization** - if `true`, the visualization is a newly added visualization. If `false`, it is an existing visualization
-- **visualization** - the visualization that was edited and/or added
+`VisualizationEditorOpeningArgs` には、次のプロパティが含まれています:
+- **cancel** - イベントをキャンセルするかどうかを示す値を取得または設定します。イベントをキャンセルする必要がある場合は `true`。それ以外の場合は `false`。
+- **isNewVisualization** - `true` の場合、表示形式は新しく追加された表示形式です。`false` の場合、それは既存の表示形式です。
+- **visualization** - 編集および/または追加された表示形式
 
 :::info
 
-If you set `VisualizationEditorOpeningArgs.cancel` to `true`, then the Visualization Editor will not open.
+`VisualizationEditorOpeningArgs.cancel` を `true` に設定すると、表示形式視覚化エディターは開きません。
 
 :::
 
 ### onVisualizationEditorOpened
 
-If you would like to be notified **after** the Visualization Editor has been opened, either when editing an existing visualization or creating a new one, you can add an event handler to the `RevealView.onVisualizationEditorOpened` event.
+表示形式エディターを開いた**後**、既存の表示形式を編集するとき、または新しい表示形式を作成するときに通知を受け取りたい場合は、`RevealView.onVisualizationEditorOpened` イベントにイベント ハンドラーを追加できます。
 
-```js
+```javascript
 revealView.onVisualizationEditorOpened = function (args) {
     if(args.isNewVisualization == false) { 
         //the user is editing an existing visualization
@@ -352,15 +352,15 @@ revealView.onVisualizationEditorOpened = function (args) {
 };
 ```
 
-The `VisualizationEditorOpenedEventArgs` contains the following properties:
-- **isNewVisualization** - if `true`, the visualization is a newly added visualization. If `false`, it is an existing visualization
-- **visualization** - the visualization that was edited and/or added
+`VisualizationEditorOpenedEventArgs` には、次のプロパティが含まれています:
+- **isNewVisualization** - `true` の場合、表示形式は新しく追加された表示形式です。`false` の場合、それは既存の表示形式です。
+- **visualization** - 編集および/または追加された表示形式
 
 ### onVisualizationEditorClosing
 
-There may be times when you want to execute some application logic **before** the visualization editor has closed, and you may want to even prevent the editor from closing until a condition is met. To do this, you can add an event handler to the `RevealView.onVisualizationEditorClosing` event.
+表示形式エディターが閉じる**前**にアプリケーション ロジックを実行したい場合や、条件が満たされるまでエディターが閉じないようにしたい場合もあります。これを行うには、`RevealView.onVisualizationEditorClosing` イベントにイベント ハンドラーを追加します。
 
-```js
+```javascript
 revealView.onVisualizationEditorClosing = function (args) {
     if(args.isNewVisualization == false) {  //the user is editing
          args.resetVisualization = true; //puts the widget to the state when it was when the user started editing it
@@ -368,29 +368,29 @@ revealView.onVisualizationEditorClosing = function (args) {
 };
 ```
 
-The `VisualizationEditorClosingArgs` contains the following properties:
-- **cancel** - gets or sets a value indicating whether the event should be canceled. `true` if the event should be canceled; otherwise `false`
-- **isNewVisualization** - if `true`, the visualization is a newly added visualization. If `false`, it is an existing visualization
-- **resetVisualization** - if `true`, resets the visualization back to the state prior to being edited.
-- **visualization** - the visualization that was edited and/or added
+`VisualizationEditorClosingArgs` には、次のプロパティが含まれています:
+- **cancel** - イベントをキャンセルするかどうかを示す値を取得または設定します。イベントをキャンセルする必要がある場合は `true`。それ以外の場合は `false`。
+- **isNewVisualization** - `true` の場合、表示形式は新しく追加された表示形式です。`false` の場合、それは既存の表示形式です。
+- **resetVisualization** - `true` の場合、表示形式を編集前の状態にリセットします。
+- **visualization** - 編集および/または追加された表示形式
 
 :::info
 
-If you set `VisualizationEditorClosingArgs.cancel` to `true`, then the Visualization Editor will not close.
+`VisualizationEditorClosingArgs.cancel` を `true` に設定すると、表示形式視覚化エディターは閉じません。
 
 :::
 
 ### onVisualizationEditorClosed
-Anytime an end-user edits a single visualization in the `RevealView`, the `RevealView.onVisualizationEditorClosed` event is fired **after** the editor is closed. This can be in response to editing an existing visualization, or adding a new visualization. You can respond to this event by adding an event handler to the `RevealView.onVisualizationEditorClosed` event.
+エンドユーザーが `RevealView` で単一の表示形式を編集するときはいつでも、エディターが閉じられた**後**に `RevealView.onVisualizationEditorClosed` イベントが発生します。これは、既存の表示形式の編集、または新しい表示形式の追加に対応する場合があります。`RevealView.onVisualizationEditorClosed` イベントにイベント ハンドラーを追加することで、このイベントに応答できます。
 
-```js
+```javascript
 revealView.onVisualizationEditorClosed = function (args) {
     if(args.isNewVisualization == false) { 
     }
 };
 ```
 
-The `VisualizationEditorClosedEventArgs` contains the following properties:
-- **isCancelled** - determines if the visualization editor was closed via the **X button** (`false`) or the **Check Button** (`true`)
-- **isNewVisualization** - if `true`, the visualization is a newly added visualization. If `false`, it is an existing visualization
-- **visualization** - the visualization that was edited and/or added
+`VisualizationEditorClosedEventArgs` には、次のプロパティが含まれています:
+- **isCancelled** - 表示形式エディターが **X ボタン** (`false`) または **Check ボタン** (`true`) のどちらで閉じられたかを決定します。
+- **isNewVisualization** - `true` の場合、表示形式は新しく追加された表示形式です。`false` の場合、それは既存の表示形式視覚化です。
+- **visualization** - 編集および/または追加された表示形式

@@ -1,33 +1,36 @@
-# Reveal SDK Client API Reference
-Here you will find technical information about the Reveal SDK, specifically about the Reveal SDK Client JavaScript API.
-For the complete Reveal SDK Client JavaScript API reference, please click <a href="https://help.revealbi.io/api/javascript/latest/" target="_blank" rel="noopener\">this link</a>.
+# Reveal SDK クライアント API リファレンス
+ここでは、Reveal SDK、特に Reveal SDK Client JavaScript API に関する詳しい情報を見つけることができます。
+Reveal SDK クライアント JavaScript API の詳細については、<a href="/api/javascript/latest/" target="_blank" rel="noopener\">このリンクを参照してください</a>。
 
-## Most commonly used classes and interfaces  
+## 最も一般的に使用されるクラスとインターフェース  
 
-**Main SDK concepts and features**  
-<a href="https://help.revealbi.io/api/javascript/latest/classes/revealview.html" target="_blank" rel="noopener\">RevealView</a>   
-<a href="https://help.revealbi.io/api/javascript/latest/classes/rvdashboard.html" target="_blank" rel="noopener\">RVDashboard</a>  
-<a href="https://help.revealbi.io/api/javascript/latest/classes/revealsdksettings.html" target="_blank" rel="noopener\">RevealSdkSettings</a>  
-<a href="https://help.revealbi.io/api/javascript/latest/classes/rvvisualization.html" target="_blank" rel="noopener\">RVVisualization</a>  
-<a href="https://help.revealbi.io/api/javascript/latest/classes/revealtheme.html" target="_blank" rel="noopener\">RevealTheme</a>  
-<a href="https://help.revealbi.io/api/javascript/latest/classes/revealutility.html" target="_blank" rel="noopener\">RevealUtility</a>  
+**SDK の主な概念と機能**
 
-**Datasources**  
-<a href="https://help.revealbi.io/api/javascript/latest/classes/rvsqlserverdatasource.html" target="_blank" rel="noopener\">RVSqlServerDataSource</a>  
-<a href="https://help.revealbi.io/api/javascript/latest/classes/rvsqlserverdatasourceitem.html" target="_blank" rel="noopener\">RVSqlServerDataSourceItem</a>
+<a href="/api/javascript/latest/classes/revealview.html" target="_blank" rel="noopener\">RevealView</a>   
+<a href="/api/javascript/latest/classes/rvdashboard.html" target="_blank" rel="noopener\">RVDashboard</a>  
+<a href="/api/javascript/latest/classes/revealsdksettings.html" target="_blank" rel="noopener\">RevealSdkSettings</a>  
+<a href="/api/javascript/latest/classes/rvvisualization.html" target="_blank" rel="noopener\">RVVisualization</a>  
+<a href="/api/javascript/latest/classes/revealtheme.html" target="_blank" rel="noopener\">RevealTheme</a>  
+<a href="/api/javascript/latest/classes/revealutility.html" target="_blank" rel="noopener\">RevealUtility</a>  
 
-<a href="https://help.revealbi.io/api/javascript/latest/classes/rvrestdatasource.html" target="_blank" rel="noopener\">RVRESTDataSource</a>  
-<a href="https://help.revealbi.io/api/javascript/latest/classes/rvrestdatasourceitem.html" target="_blank" rel="noopener\">RVRESTDataSourceItem</a>
+**データ ソース**
 
-<a href="https://help.revealbi.io/api/javascript/latest/classes/rvjsondatasource.html" target="_blank" rel="noopener\">RVJsonDataSource</a>  
-<a href="https://help.revealbi.io/api/javascript/latest/classes/rvjsondatasourceitem.html" target="_blank" rel="noopener\">RVJsonDataSourceItem</a>
+<a href="/api/javascript/latest/classes/rvsqlserverdatasource.html" target="_blank" rel="noopener\">RVSqlServerDataSource</a>  
+<a href="/api/javascript/latest/classes/rvsqlserverdatasourceitem.html" target="_blank" rel="noopener\">RVSqlServerDataSourceItem</a>
 
-<a href="https://help.revealbi.io/api/javascript/latest/classes/rvinmemorydatasource.html" target="_blank" rel="noopener\">RVInMemoryDataSource</a>  
-<a href="https://help.revealbi.io/api/javascript/latest/classes/rvinmemorydatasourceitem.html" target="_blank" rel="noopener\">RVInMemoryDataSourceItem</a>  
+<a href="/api/javascript/latest/classes/rvrestdatasource.html" target="_blank" rel="noopener\">RVRESTDataSource</a>  
+<a href="/api/javascript/latest/classes/rvrestdatasourceitem.html" target="_blank" rel="noopener\">RVRESTDataSourceItem</a>
 
-**Filtering**  
-<a href="https://help.revealbi.io/api/javascript/latest/classes/rvdatedashboardfilter.html" target="_blank" rel="noopener\">RVDateDashboardFilter</a>  
-<a href="https://help.revealbi.io/api/javascript/latest/classes/rvdashboardfilter.html" target="_blank" rel="noopener\">RVDashboardFilter</a>  
-<a href="https://help.revealbi.io/api/javascript/latest/classes/rvfiltervalue.html" target="_blank" rel="noopener\">RVFilterValue</a>  
+<a href="/api/javascript/latest/classes/rvjsondatasource.html" target="_blank" rel="noopener\">RVJsonDataSource</a>  
+<a href="/api/javascript/latest/classes/rvjsondatasourceitem.html" target="_blank" rel="noopener\">RVJsonDataSourceItem</a>
+ 
+<a href="/api/javascript/latest/classes/rvinmemorydatasource.html" target="_blank" rel="noopener\">RVInMemoryDataSource</a>  
+<a href="/api/javascript/latest/classes/rvinmemorydatasourceitem.html" target="_blank" rel="noopener\">RVInMemoryDataSourceItem</a>  
+
+**フィルタリング**
+ 
+<a href="/api/javascript/latest/classes/rvdatedashboardfilter.html" target="_blank" rel="noopener\">RVDateDashboardFilter</a>  
+<a href="/api/javascript/latest/classes/rvdashboardfilter.html" target="_blank" rel="noopener\">RVDashboardFilter</a>  
+<a href="/api/javascript/latest/classes/rvfiltervalue.html" target="_blank" rel="noopener\">RVFilterValue</a>  
 
 

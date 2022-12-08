@@ -1,32 +1,35 @@
-# Reveal Server .NET API Reference
-Here you will find technical information about the Reveal SDK, specifically about the Reveal SDK Server .NET API.
-For a complete Reveal SDK Server API reference, please follow <a href="https://help.revealbi.io/api/aspnet/latest/Reveal.Sdk.html" target="_blank" rel="noopener\">this link</a>
+# Reveal サーバー .NET API リファレンス
+ここでは、Reveal SDK、特に Reveal SDK Server .NET API に関する詳しい情報を見つけることができます。
+Reveal SDK サーバー API の詳細については、<a href="/api/aspnet/latest/Reveal.Sdk.html" target="_blank" rel="noopener\">このリンクを参照してください</a>。
 
-## Most commonly used classes and interfaces:
+## 最も一般的に使用されるクラスとインターフェース:
 
-**Main SDK concepts and features** 
-<a href="https://help.revealbi.io/api/aspnet/latest/Reveal.Sdk.RevealEmbedSettings.html" target="_blank" rel="noopener\">RevealEmbedSettings</a>  
-<a href="https://help.revealbi.io/api/aspnet/latest/Reveal.Sdk.Dashboard.html" target="_blank" rel="noopener\">Dashboard class</a>  
+**SDK の主な概念と機能**
 
-**Datasources**  
-<a href="https://help.revealbi.io/api/aspnet/latest/Reveal.Sdk.IRVDataSourceProvider.html" target="_blank" rel="noopener\">IRVDataSourceProvider</a>
+<a href="/api/aspnet/latest/Reveal.Sdk.RevealEmbedSettings.html" target="_blank" rel="noopener\">RevealEmbedSettings</a>  
+<a href="/api/aspnet/latest/Reveal.Sdk.Dashboard.html" target="_blank" rel="noopener\">Dashboard class</a>  
 
-<a href="https://help.revealbi.io/api/aspnet/latest/Reveal.Sdk.RVSqlServerDataSource.html" target="_blank" rel="noopener\">RVSqlServerDataSource</a>  
-<a href="https://help.revealbi.io/api/aspnet/latest/Reveal.Sdk.RVSqlServerDataSourceItem.html" target="_blank" rel="noopener\">RVSqlServerDataSourceItem</a>
+**データ ソース**
 
-<a href="https://help.revealbi.io/api/aspnet/latest/Reveal.Sdk.RVRESTDataSource.html" target="_blank" rel="noopener\">RVRESTDataSource</a>  
-<a href="https://help.revealbi.io/api/aspnet/latest/Reveal.Sdk.RVRESTDataSourceItem.html" target="_blank" rel="noopener\">RVRESTDataSourceItem</a>
+<a href="/api/aspnet/latest/Reveal.Sdk.IRVDataSourceProvider.html" target="_blank" rel="noopener\">IRVDataSourceProvider</a>
 
-<a href="https://help.revealbi.io/api/aspnet/latest/Reveal.Sdk.RVJsonDataSource.html" target="_blank" rel="noopener\">RVJsonDataSource</a>  
-<a href="https://help.revealbi.io/api/aspnet/latest/Reveal.Sdk.RVJsonDataSourceItem.html" target="_blank" rel="noopener\">RVJsonDataSourceItem</a>
+<a href="/api/aspnet/latest/Reveal.Sdk.RVSqlServerDataSource.html" target="_blank" rel="noopener\">RVSqlServerDataSource</a>  
+<a href="/api/aspnet/latest/Reveal.Sdk.RVSqlServerDataSourceItem.html" target="_blank" rel="noopener\">RVSqlServerDataSourceItem</a>
 
-<a href="https://help.revealbi.io/api/aspnet/latest/Reveal.Sdk.IRVDataProvider.html" target="_blank" rel="noopener\">IRVDataProvider</a>  
-<a href="https://help.revealbi.io/api/aspnet/latest/Reveal.Sdk.RVInMemoryData.html" target="_blank" rel="noopener\">RVInMemoryData</a>  
-<a href="https://help.revealbi.io/api/aspnet/latest/Reveal.Sdk.RVInMemoryDataSource.html" target="_blank" rel="noopener\">RVInMemoryDataSource</a>  
-<a href="https://help.revealbi.io/api/aspnet/latest/Reveal.Sdk.RVInMemoryDataSourceItem.html" target="_blank" rel="noopener\">RVInMemoryDataSourceItem</a>  
+<a href="/api/aspnet/latest/Reveal.Sdk.RVRESTDataSource.html" target="_blank" rel="noopener\">RVRESTDataSource</a>  
+<a href="/api/aspnet/latest/Reveal.Sdk.RVRESTDataSourceItem.html" target="_blank" rel="noopener\">RVRESTDataSourceItem</a>
 
-**Authentication**  
-<a href="https://help.revealbi.io/api/aspnet/latest/Reveal.Sdk.IRVAuthenticationProvider.html" target="_blank" rel="noopener\">IRVAuthenticationProvider</a>  
-<a href="https://help.revealbi.io/api/aspnet/latest/Reveal.Sdk.IRVDataSourceCredential.html" target="_blank" rel="noopener\">IRVDataSourceCredential</a>  
-<a href="https://help.revealbi.io/api/aspnet/latest/Reveal.Sdk.RVBearerTokenDataSourceCredential.html" target="_blank" rel="noopener\">RVBearerTokenDataSourceCredential</a>  
-<a href="https://help.revealbi.io/api/aspnet/latest/Reveal.Sdk.RVUsernamePasswordDataSourceCredential.html" target="_blank" rel="noopener\">RVUsernamePasswordDataSourceCredential</a>
+<a href="/api/aspnet/latest/Reveal.Sdk.RVJsonDataSource.html" target="_blank" rel="noopener\">RVJsonDataSource</a>  
+<a href="/api/aspnet/latest/Reveal.Sdk.RVJsonDataSourceItem.html" target="_blank" rel="noopener\">RVJsonDataSourceItem</a>
+
+<a href="/api/aspnet/latest/Reveal.Sdk.IRVDataProvider.html" target="_blank" rel="noopener\">IRVDataProvider</a>  
+<a href="/api/aspnet/latest/Reveal.Sdk.RVInMemoryData.html" target="_blank" rel="noopener\">RVInMemoryData</a>  
+<a href="/api/aspnet/latest/Reveal.Sdk.RVInMemoryDataSource.html" target="_blank" rel="noopener\">RVInMemoryDataSource</a>  
+<a href="/api/aspnet/latest/Reveal.Sdk.RVInMemoryDataSourceItem.html" target="_blank" rel="noopener\">RVInMemoryDataSourceItem</a>  
+
+**認証**
+ 
+<a href="/api/aspnet/latest/Reveal.Sdk.IRVAuthenticationProvider.html" target="_blank" rel="noopener\">IRVAuthenticationProvider</a>  
+<a href="/api/aspnet/latest/Reveal.Sdk.IRVDataSourceCredential.html" target="_blank" rel="noopener\">IRVDataSourceCredential</a>  
+<a href="/api/aspnet/latest/Reveal.Sdk.RVBearerTokenDataSourceCredential.html" target="_blank" rel="noopener\">RVBearerTokenDataSourceCredential</a>  
+<a href="/api/aspnet/latest/Reveal.Sdk.RVUsernamePasswordDataSourceCredential.html" target="_blank" rel="noopener\">RVUsernamePasswordDataSourceCredential</a>

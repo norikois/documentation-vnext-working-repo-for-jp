@@ -3,14 +3,14 @@ displayed_sidebar: webSidebar
 hide_table_of_contents: true
 ---
 
-# Welcome to the Reveal SDK for Web!
+# Reveal SDK for Web へようこそ!
 
-Reveal is a modern BI solution that was built for embedded analytics. You can easily integrate data analytics into your application, taking advantage of rich APIs that give you control over Reveal data visualizations, while also enhancing the user's experience with your app.
+Reveal は、埋め込み分析用に構築された最新の BI ソリューションです。データ分析をアプリケーションに簡単に統合でき、Reveal 表示形式を制御できる豊富な API を利用しながら、アプリでのユーザー エクスペリエンスを強化できます。
 
-Built by user experience experts and designed for the business user, Reveal makes it simple for you to create, view, and share data visualizations with your teams. Offering you a seamless, identical experience no matter what device you are on.
+ユーザー エクスペリエンスのエキスパートによって構築され、ビジネス ユーザー向けに設計された Reveal は、表示形式の作成、表示、チームとの共有を簡単にします。使用しているデバイスに関係なく、シームレスで同一のエクスペリエンスを提供します。
 
-**Where to start:**
-1. [Download the Reveal SDK](https://www.revealbi.io/download-sdk)
-2. [Installation](installation.md)
-3. [Create your First Server](getting-started-server.md)
-4. [Create your First App](getting-started-javascript.md)
+**参照リンク:**
+1. [Reveal SDK のダウンロード](https://www.revealbi.io/ja/download-sdk)
+2. [インストール](installation.md)
+3. [はじめてのサーバー作成](getting-started-server.md)
+4. [はじめてのアプリ作成](getting-started-javascript.md)

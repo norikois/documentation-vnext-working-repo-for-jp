@@ -1,46 +1,41 @@
-# Setting up the Reveal SDK Server with Node.js
+# Node.js を使用した Reveal SDK サーバーの設定
 
 :::caution
 
-Node server support is currently available as a **Beta** versioned product. Some features may not work, or be missing completely. The API will experience breaking changes before the RTM release.
+ノード サーバーのサポートは現在、**Beta** バージョンの製品として利用できます。一部の機能が動作しないか、完全に欠落している可能性があります。API は、RTM リリースの前に重大な変更が発生します。
 
 :::
 
-## Step 1 - Create the Node.js Project
+## 手順 1 - Node.js プロジェクトの作成
 
-1 - Open a command line and create a directory named **reveal-server-node**
+1 - コマンドラインを開き、**reveal-server-node** という名前のディレクトリを作成します。
+<pre style="background:#141414;color:white;display:inline-block;padding:16x;margin-top:10px;font-family:'Consolas';border-radius:5px;width:100%">
+> mkdir reveal-server-node
+</pre>
 
-```bash
-mkdir reveal-server-node
-```
+2 - コマンドライン パスを新しく作成したディレクトリに変更します。
+<pre style="background:#141414;color:white;display:inline-block;padding:16x;margin-top:10px;font-family:'Consolas';border-radius:5px;width:100%">
+> cd reveal-server-node
+</pre>
 
-2 - Change the command line path to the newly created directory
+3 - ディレクトリで **npm** を初期化します。
+<pre style="background:#141414;color:white;display:inline-block;padding:16x;margin-top:10px;font-family:'Consolas';border-radius:5px;width:100%">
+> npm init -y
+</pre>
 
-```bash
-cd reveal-server-node
-```
+4 - **express** フレームワークをインストールします。
+<pre style="background:#141414;color:white;display:inline-block;padding:16x;margin-top:10px;font-family:'Consolas';border-radius:5px;width:100%">
+> npm install express
+</pre>
 
-3 - Initialize **npm** in the directory
+5 - **VS Code** でプロジェクトを開きます。
+<pre style="background:#141414;color:white;display:inline-block;padding:16x;margin-top:10px;font-family:'Consolas';border-radius:5px;width:100%">
+> code .
+</pre>
 
-```bash npm2yarn
-npm init -y
-```
+6 - **main.js** という名前の新しいファイルを作成し、次のコードを追加します:
 
-4 - Install the **express** framework
-
-```bash npm2yarn
-npm install express
-```
-
-5 - Open the project in **VS Code**
-
-```bash
-code .
-```
-
-6 - Create a new file named **main.js**, and add the following code
-
-```js title="main.js"
+```javascript
 var express = require('express');
 
 const app = express();
@@ -50,24 +45,22 @@ app.listen(8080, () => {
 });
 ```
 
-## Step 2 - Add Reveal SDK
+## 手順 2 - Reveal SDK の追加
 
-1 - Install the **Reveal SDK** for Node.js
+1 - Node.js 用の **Reveal SDK** をインストールします。
+<pre style="background:#141414;color:white;display:inline-block;padding:16x;margin-top:10px;font-family:'Consolas';border-radius:5px;width:100%">
+> npm install reveal-sdk-node
+</pre>
 
-```bash npm2yarn
-npm install reveal-sdk-node
-```
+2 - `main.js` ファイルを変更して Reveal を追加します。
 
-2 - Modify the `main.js` file to add Reveal
-
-```js
+```javascript
 var express = require('express');
-// highlight-next-line
 var reveal = require('reveal-sdk-node');
 
 const app = express();
 
-// highlight-next-line
+//add reveal sdk
 app.use('/', reveal());
 
 app.listen(8080, () => {
@@ -75,34 +68,32 @@ app.listen(8080, () => {
 });
 ```
 
-## Step 3 - Create the Dashboards Folder
+## 手順 3 - ダッシュボード フォルダーの作成
 
-1 - In Visual Studio Code, click the **New Folder** button in the Explorer and name it **dashboards**. The folder MUST be named **dashboards**
+1 - Visual Studio Code で、エクスプローラーの [**新しいフォルダー**] ボタンをクリックし、**dashboards** という名前を付けます。フォルダーの名前は **dashboards** にしてください。
 
 ![](images/getting-started-server-node-create-dashboards-folder.jpg)
 
-By default, the Reveal SDK uses a convention that will load all dashboards from the **dashboards** folder. You can change this convention by creating a custom `IRVDashboardProvider`.
+デフォルトで、Reveal SDK は **dashboards** フォルダーからすべてのダッシュボードを読み込む規則を使用します。この規則を変更でするにはカスタムの `IRVDashboardProvider` を作成します。
 
-## Step 4 - Setup CORS Policy (Debugging)
+## 手順 4 - CORS ポリシー (デバッグ) の設定
 
-While developing and debugging your application, it is common to host the server and client app on different URLs. For example; your Server my be running on `https://localhost:24519`, while your Angular app may be running on `https://localhost:4200`. If you were to try and load a dashboard from the client application, it would fail because of a Cross-Origin Resource Sharing (CORS) policy. To enable this scenario, you must create a CORS policy and enable it in the server project.
+アプリケーションの開発とデバッグでは、サーバーとクライアント アプリを異なる URL でホストするのが一般的です。たとえば、サーバーは `https://localhost:24519` で実行されますが、Angular アプリは `https://localhost:4200` で実行されます。クライアント アプリケーションからダッシュボードを読み込もうとすると、Cross-Origin Resource Sharing (CORS) ポリシーが原因で失敗します。このシナリオを有効にするには、CORS ポリシーを作成し、サーバー プロジェクトで有効にする必要があります。
 
-1 - Install **cors** package
+1 - **cors** パッケージをインストールします。
+<pre style="background:#141414;color:white;display:inline-block;padding:16x;margin-top:10px;font-family:'Consolas';border-radius:5px;width:100%">
+> npm install cors
+</pre>
 
-```bash npm2yarn
-npm install cors
-```
+2 - `main.js` ファイルを変更して **cors** を有効にします。
 
-2 - Modify the `main.js` file to enable **cors**
-
-```js title="main.js"
+```javascript
 var express = require('express');
 var cors = require('cors');
 var reveal = require('reveal-sdk-node');
 
 const app = express();
 
-//highlight-next-line
 app.use(cors()); // DEVELOPMENT only! In production, configure appropriately.
 
 app.use('/', reveal());
@@ -112,21 +103,21 @@ app.listen(8080, () => {
 });
 ```
 
-## Step 5 - Start the Node.js Server
+## 手順 5 - Node.js サーバーの起動
 
-The final step is to start the Node.js server by runnning the following command:
+最後の手順は、次のコマンドを実行して Node.js サーバーを起動することです。
 
-```bash
-node main.js
-```
+<pre style="background:#141414;color:white;display:inline-block;padding:16x;margin-top:10px;font-family:'Consolas';border-radius:5px;width:100%">
+> node main.js
+</pre>
 
-Next Steps:
-- [Create an Angular Client App](getting-started-angular.md)
-- [Create an Html/JS Client App](getting-started-javascript.md)
-- [Create a React Client App](getting-started-react.md)
+次の手順:
+- [Angular クライアント アプリの作成](getting-started-angular.md)
+- [Html/JS クライアント アプリの作成](getting-started-javascript.md)
+- [React クライアント アプリの作成](getting-started-react.md)
 
 :::info Get the Code
 
-The source code to this sample can be found on [GitHub](https://github.com/RevealBi/sdk-samples-javascript/tree/main/01-GettingStarted/server/nodejs).
+このサンプルのソース コードは [GitHub](https://github.com/RevealBi/sdk-samples-javascript/tree/main/01-GettingStarted/server/nodejs) にあります。
 
 :::

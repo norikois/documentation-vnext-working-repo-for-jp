@@ -1,99 +1,82 @@
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+# ユーザー コンテキスト
 
-# User Context
+ユーザー コンテキストは、アプリケーションの認証済みユーザーの ID を表します。ユーザー コンテキストは、`IRVDashboardProvider`、`IRVAuthenticationProvider`、`IRVDataProvider` などの Reveal SDK プロバイダーで使用して、ユーザーが持つアクセス許可を制限できます。
 
-The User Context represents the identity of the authenticated user of the application. The User Context can be used by Reveal SDK providers such as the `IRVDashboardProvider`, `IRVAuthenticationProvider`, `IRVDataProvider` and others to restrict what permissions the user has.
+Reveal SDK 内のユーザー コンテキストは、`IRVUserContext` インターフェイスと `RVUserContext` オブジェクトによって表されます。`RVUserContext` は `IRVUserContext` のデフォルトの実装であり、現在のユーザーのユーザー ID を格納する機能を提供します。`RVUserContext` オブジェクトは、認証プロバイダーなど、Reveal SDK の他の領域で使用されるリクエストに関連する追加のプロパティを保存する機能も提供します。
 
-The user context within the Reveal SDK is represented by the `IRVUserContext` interface and the `RVUserContext` object. The `RVUserContext` is a default implementation of `IRVUserContext`, which provides the ability to store the user id of the current user. The `RVUserContext` object also provides the ability to store additional properties related to a request to be used in other areas of the Reveal SDK such as the authentication provider.
+**手順 1** - ユーザー コンテキスト プロバイダーを作成します。
 
-**Step 1** - Create the user context provider
+# [ASP.NET](#tab/aspnet)
 
-<Tabs groupId="code">
-  <TabItem value="aspnet" label="ASP.NET" default>
+```cs
+internal class UserContextProvider : IRVUserContextProvider
+{
+    public IRVUserContext GetUserContext(HttpContext aspnetContext)       
+    {
+        //when using standard auth mechanisms, the userId can be obtained using aspnetContext.User.Identity.Name.
+        var userIdentityName = aspnetContext.User.Identity.Name;
+        var userId = (userIdentityName != null) ? userIdentityName : "guest";
+        
+        var props = new Dictionary<string, object>() { { "some-property", aspnetContext.Current.Request.Cookies["some-cookie-name"].Value } };
 
-  ```cs
-  internal class UserContextProvider : IRVUserContextProvider
-  {
-      public IRVUserContext GetUserContext(HttpContext aspnetContext)       
-      {
-          //when using standard auth mechanisms, the userId can be obtained using aspnetContext.User.Identity.Name.
-          var userIdentityName = aspnetContext.User.Identity.Name;
-          var userId = (userIdentityName != null) ? userIdentityName : "guest";
-          
-          var props = new Dictionary<string, object>() { { "some-property", aspnetContext.Current.Request.Cookies["some-cookie-name"].Value } };
+        return new RVUserContext(userId, props);
+    }    
+}
+```
 
-          return new RVUserContext(userId, props);
-      }    
-  }
-  ```
+# [Java](#tab/java)
 
-  </TabItem>
+```java
+public class UserContextProvider extends RVContainerRequestAwareUserContextProvider {
+	@Override
+	protected IRVUserContext getUserContext(ContainerRequestContext requestContext) {
+        // this can be used to store values coming from the request.
+		var props = new HashMap<String, Object>();
+		props.put("some-property", "some-value");
 
-  <TabItem value="java" label="Java">
+		return new RVUserContext("user identifier", props);
+	}
+}
+```
 
-  ```java
-  public class UserContextProvider extends RVContainerRequestAwareUserContextProvider {
-    @Override
-    protected IRVUserContext getUserContext(ContainerRequestContext requestContext) {
-          // this can be used to store values coming from the request.
-      var props = new HashMap<String, Object>();
-      props.put("some-property", "some-value");
+# [Node.js](#tab/node)
 
-      return new RVUserContext("user identifier", props);
-    }
-  }
-  ```
-
-  </TabItem>
-
-  <TabItem value="node" label="Node.js">    
-
-  ```js
-  const userContextProvider = (request:IncomingMessage) => {
-    // this can be used to store values coming from the request.
+```javascript
+const userContextProvider = (request:IncomingMessage) => {
+	// this can be used to store values coming from the request.
     var props = new Map<string, Object>();
-    props.set("some-property", "some-value"); 
-    
-    return new RVUserContext("user identifier", props);
-  };
-  ```
+	props.set("some-property", "some-value"); 
+	
+	return new RVUserContext("user identifier", props);
+};
+```
+***
 
-  </TabItem>
-</Tabs>
+**手順 2** - ユーザー コンテキスト プロバイダーを Reveal SDK に登録します。
 
-**Step 2** - Register the user context provider with the Reveal SDK.
+# [ASP.NET](#tab/aspnet)
 
-<Tabs groupId="code">
-  <TabItem value="aspnet" label="ASP.NET" default>
+```cs
+builder.Services.AddControllers().AddReveal( builder =>
+{
+    builder..AddUserContextProvider<UserContextProvider>();
+});
+```
 
-  ```cs
-  builder.Services.AddControllers().AddReveal( builder =>
-  {
-      builder..AddUserContextProvider<UserContextProvider>();
-  });
-  ```
+# [Java](#tab/java)
 
-  </TabItem>
+```java
+RevealEngineInitializer.initialize(new InitializeParameterBuilder().
+    setUserContextProvider(new UserContextProvider()).
+    build());
+```
 
-  <TabItem value="java" label="Java">
+# [Node.js](#tab/node)
 
-  ```java
-  RevealEngineInitializer.initialize(new InitializeParameterBuilder().
-      setUserContextProvider(new UserContextProvider()).
-      build());
-  ```
-
-  </TabItem>
-
-  <TabItem value="node" label="Node.js">    
-
-  ```js
-  const revealOptions: RevealOptions {
-    userContextProvider: userContextProvider
-  };
-  app.use('/reveal-api/', reveal(revealOptions));
-  ```
-
-  </TabItem>
-</Tabs>
+```javascript
+const revealOptions: RevealOptions {
+	userContextProvider: userContextProvider
+};
+app.use('/reveal-api/', reveal(revealOptions));
+```
+***

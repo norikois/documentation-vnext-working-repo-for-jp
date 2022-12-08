@@ -1,16 +1,12 @@
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+# 認証
 
-# Authentication
+Reveal SDK を使用すると、認証プロバイダーを使用し、そのプロバイダーを Reveal SDK に登録することで、ユーザー名 / パスワードおよびベアラー トークン認証資格情報などのさまざまな認証方法をデータ ソースに提供できます。
 
-The Reveal SDK allows you to provide various methods of authentication such as Username/Password and Bearer Token authentication credentials to your data sources by using an authentication provider and registering that provider with the Reveal SDK.
+認証プロバイダーは、認証資格情報を要求しているデータ ソースを確認し、その特定のデータ ソースの正しい認証資格情報を返すために使用されます。
 
-The authentication provider is used to check which data source is requesting authentication credentials, and then return the correct authentication credentials for that specific data source.
+**手順 1** - 認証プロバイダーを作成します。
 
-**Step 1** - Create the authentication provider.
-
-<Tabs groupId="code">
-  <TabItem value="aspnet" label="ASP.NET" default>
+# [ASP.NET](#tab/aspnet)
 
 ```cs
 public class AuthenticationProvider: IRVAuthenticationProvider
@@ -22,9 +18,7 @@ public class AuthenticationProvider: IRVAuthenticationProvider
 }
 ```
 
-  </TabItem>
-
-  <TabItem value="java" label="Java">
+# [Java](#tab/java)
 
 ```java
 public class AuthenticationProvider implements IRVAuthenticationProvider {
@@ -35,34 +29,35 @@ public class AuthenticationProvider implements IRVAuthenticationProvider {
 }
 ```
 
-  </TabItem>
+# [Node.js](#tab/node)
 
-  <TabItem value="node" label="Node.js">    
+```javascript
+const authenticationProvider = async (userContext: IRVUserContext, dataSource: RVDashboardDataSource) => {
+    ...
+}
+```
+
+***
+
+**手順 2** - 認証プロバイダーを Reveal SDK に登録します。
+
+# [ASP.NET](#tab/aspnet)
 
 ```js
+const authenticationProvider = async (userContext, dataSource) => {
+    ...
+}
+```
+
+# [Node.js - TypeScript](#tab/node-ts)
+
+```ts
 const authenticationProvider = async (userContext: IRVUserContext | null, dataSource: RVDashboardDataSource) => {
     ...
 }
 ```
 
-  </TabItem>
-</Tabs>
-
-**Step 2** - Register the authentication provider with the Reveal SDK.
-
-<Tabs groupId="code">
-  <TabItem value="aspnet" label="ASP.NET" default>
-
-```cs
-builder.Services.AddControllers().AddReveal( builder =>
-{
-    builder.AddAuthenticationProvider<AuthenticationProvider>();
-});
-```
-
-  </TabItem>
-
-  <TabItem value="java" label="Java">
+# [Java](#tab/java)
 
 ```java
 RevealEngineInitializer.initialize(new InitializeParameterBuilder().
@@ -70,11 +65,19 @@ RevealEngineInitializer.initialize(new InitializeParameterBuilder().
     build());
 ```
 
-  </TabItem>
-
-  <TabItem value="node" label="Node.js">    
+# [Node.js](#tab/node)
 
 ```js
+const revealOptions = {
+	authenticationProvider: authenticationProvider
+};
+
+app.use('/', reveal(revealOptions));
+```
+
+# [Node.js - TypeScript](#tab/node-ts)
+
+```ts
 const revealOptions: RevealOptions = {
 	authenticationProvider: authenticationProvider
 };
@@ -82,15 +85,13 @@ const revealOptions: RevealOptions = {
 app.use('/', reveal(revealOptions));
 ```
 
-  </TabItem>
-</Tabs>
+***
 
-## Username/Password Authentication
+## ユーザー名/パスワード認証
 
-If your data source requires the use of a username and password, then you must return an instance of the `RVUsernamePasswordDataSourceCredential` class. The `RVUsernamePasswordDataSourceCredential` class provides constructor overloads to define the **username**, the **password**, and optionally the **domain**.
+データ ソースがユーザー名とパスワードの使用を要求する場合、`RVUsernamePasswordDataSourceCredential` クラスのインスタンスを返す必要があります。`RVUsernamePasswordDataSourceCredential` クラスは、**ユーザー名**、**パスワード**、およびオプションで**ドメイン**を定義するコンストラクターのオーバーロードを提供します。
 
-<Tabs groupId="code">
-  <TabItem value="aspnet" label="ASP.NET" default>
+# [ASP.NET](#tab/aspnet)
 
 ```cs
 public class AuthenticationProvider: IRVAuthenticationProvider
@@ -111,9 +112,7 @@ public class AuthenticationProvider: IRVAuthenticationProvider
 }
 ```
 
-  </TabItem>
-
-  <TabItem value="java" label="Java">
+# [Java](#tab/java)
 
 ```java
 public class AuthenticationProvider implements IRVAuthenticationProvider {
@@ -130,11 +129,22 @@ public class AuthenticationProvider implements IRVAuthenticationProvider {
 }
 ```
 
-  </TabItem>
-
-  <TabItem value="node" label="Node.js">    
+# [Node.js](#tab/node)
 
 ```js
+const authenticationProvider = async (userContext, dataSource) => {
+	if (dataSource instanceof RVPostgresDataSource) {
+		return new RVUsernamePasswordDataSourceCredential("username", "password");
+	} else if (dataSource instanceof RVSqlServerDataSource) {
+		return new RVUsernamePasswordDataSourceCredential("username", "password", "domain");
+	}
+	return null;
+}
+```
+
+# [Node.js - TypeScript](#tab/node-ts)
+
+```ts
 const authenticationProvider = async (userContext:IRVUserContext | null, dataSource: RVDashboardDataSource) => {
 	if (dataSource instanceof RVPostgresDataSource) {
 		return new RVUsernamePasswordDataSourceCredential("username", "password");
@@ -145,13 +155,11 @@ const authenticationProvider = async (userContext:IRVUserContext | null, dataSou
 }
 ```
 
-  </TabItem>
-</Tabs>
+***
 
-If your data source is using an anonymous login, without authentication, you can use the `RVUsernamePasswordDataSourceCredential` with its empty constructor.
+データ ソースが認証なしで匿名ログインを使用している場合、空のコンストラクターで `RVUsernamePasswordDataSourceCredential` を使用できます。
 
-<Tabs groupId="code">
-  <TabItem value="aspnet" label="ASP.NET" default>
+# [ASP.NET](#tab/aspnet)
 
 ```cs
 if (dataSource is RVSqlServerDataSource)
@@ -160,9 +168,7 @@ if (dataSource is RVSqlServerDataSource)
 }
 ```
 
-  </TabItem>
-
-  <TabItem value="java" label="Java">
+# [Java](#tab/java)
 
 ```java
 if (dataSource instanceof RVSqlServerDataSource) {
@@ -170,38 +176,42 @@ if (dataSource instanceof RVSqlServerDataSource) {
 }
 ```
 
-  </TabItem>
-
-  <TabItem value="node" label="Node.js">    
+# [Node.js](#tab/node)
 
 ```js
 if (dataSource instanceof RVSqlServerDataSource) {
-    return new RVUsernamePasswordDataSourceCredential();
+	return new RVUsernamePasswordDataSourceCredential();
 }
 ```
 
-  </TabItem>
-</Tabs>
+# [Node.js - TypeScript](#tab/node-ts)
 
-The `RVUsernamePasswordDataSourceCredential` is supported for the following data sources:
+```ts
+if (dataSource instanceof RVSqlServerDataSource) {
+	return new RVUsernamePasswordDataSourceCredential();
+}
+```
+
+***
+
+`RVUsernamePasswordDataSourceCredential` は、以下のデータ ソースでサポートされます。
 - Amazon Redshift
-- Microsoft Analysis Services Server
-- Microsoft Dynamics CRM (On-Premises and Online)
-- Microsoft SQL Server
+- Microsoft Analysis Services サーバー
+- Microsoft Dynamics CRM (オンプレミスおよびオンライン)
+- Microsoft SQL サーバー
 - MySQL
-- OData Services
+- OData サービス
 - Oracle
 - PostgreSQL
-- REST Services
+- REST サービス
 - Sybase
-- Web Resources
+- ウェブ リソース
 
-## Bearer Token Authentication
+## ベアラー トークン認証
 
-If your data source requires the use of security tokens, then you must return an instance of the `RVBearerTokenDataSourceCredential` class. The `RVBearerTokenDataSourceCredential` class provides constructor overloads to define the **token**, and the **user id**.
+データ ソースがセキュリティ トークンの使用を要求する場合、`RVBearerTokenDataSourceCredential` クラスのインスタンスを返す必要があります。`RVBearerTokenDataSourceCredential` クラスは、**トークン**と**ユーザー ID** を定義するコンストラクターのオーバーロードを提供します。
 
-<Tabs groupId="code">
-  <TabItem value="aspnet" label="ASP.NET" default>
+# [ASP.NET](#tab/aspnet)
 
 ```cs
 public class AuthenticationProvider: IRVAuthenticationProvider
@@ -218,55 +228,60 @@ public class AuthenticationProvider: IRVAuthenticationProvider
 }
 ```
 
-  </TabItem>
-
-  <TabItem value="java" label="Java">
+# [Java](#tab/java)
 
 ```java
 public class AuthenticationProvider implements IRVAuthenticationProvider {
-    @Override
-    public IRVDataSourceCredential resolveCredentials(IRVUserContext userContext, RVDashboardDataSource dataSource) {
+	@Override
+	public IRVDataSourceCredential resolveCredentials(IRVUserContext userContext, RVDashboardDataSource dataSource) {
         if (dataSource instanceof RVGoogleDriveDataSource) {
             return new RVBearerTokenDataSourceCredential("token", "userid");
         }
-        return null;
-    }
+		return null;
+	}
 }
 ```
 
-  </TabItem>
-
-  <TabItem value="node" label="Node.js">    
+# [Node.js](#tab/node)
 
 ```js
+const authenticationProvider = async (userContext, dataSource) => {
+    if (dataSource instanceof RVGoogleDriveDataSource) {
+        return new RVBearerTokenDataSourceCredential("token", "userid");
+    }
+	return null;
+}
+```
+
+# [Node.js - TypeScript](#tab/node-ts)
+
+```ts
 const authenticationProvider = async (userContext:IRVUserContext | null, dataSource: RVDashboardDataSource) => {
     if (dataSource instanceof RVGoogleDriveDataSource) {
         return new RVBearerTokenDataSourceCredential("token", "userid");
     }
-    return null;
+	return null;
 }
 ```
 
-  </TabItem>
-</Tabs>
+***
 
-The `RVBearerTokenDataSourceCredential` is supported for the following data sources:
+`RVBearerTokenDataSourceCredential` は、以下のデータ ソースでサポートされます。
 - Box
 - Dropbox
-- Google Analytics
+- Google アナリティクス
 - Google Drive
-- OData Services
+- OData サービス
 - OneDrive
-- REST Services
-- SharePoint Online
-- Web Resources
+- REST サービス
+- SharePoint オンライン
+- ウェブ リソース
 
 ## Amazon Web Services
 
-If your data source uses Amazon Web Services (AWS), then you must return an instance of the `RVAmazonWebServicesCredentials` class. The `RVAmazonWebServicesCredentials` class provides constructor overloads to define the **key**, and the **secret**.
+データ ソースが Amazon Web Services (AWS) を使用している場合は、`RVAmazonWebServicesCredentials` クラスのインスタンスを返す必要があります。`RVAmazonWebServicesCredentials` クラスは、**key** と **secret** を定義するためのコンストラクターのオーバーロードを提供します。
 
-<Tabs groupId="code">
-  <TabItem value="aspnet" label="ASP.NET" default>
+# [ASP.NET](#tab/aspnet)
 
 ```cs
 public class AuthenticationProvider: IRVAuthenticationProvider
@@ -283,38 +298,43 @@ public class AuthenticationProvider: IRVAuthenticationProvider
 }
 ```
 
-  </TabItem>
-
-  <TabItem value="java" label="Java">
+# [Java](#tab/java)
 
 ```java
 public class AuthenticationProvider implements IRVAuthenticationProvider {
-    @Override
-    public IRVDataSourceCredential resolveCredentials(IRVUserContext userContext, RVDashboardDataSource dataSource) {
+	@Override
+	public IRVDataSourceCredential resolveCredentials(IRVUserContext userContext, RVDashboardDataSource dataSource) {
         if (dataSource instanceof RVS3DataSource) {
             return new RVAmazonWebServicesCredentials("key", "secret");
         }
-        return null;
-    }
+		return null;
+	}
 }
 ```
 
-  </TabItem>
-
-  <TabItem value="node" label="Node.js">    
+# [Node.js](#tab/node)
 
 ```js
+const authenticationProvider = async (userContext, dataSource) => {
+    if (dataSource instanceof RVS3DataSource) {
+        return new RVAmazonWebServicesCredentials("key", "secret");
+    }
+	return null;
+}
+```
+
+# [Node.js - TypeScript](#tab/node-ts)
+
+```ts
 const authenticationProvider = async (userContext:IRVUserContext | null, dataSource: RVDashboardDataSource) => {
     if (dataSource instanceof RVS3DataSource) {
         return new RVAmazonWebServicesCredentials("key", "secret");
     }
-    return null;
+	return null;
 }
 ```
+***
 
-  </TabItem>
-</Tabs>
-
-The `RVAmazonWebServicesCredentials` is supported for the following data sources:
+`RVAmazonWebServicesCredentials` は、次のデータ ソースでサポートされています。
 - Amazon Athena
 - Amazon S3
