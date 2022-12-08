@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/vsDark');
 const config = {
   title: 'Reveal',
   tagline: 'Embedded Analytics & Business Intelligence Tools',
-  url: 'https://revealbi.io',
+  url: 'https://help.revealbi.io',
   baseUrl: '/documentation-vnext/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'throw',
@@ -21,19 +21,18 @@ const config = {
 
   i18n: {
     defaultLocale: 'en',
-    locales: ['en'],
-    // locales: ['en', 'ja'],
-    // localeConfigs: {
-    //   en: {
-    //     label: "English",
-    //     htmlLang: 'en-US',
-    //   },
-    //   ja: {
-    //     label: "日本語",
-    //     htmlLang: 'ja-JP',
-    //     path: 'ja'
-    //   }
-    // },
+    locales: ['en', 'ja'],
+    localeConfigs: {
+      en: {
+        label: "English",
+        htmlLang: 'en-US',
+      },
+      ja: {
+        label: "日本語",
+        htmlLang: 'ja-JP',
+        path: 'ja'
+      }
+    },
   },
 
   presets: [
@@ -72,10 +71,10 @@ const config = {
           //   type: "docsVersionDropdown",
           //   position: "left",
           // },
-          // { 
-          //   type: "localeDropdown",
-          //   position: "right"
-          // },
+          { 
+            type: "localeDropdown",
+            position: "right"
+          },
         ],
       },
       footer: {
@@ -132,11 +131,7 @@ const config = {
               },
               {
                 label: 'Blogs',
-                href: 'https://www.infragistics.com/community/blogs/tags/Reveal',
-              },
-              {
-                label: 'Forums',
-                href: 'https://www.infragistics.com/community/forums/f/reveal',
+                href: 'https://www.revealbi.io/blog',
               },
             ],
           },
