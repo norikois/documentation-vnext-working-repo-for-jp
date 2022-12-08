@@ -20,7 +20,7 @@
 
 3 - `Program.cs` ファイルを開き、`using Reveal.Sdk` 名前空間を追加します。次に、既存の `builder.Services.AddControllers()` メソッドに `IMcvBuilder.AddReveal()` の呼び出しを追加します。
 
-```
+```cs
 using Reveal.Sdk;
 
 builder.Services.AddControllers().AddReveal();
@@ -49,14 +49,14 @@ builder.Services.AddControllers().AddReveal();
 
 Playwright と Chromium をサーバーに手動でインストールするには、[Playwright CLI](https://playwright.dev/dotnet/docs/cli) を使用します。
 
-<pre style="background:#141414;color:white;display:inline-block;padding:16x;margin-top:10px;font-family:'Consolas';border-radius:5px;width:100%">
-> dotnet tool install --global Microsoft.Playwright.CLI
-> playwright install chromium
-</pre>
+```bash
+dotnet tool install --global Microsoft.Playwright.CLI
+playwright install chromium
+```
 
 ## ログ
 Reveal SDK のログを有効にするには、`"Reveal.Sdk": "Debug"` エントリを appsettings.json ファイルに追加します。
-```json
+```json title="appsettings.json"
 {
   "Logging": {
     "LogLevel": {
@@ -66,6 +66,5 @@ Reveal SDK のログを有効にするには、`"Reveal.Sdk": "Debug"` エント
       "Reveal.Sdk": "Debug"
     }
   },
-  ...
 }
 ```

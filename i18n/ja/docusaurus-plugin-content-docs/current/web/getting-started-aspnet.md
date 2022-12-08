@@ -34,7 +34,7 @@
 
 3 - `Program.cs` ファイルを開き、`using Reveal.Sdk` 名前空間を追加します。次に、以下のように `IMcvBuilder.AddReveal()` への呼び出しを追加します。
 
-```
+```cs
 using Reveal.Sdk;
 
 builder.Services.AddRazorPages().AddReveal();
@@ -52,7 +52,7 @@ builder.Services.AddRazorPages().AddReveal();
 
 3 - `Pages/Shared/_Layout.cshtml` ファイルを開いて変更し、ページの下部に (`</body>` 終了タグの直前、`jquery.min.js` スクリプトの後) `infragistics.reveal.js` スクリプトを含めます。
 
-```
+```html
 <script src="~/lib/reveal/infragistics.reveal.js"></script>
 ```
 
@@ -86,7 +86,7 @@ Reveal JavaScript API は、`jQuery` バージョン 2.2 以降に依存しま�
 
 最終の `_Layout.cshtml` ファイルは以下のようになります。
 
-```html
+```html title="Pages/Shared/_Layout.cshtml"
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -96,6 +96,7 @@ Reveal JavaScript API は、`jQuery` バージョン 2.2 以降に依存しま�
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/GettingStarted.styles.css" asp-append-version="true" />
+    // highlight-next-line
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet" type="text/css">   
 </head>
 <body>
@@ -132,6 +133,7 @@ Reveal JavaScript API は、`jQuery` バージョン 2.2 以降に依存しま�
         </div>
     </footer>
 
+    // highlight-start
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
@@ -139,6 +141,7 @@ Reveal JavaScript API は、`jQuery` バージョン 2.2 以降に依存しま�
     <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
     <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
     <script src="~/lib/reveal/infragistics.reveal.js"></script>
+    // highlight-end
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>
@@ -159,9 +162,8 @@ Reveal JavaScript API は、`jQuery` バージョン 2.2 以降に依存しま�
 @section Scripts
 {
     <script type="text/javascript">
-        $.ig.RevealSdkSettings.ensureFontsLoadedAsync().then(() => {
-            var revealView = new $.ig.RevealView("#revealView");
-        });        
+        // highlight-next-line
+        var revealView = new $.ig.RevealView("#revealView");
     </script>
 }
 ```
@@ -177,14 +179,14 @@ Reveal JavaScript API は、`jQuery` バージョン 2.2 以降に依存しま�
     ViewData["Title"] = "Home page";
 }
 
+// highlight-next-line
 <div id="revealView" style="height: 800px; width: 100%;"></div>
 
 @section Scripts
 {
     <script type="text/javascript">
-        $.ig.RevealSdkSettings.ensureFontsLoadedAsync().then(() => {
-            var revealView = new $.ig.RevealView("#revealView");
-        });        
+        // highlight-next-line
+        var revealView = new $.ig.RevealView("#revealView");
     </script>
 }
 ```

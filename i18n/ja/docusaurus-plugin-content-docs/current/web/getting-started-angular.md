@@ -8,16 +8,16 @@
 
 2 - アプリケーションを作成します。
 
-<pre style="background:#141414;color:white;display:inline-block;padding:16x;margin-top:10px;font-family:'Consolas';border-radius:5px;width:100%">
-> ng new getting-started
-</pre>
+```bash
+ng new getting-started
+```
 
 3 - ディレクトリを新しく作成した app ディレクトリに移動し、お気に入りのエディターでプロジェクトを開きます。この例では、Visual Studio Code を使用しています。
 
-<pre style="background:#141414;color:white;display:inline-block;padding:16x;margin-top:10px;font-family:'Consolas';border-radius:5px;width:100%">
-> cd getting-started
-> code .
-</pre>
+```bash
+cd getting-started
+code .
+```
 
 ## 手順 2 - Reveal JavaScript API の追加
 
@@ -64,7 +64,7 @@
 
 最終の `index.html` ファイルは以下のようになります。
 
-```html
+```html title="index.html" {9,14-17}
 <!doctype html>
 <html lang="en">
 <head>
@@ -102,9 +102,10 @@ declare let $: any;
 
 次に、HTML で `ViewChild` として定義した `revalView` にアクセスします。この参照を保持するプロパティを追加します。
 
-```ts
+```ts title="src/app/app.component.html"
 export class AppComponent {
   
+  // highlight-next-line
   @ViewChild('revealView') el!: ElementRef;
   
 }
@@ -112,7 +113,7 @@ export class AppComponent {
 
 コンポーネントに `AfterViewInit` インターフェイスを実装する必要があります。
 
-```ts
+```ts title="src/app/app.component.html" {5-7}
 export class AppComponent implements AfterViewInit {
   
   @ViewChild('revealView') el!: ElementRef;
@@ -126,15 +127,14 @@ export class AppComponent implements AfterViewInit {
 
 それが完了したら、`RevealView` を初期化できます。
 
-```ts
+```ts title="src/app/app.component.html"
 export class AppComponent implements AfterViewInit {
   
   @ViewChild('revealView') el!: ElementRef;
 
   ngAfterViewInit(): void {
-    $.ig.RevealSdkSettings.ensureFontsLoadedAsync().then(() => {
-      var revealView = new $.ig.RevealView(this.el.nativeElement);
-    }); 
+    // highlight-next-line
+    var revealView = new $.ig.RevealView(this.el.nativeElement);
   }
   
 }
@@ -144,7 +144,7 @@ export class AppComponent implements AfterViewInit {
 
 最終の `app.component.ts` ファイルは以下のようになります。
 
-```ts
+```ts title="src/app/app.component.html"
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 
 declare let $: any;
@@ -159,9 +159,7 @@ export class AppComponent implements AfterViewInit {
   @ViewChild('revealView') el!: ElementRef;
 
   ngAfterViewInit(): void {
-    $.ig.RevealSdkSettings.ensureFontsLoadedAsync().then(() => {
-      var revealView = new $.ig.RevealView(this.el.nativeElement);
-    }); 
+    var revealView = new $.ig.RevealView(this.el.nativeElement);
   }
   
 }
@@ -177,9 +175,9 @@ export class AppComponent implements AfterViewInit {
 
 Visual Studio Code ターミナルで、`npm start` コマンドを入力します。
 
-<pre style="background:#141414;color:white;display:inline-block;padding:16x;margin-top:10px;font-family:'Consolas';border-radius:5px;width:100%">
-> npm start
-</pre>
+```bash npm2yarn
+npm start
+```
 
 ![](images/angular-app-running.jpg)
 

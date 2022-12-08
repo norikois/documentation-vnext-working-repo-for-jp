@@ -159,9 +159,7 @@ export class AppComponent implements AfterViewInit {
   @ViewChild('revealView') el!: ElementRef;
 
   ngAfterViewInit(): void {
-    $.ig.RevealSdkSettings.ensureFontsLoadedAsync().then(() => {
-      var revealView = new $.ig.RevealView(this.el.nativeElement);
-    }); 
+    var revealView = new $.ig.RevealView(this.el.nativeElement);
   }
   
 }

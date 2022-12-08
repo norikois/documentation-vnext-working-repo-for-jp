@@ -9,33 +9,38 @@
 ## 手順 1 - Node.js プロジェクトの作成
 
 1 - コマンドラインを開き、**reveal-server-node** という名前のディレクトリを作成します。
-<pre style="background:#141414;color:white;display:inline-block;padding:16x;margin-top:10px;font-family:'Consolas';border-radius:5px;width:100%">
-> mkdir reveal-server-node
-</pre>
+
+```bash
+mkdir reveal-server-node
+```
 
 2 - コマンドライン パスを新しく作成したディレクトリに変更します。
-<pre style="background:#141414;color:white;display:inline-block;padding:16x;margin-top:10px;font-family:'Consolas';border-radius:5px;width:100%">
-> cd reveal-server-node
-</pre>
+
+```bash
+cd reveal-server-node
+```
 
 3 - ディレクトリで **npm** を初期化します。
-<pre style="background:#141414;color:white;display:inline-block;padding:16x;margin-top:10px;font-family:'Consolas';border-radius:5px;width:100%">
-> npm init -y
-</pre>
+
+```bash npm2yarn
+npm init -y
+```
 
 4 - **express** フレームワークをインストールします。
-<pre style="background:#141414;color:white;display:inline-block;padding:16x;margin-top:10px;font-family:'Consolas';border-radius:5px;width:100%">
-> npm install express
-</pre>
+
+```bash npm2yarn
+npm install express
+```
 
 5 - **VS Code** でプロジェクトを開きます。
-<pre style="background:#141414;color:white;display:inline-block;padding:16x;margin-top:10px;font-family:'Consolas';border-radius:5px;width:100%">
-> code .
-</pre>
+
+```bash
+code .
+```
 
 6 - **main.js** という名前の新しいファイルを作成し、次のコードを追加します:
 
-```javascript
+```js title="main.js"
 var express = require('express');
 
 const app = express();
@@ -48,19 +53,21 @@ app.listen(8080, () => {
 ## 手順 2 - Reveal SDK の追加
 
 1 - Node.js 用の **Reveal SDK** をインストールします。
-<pre style="background:#141414;color:white;display:inline-block;padding:16x;margin-top:10px;font-family:'Consolas';border-radius:5px;width:100%">
-> npm install reveal-sdk-node
-</pre>
+
+```bash npm2yarn
+npm install reveal-sdk-node
+```
 
 2 - `main.js` ファイルを変更して Reveal を追加します。
 
-```javascript
+```js
 var express = require('express');
+// highlight-next-line
 var reveal = require('reveal-sdk-node');
 
 const app = express();
 
-//add reveal sdk
+// highlight-next-line
 app.use('/', reveal());
 
 app.listen(8080, () => {
@@ -81,19 +88,21 @@ app.listen(8080, () => {
 アプリケーションの開発とデバッグでは、サーバーとクライアント アプリを異なる URL でホストするのが一般的です。たとえば、サーバーは `https://localhost:24519` で実行されますが、Angular アプリは `https://localhost:4200` で実行されます。クライアント アプリケーションからダッシュボードを読み込もうとすると、Cross-Origin Resource Sharing (CORS) ポリシーが原因で失敗します。このシナリオを有効にするには、CORS ポリシーを作成し、サーバー プロジェクトで有効にする必要があります。
 
 1 - **cors** パッケージをインストールします。
-<pre style="background:#141414;color:white;display:inline-block;padding:16x;margin-top:10px;font-family:'Consolas';border-radius:5px;width:100%">
-> npm install cors
-</pre>
+
+```bash npm2yarn
+npm install cors
+```
 
 2 - `main.js` ファイルを変更して **cors** を有効にします。
 
-```javascript
+```js title="main.js"
 var express = require('express');
 var cors = require('cors');
 var reveal = require('reveal-sdk-node');
 
 const app = express();
 
+//highlight-next-line
 app.use(cors()); // DEVELOPMENT only! In production, configure appropriately.
 
 app.use('/', reveal());
@@ -107,9 +116,9 @@ app.listen(8080, () => {
 
 最後の手順は、次のコマンドを実行して Node.js サーバーを起動することです。
 
-<pre style="background:#141414;color:white;display:inline-block;padding:16x;margin-top:10px;font-family:'Consolas';border-radius:5px;width:100%">
-> node main.js
-</pre>
+```bash
+node main.js
+```
 
 次の手順:
 - [Angular クライアント アプリの作成](getting-started-angular.md)

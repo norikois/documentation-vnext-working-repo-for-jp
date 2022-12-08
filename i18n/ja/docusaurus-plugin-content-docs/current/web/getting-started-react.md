@@ -8,16 +8,16 @@
 
 2 - 「create-react-app」コマンドを使用して新しい React アプリケーションを作成します。
 
-<pre style="background:#141414;color:white;display:inline-block;padding:16x;margin-top:10px;font-family:'Consolas';border-radius:5px;width:100%">
-> npx create-react-app getting-started --template typescript
-</pre>
+```bash
+npx create-react-app getting-started --template typescript
+```
 
 3 - ディレクトリを新しく作成した app ディレクトリに移動し、お気に入りのエディターでプロジェクトを開きます。この例では、Visual Studio Code を使用しています。
 
-<pre style="background:#141414;color:white;display:inline-block;padding:16x;margin-top:10px;font-family:'Consolas';border-radius:5px;width:100%">
-> cd getting-started
-> code .
-</pre>
+```bash
+cd getting-started
+code .
+```
 
 ## 手順 2 - Reveal JavaScript API の追加
 
@@ -64,7 +64,7 @@
 
 最終の `index.html` ファイルは以下のようになります。
 
-```html
+```html title="index.html"
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -91,6 +91,7 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
+    //highlight-next-line
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet" type="text/css">  
     <title>React App</title>
   </head>
@@ -107,10 +108,12 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    //highlight-start
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
     <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
     <script src="assets/reveal/infragistics.reveal.js"></script>
+    //highlight-end
   </body>
 </html>
 ```
@@ -122,6 +125,7 @@
 ```ts
 function App() {
   return (
+    //highlight-next-line
     <div id="revealView" style={{height: "100vh", width: "100%"}}></div>
   );
 }
@@ -136,29 +140,27 @@ declare let $: any;
 3 - `App()` 関数コンポーネント内で、`revealView` を初期化します。
 
 ```ts
-  $.ig.RevealSdkSettings.ensureFontsLoadedAsync().then(() => {
-    var revealView = new $.ig.RevealView("#revealView");
-  }); 
+var revealView = new $.ig.RevealView("#revealView");
 ```
 
 この JavaScript コードは最初に `$.ig.RevealSdkSettings.ensureFontsLoadedAsync` を呼び出してすべてのフォントが正しく読み込まれたことを確認します。次に、新しい `$.ig.RevealView` を作成し、`#revealView` セレクターを渡すことで、`RevealView` の新しいインスタンスを作成します。
 
 最終の `index.html` ファイルは以下のようになります。
 
-```ts
+```ts title="src/app.tsx"
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+//highlight-next-line
 declare let $: any;
 
 function App() {
-
-  $.ig.RevealSdkSettings.ensureFontsLoadedAsync().then(() => {
-    var revealView = new $.ig.RevealView("#revealView");
-  }); 
+  //highlight-next-line
+  var revealView = new $.ig.RevealView("#revealView");
 
   return (
+    //highlight-next-line
     <div id="revealView" style={{height: "100vh", width: "100%"}}></div>
   );
 }
@@ -176,9 +178,9 @@ export default App;
 
 Visual Studio Code ターミナルで、`npm start` コマンドを入力します。
 
-<pre style="background:#141414;color:white;display:inline-block;padding:16x;margin-top:10px;font-family:'Consolas';border-radius:5px;width:100%">
-> npm start
-</pre>
+```bash npm2yarn
+npm start
+```
 
 ![](images/angular-app-running.jpg)
 

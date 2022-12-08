@@ -9,44 +9,52 @@
 ## 手順 1 - Node.js プロジェクトの作成
 
 1 - コマンドラインを開き、**reveal-server-node** という名前のディレクトリを作成します。
-<pre style="background:#141414;color:white;display:inline-block;padding:16x;margin-top:10px;font-family:'Consolas';border-radius:5px;width:100%">
-> mkdir reveal-server-node
-</pre>
+
+```bash
+mkdir reveal-server-node
+```
 
 2 - コマンドライン パスを新しく作成したディレクトリに変更します。
-<pre style="background:#141414;color:white;display:inline-block;padding:16x;margin-top:10px;font-family:'Consolas';border-radius:5px;width:100%">
-> cd reveal-server-node
-</pre>
+
+```bash
+cd reveal-server-node
+```
 
 3 - ディレクトリで **npm** を初期化します。
-<pre style="background:#141414;color:white;display:inline-block;padding:16x;margin-top:10px;font-family:'Consolas';border-radius:5px;width:100%">
-> npm init -y
-</pre>
+
+```bash npm2yarn
+npm init -y
+```
 
 4 - **express** フレームワークをインストールします。
-<pre style="background:#141414;color:white;display:inline-block;padding:16x;margin-top:10px;font-family:'Consolas';border-radius:5px;width:100%">
-> npm install express
-</pre>
+
+```bash npm2yarn
+npm install express
+```
 
 5 - **TypeScript** およびその他のパッケージ タイプをインストールします。
-<pre style="background:#141414;color:white;display:inline-block;padding:16x;margin-top:10px;font-family:'Consolas';border-radius:5px;width:100%">
-> npm install typescript @types/node @types/express @types/cors --save-dev
-</pre>
+
+```bash npm2yarn
+npm install typescript @types/node @types/express @types/cors --save-dev
+```
 
 6 - **Nodemon** および **ts-node** パッケージをインストールします。
-<pre style="background:#141414;color:white;display:inline-block;padding:16x;margin-top:10px;font-family:'Consolas';border-radius:5px;width:100%">
-> npm install nodemon ts-node --save-dev
-</pre>
+
+```bash npm2yarn
+npm install nodemon ts-node --save-dev
+```
 
 7 - **TypeScript** を構成します。この例では、ルート ディレクトリを「src」に、出力ディレクトリを「dist」に設定しています。
-<pre style="background:#141414;color:white;display:inline-block;padding:16x;margin-top:10px;font-family:'Consolas';border-radius:5px;width:100%">
-> npx tsc --init --rootDir src --outDir dist
-</pre>
+
+```bash
+npx tsc --init --rootDir src --outDir dist
+```
 
 8 - **VS Code** でプロジェクトを開きます。
-<pre style="background:#141414;color:white;display:inline-block;padding:16x;margin-top:10px;font-family:'Consolas';border-radius:5px;width:100%">
-> code .
-</pre>
+
+```bash
+code .
+```
 
 9 - **src** というディレクトリに **app.ts** という名前の新しいファイルを作成します。
 
@@ -67,18 +75,21 @@ app.listen(5111, () => {
 ## 手順 2 - Reveal SDK の追加
 
 1 - Node.js 用の **Reveal SDK** をインストールします。
-<pre style="background:#141414;color:white;display:inline-block;padding:16x;margin-top:10px;font-family:'Consolas';border-radius:5px;width:100%">
-> npm install reveal-sdk-node
-</pre>
+
+```bash npm2yarn
+npm install reveal-sdk-node
+```
 
 2 - `app.ts` ファイルを変更して Reveal を追加します。
 
-```javascript
+```js title="app.ts"
 import express, { Application } from 'express';
+// highlight-next-line
 import reveal from 'reveal-sdk-node';
 
 const app: Application = express();
 
+// highlight-next-line
 app.use("/", reveal());
 
 app.listen(5111, () => {
@@ -99,20 +110,23 @@ app.listen(5111, () => {
 アプリケーションの開発とデバッグでは、サーバーとクライアント アプリを異なる URL でホストするのが一般的です。たとえば、サーバーは `https://localhost:24519` で実行されますが、Angular アプリは `https://localhost:4200` で実行されます。クライアント アプリケーションからダッシュボードを読み込もうとすると、Cross-Origin Resource Sharing (CORS) ポリシーが原因で失敗します。このシナリオを有効にするには、CORS ポリシーを作成し、サーバー プロジェクトで有効にする必要があります。
 
 1 - **cors** パッケージと TypeScript 型をインストールします。
-<pre style="background:#141414;color:white;display:inline-block;padding:16x;margin-top:10px;font-family:'Consolas';border-radius:5px;width:100%">
-> npm install cors
-> npm install @types/cors --save-dev
-</pre>
+
+```bash npm2yarn
+npm install cors
+npm install @types/cors --save-dev
+```
 
 2 - `app.ts` ファイルを変更して **cors** を有効にします。
 
-```javascript
+```js title="app.ts"
 import express, { Application } from 'express';
 import reveal from 'reveal-sdk-node';
+// highlight-next-line
 import cors from "cors";
 
 const app: Application = express();
 
+// highlight-next-line
 app.use(cors());
 
 app.use("/", reveal());
@@ -126,25 +140,25 @@ app.listen(5111, () => {
 
 最後の手順は、次のコマンドを実行して Node.js サーバーを起動することです。
 
-<pre style="background:#141414;color:white;display:inline-block;padding:16x;margin-top:10px;font-family:'Consolas';border-radius:5px;width:100%">
-> npx nodemon src/app.ts
-</pre>
+```bash
+npx nodemon src/app.ts
+```
 
 必要に応じて、次のスクリプトを `package.json` ファイルに追加できます。
 
-```json
-  "scripts": {
-    "start": "node dist/app.js", //runs the app.js file in the dist folder that was generated from the build script
-    "dev": "npx nodemon src/app.ts", //runs the server and watches for changes during development
-    "build": "tsc -p .", //builds the app and generates javascript files in the dist folder
-  },
+```json title="package.json"
+"scripts": {
+  "start": "node dist/app.js", //runs the app.js file in the dist folder that was generated from the build script
+  "dev": "npx nodemon src/app.ts", //runs the server and watches for changes during development
+  "build": "tsc -p .", //builds the app and generates javascript files in the dist folder
+},
 ```
 
 次に、開発中に **dev** スクリプトを実行します。
 
-<pre style="background:#141414;color:white;display:inline-block;padding:16x;margin-top:10px;font-family:'Consolas';border-radius:5px;width:100%">
-> npm run dev
-</pre>
+```bash npm2yarn
+npm run dev
+```
 
 次の手順:
 - [Angular クライアント アプリの作成](getting-started-angular.md)

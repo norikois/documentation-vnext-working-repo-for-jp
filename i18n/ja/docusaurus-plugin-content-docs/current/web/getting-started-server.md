@@ -34,7 +34,7 @@
 
 3 - `Program.cs` ファイルを開き、`using Reveal.Sdk` 名前空間を追加します。次に、既存の `builder.Services.AddControllers()` メソッドに `IMcvBuilder.AddReveal()` の呼び出しを追加します。
 
-```
+```cs
 using Reveal.Sdk;
 
 builder.Services.AddControllers().AddReveal();

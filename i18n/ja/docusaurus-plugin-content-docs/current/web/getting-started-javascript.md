@@ -4,7 +4,7 @@
 
 1 - お気に入りのコード エディターを開き、新しい HTML ファイルを作成し、`index.html` という名前でファイルを保存します。
 
-```html
+```html title="index.html"
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -64,7 +64,7 @@
 
 最終の `index.html` ファイルは以下のようになります。
 
-```html
+```html title="index.html"
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -72,16 +72,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reveal Sdk - HTML/JavaScript</title> 
-    
+    // highlight-next-line
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet" type="text/css">  
-
 </head>
 <body>
 
+    // highlight-start
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>    
     <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>    
     <script src="./assets/reveal/infragistics.reveal.js"></script>   
+    // highlight-end
 </body>
 </html>
 ```
@@ -98,18 +99,16 @@
 
 ```html
 <script type="text/javascript">
-    $.ig.RevealSdkSettings.ensureFontsLoadedAsync().then(() => {
-        var revealView = new $.ig.RevealView("#revealView");
-    });        
+    //highlight-next-line
+    var revealView = new $.ig.RevealView("#revealView");
 </script>
-}
 ```
 
 この JavaScript コードは最初に `$.ig.RevealSdkSettings.ensureFontsLoadedAsync` を呼び出してすべてのフォントが正しく読み込まれたことを確認します。次に、新しい `$.ig.RevealView` を作成し、`#revealView` セレクターを渡すことで、`RevealView` の新しいインスタンスを作成します。
 
 最終の `index.html` ファイルは以下のようになります。
 
-```html
+```html title="index.html"
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -117,11 +116,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reveal Sdk - HTML/JavaScript</title> 
-    
+    //highlight-next-line
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet" type="text/css">  
 
 </head>
 <body>
+    //highlight-start
     <div id="revealView" style="height: 920px; width: 100%;"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
@@ -130,10 +130,9 @@
     <script src="./assets/reveal/infragistics.reveal.js"></script>   
 
     <script type="text/javascript">
-        $.ig.RevealSdkSettings.ensureFontsLoadedAsync().then(() => {
-            var revealView = new $.ig.RevealView("#revealView");
-        });
+        var revealView = new $.ig.RevealView("#revealView");
     </script>
+    //highlight-end
 </body>
 </html>
 ```

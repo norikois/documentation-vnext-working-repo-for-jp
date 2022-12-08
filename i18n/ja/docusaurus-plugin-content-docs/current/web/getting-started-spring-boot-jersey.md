@@ -59,7 +59,7 @@ Visual Studio Code と Java の使用を開始する方法の詳細について�
 
 まず、Reveal Maven リポジトリを追加します。
 
-```xml
+```xml title="pom.xml"
 <repositories>
     <repository>
         <id>reveal.public</id>
@@ -70,7 +70,7 @@ Visual Studio Code と Java の使用を開始する方法の詳細について�
 
 次に、Reveal SDK を依存関係として追加します。
 
-```xml
+```xml title="pom.xml"
 <dependency>
     <groupId>com.infragistics.reveal.sdk</groupId>
     <artifactId>reveal-sdk</artifactId>
@@ -80,7 +80,7 @@ Visual Studio Code と Java の使用を開始する方法の詳細について�
 
 2 - Jersey Config クラスを作成し、`RevealEngineInitializer.initialize` メソッドを呼び出して Reveal SDK を初期化します。Reveal SDK が Jersey で適切に機能するには、すべての Reveal SDK クラスを Jersey に登録する必要があります。Reveal SDK クラスを登録するには、`RevealEngineInitializer.getClassesToRegister` メソッドによって返されたクラスをループして、Jersey Config に登録します。
 
-```java
+```java title="RevealJerseyConfig.java"
 import org.glassfish.jersey.server.ResourceConfig;
 import org.springframework.stereotype.Component;
 
@@ -113,7 +113,7 @@ public class RevealJerseyConfig extends ResourceConfig
 
 2 - 次に、新しく作成された **dashboards** フォルダーから Reveal ダッシュボードを読み込むダッシュボード プロバイダーを作成します。
 
-```java
+```java title="RevealDashboardProvider.java"
 import com.infragistics.reveal.sdk.api.IRVUserContext;
 
 import java.io.IOException;
@@ -138,7 +138,7 @@ public class RevealDashboardProvider implements IRVDashboardProvider {
 
 3 - 最後に、`RevealJerseyConfig` クラスの `RevealEngineInitializer` を使用してダッシュボード プロバイダーを登録します。
 
-```java
+```java title="RevealJerseyConfig.java"
 @Component
 @ApplicationPath("/")
 public class RevealJerseyConfig extends ResourceConfig 
@@ -146,6 +146,7 @@ public class RevealJerseyConfig extends ResourceConfig
     public RevealJerseyConfig()
     {
         RevealEngineInitializer.initialize(new InitializeParameterBuilder()
+        // highlight-next-line
         .setDashboardProvider(new RevealDashboardProvider())
         .build());
         
@@ -163,7 +164,7 @@ public class RevealJerseyConfig extends ResourceConfig
 
 1 - CorsFilter を作成します。
 
-```java
+```java title="CorsFilter.java"
 import java.io.IOException;
 
 import javax.ws.rs.container.ContainerRequestContext;
@@ -239,7 +240,7 @@ public class CorsFilter implements ContainerRequestFilter, ContainerResponseFilt
 
 2 - `RevealJerseyConfig` クラスに `CorsFilter` を登録します。
 
-```java
+```java title="RevealJerseyConfig.java"
 @Component
 @ApplicationPath("/")
 public class RevealJerseyConfig extends ResourceConfig 
@@ -256,6 +257,7 @@ public class RevealJerseyConfig extends ResourceConfig
         }
 
         //register the cors filter for debugging
+        // highlight-next-line
         register(CorsFilter.class);  
     }
 }
