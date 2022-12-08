@@ -103,14 +103,17 @@ const config = {
               {
                 label: 'Who are We',
                 href: 'https://www.revealbi.io/about-us',
+                "href_jp": "https://www.revealbi.io/jp/about-us",
               },
               {
                 label: 'Contact Us',
                 href: 'https://www.revealbi.io/about-us?#connect',
+                "href_jp": "https://www.revealbi.io/jp/about-us#request-demo",
               },
               {
                 label: 'Global Offices',
                 href: 'https://www.revealbi.io/about-us?#connect',
+                "href_jp": "https://www.revealbi.io/jp/about-us#connect",
               },
             ],
           },
@@ -120,6 +123,7 @@ const config = {
               {
                 label: 'Support',
                 href: 'https://www.infragistics.com/my-account/submit-support-request/reveal',
+                "href_jp": "https://jp.infragistics.com/my-account/submit-support-request/reveal",
               },
               {
                 label: 'Glossary',
@@ -128,6 +132,7 @@ const config = {
               {
                 label: 'FAQs',
                 href: 'https://www.revealbi.io/faq',
+                "href_jp": "https://www.revealbi.io/jp/faq",
               },
               {
                 label: 'Blogs',
