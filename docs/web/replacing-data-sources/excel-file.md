@@ -1,13 +1,19 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Replacing an Excel File DataSource
 
 Sometimes dashboards are created using Excel files stored in the cloud as a data source for its visualizations.
 
 When embedding the Reveal SDK in your application, you can replace these cloud-based files with files stored in a local directory located on the server at runtime.
 
-**Step 1** - In the ASP.NET Web API server application, create a class that implements `IRVDataSourceProvider`. This class will perform the actual replacement of the Excel files.
+**Step 1** - Create the data source provider.
+
+<Tabs groupId="code">
+  <TabItem value="aspnet" label="ASP.NET" default>
 
 ```cs
-public class MyDataSourceProvider : IRVDataSourceProvider
+public class DataSourceProvider : IRVDataSourceProvider
 {
     public Task<RVDataSourceItem> ChangeDataSourceItemAsync(IRVUserContext userContext, string dashboardId, RVDataSourceItem dataSourceItem)
     {
@@ -16,16 +22,54 @@ public class MyDataSourceProvider : IRVDataSourceProvider
 }
 ```
 
-The `ChangeDataSourceItemAsync` method of this class returns the `RVDataSourceItem` that the visualization will use to get its data. By modifying the `RVDataSourceItem` item that is provided as an argument in the `ChangeDataSourceItemAsync` method, you can change which Excel file get your data from.
+  </TabItem>
 
-**Step 2** - Update the `AddReveal` method in the `Program.cs` file to add the `IRVDataSourceProvider` you just created to the `RevealSetupBuilder` using the `RevealSetupBuilder.AddDataSourceProvider` method.
+  <TabItem value="java" label="Java">
+
+```java
+public class DataSourceProvider implements IRVDataSourceProvider {
+
+	public RVDashboardDataSource changeDataSource(IRVUserContext userContext, RVDashboardDataSource dataSource) {
+
+		return null;
+	}
+
+	public RVDataSourceItem changeDataSourceItem(IRVUserContext userContext, String dashboardsID, RVDataSourceItem dataSourceItem) {
+
+		return null;
+	}
+}
+```
+
+  </TabItem>
+
+</Tabs>
+
+**Step 2** - Register the data source provider with the Reveal SDK.
+
+<Tabs groupId="code">
+  <TabItem value="aspnet" label="ASP.NET" default>
 
 ```cs
 builder.Services.AddControllers().AddReveal( builder =>
 {
-    builder.AddDataSourceProvider<MyDataSourceProvider>();
+    builder.AddDataSourceProvider<DataSourceProvider>();
 });
 ```
+
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+
+```java
+RevealEngineInitializer.initialize(new InitializeParameterBuilder().
+    setDataSourceProvider(new DataSourceProvider()).
+    build());
+```
+
+  </TabItem>
+
+</Tabs>
 
 ## Example: Replacing an Excel File Data Source
 
@@ -33,8 +77,11 @@ In this example, we are replacing a data source item that is using a cloud-based
 
 First, we check the incoming `RVDataSourceItem` to see if it is a `RVExcelDataSourceItem`. If it is, then we get the existing `RVDataSourceItem.ResourceItem` and check its `Title` property. If the title is "Sales Cloud Excel File" then we will create a new `RVLocalFileDataSourceItem` and set the `Uri` to the location of the new local Excel file. After we set the title of the local Excel file data source item, we replace the `RVExcelDataSourceItem.ResourceItem` with our newly created `RVLocalFileDataSourceItem`.
 
+<Tabs groupId="code">
+  <TabItem value="aspnet" label="ASP.NET" default>
+
 ```cs
-public class MyDataSourceProvider : IRVDataSourceProvider
+public class DataSourceProvider : IRVDataSourceProvider
 {
     public Task<RVDataSourceItem> ChangeDataSourceItemAsync(IRVUserContext userContext, string dashboardId, RVDataSourceItem dataSourceItem)
     {
@@ -55,3 +102,41 @@ public class MyDataSourceProvider : IRVDataSourceProvider
     }
 }
 ```
+
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+
+```java
+public class DataSourceProvider implements IRVDataSourceProvider {
+
+    public RVDashboardDataSource changeDataSource(IRVUserContext userContext, RVDashboardDataSource dataSource) {
+
+        return null;
+    }
+
+    public RVDataSourceItem changeDataSourceItem(IRVUserContext userContext, String dashboardsID, RVDataSourceItem dataSourceItem) {
+
+        if (dataSourceItem instanceof RVExcelDataSourceItem)
+        {
+            RVExcelDataSourceItem excelDataSourceItem = (RVExcelDataSourceItem)dataSourceItem;
+            RVDataSourceItem resourceItem = (RVDataSourceItem)excelDataSourceItem.getResourceItem();
+
+            if (resourceItem.getTitle() == "Sales Cloud Excel File")
+            {
+                RVLocalFileDataSourceItem localItem = new RVLocalFileDataSourceItem();
+                localItem.setUri("local:/SalesLocalExcelFile.xlsx");
+                localItem.setTitle(resourceItem.getTitle());
+                excelDataSourceItem.setResourceItem(localItem);
+
+                return (RVDataSourceItem)excelDataSourceItem;
+            }
+        }
+        return null;
+    }
+}
+```
+
+  </TabItem>
+
+</Tabs>

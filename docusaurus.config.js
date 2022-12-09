@@ -107,7 +107,7 @@ const config = {
               },
               {
                 label: 'Contact Us',
-                href: 'https://www.revealbi.io/about-us?#connect',
+                href: 'https://www.revealbi.io/about-us?#request-demo',
                 "href_jp": "https://www.revealbi.io/jp/about-us#request-demo",
               },
               {
