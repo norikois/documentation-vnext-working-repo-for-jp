@@ -30,12 +30,10 @@ public class DataSourceProvider : IRVDataSourceProvider
 public class DataSourceProvider implements IRVDataSourceProvider {
 
 	public RVDashboardDataSource changeDataSource(IRVUserContext userContext, RVDashboardDataSource dataSource) {
-
 		return null;
 	}
 
 	public RVDataSourceItem changeDataSourceItem(IRVUserContext userContext, String dashboardsID, RVDataSourceItem dataSourceItem) {
-
 		return null;
 	}
 }

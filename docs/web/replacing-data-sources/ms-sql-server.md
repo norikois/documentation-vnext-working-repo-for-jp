@@ -1,3 +1,6 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Replacing MS Sql Server Data Source
 
 When embedding the Reveal SDK in your application, you can replace the connection details of a SQL Server database connection at runtime. This allows you to change tables, , based on the logged in user,
@@ -12,7 +15,12 @@ public class DataSourceProvider : IRVDataSourceProvider
 {
     public Task<RVDataSourceItem> ChangeDataSourceItemAsync(IRVUserContext userContext, string dashboardId, RVDataSourceItem dataSourceItem)
     {
-        throw new NotImplementedException();
+      throw new NotImplementedException();
+    }
+
+    public Task<RVDashboardDataSource> ChangeDataSourceAsync(IRVUserContext userContext, RVDashboardDataSource dataSource)
+    {
+      throw new NotImplementedException();
     }
 }
 ```
@@ -25,12 +33,10 @@ public class DataSourceProvider : IRVDataSourceProvider
 public class DataSourceProvider implements IRVDataSourceProvider {
 
 	public RVDashboardDataSource changeDataSource(IRVUserContext userContext, RVDashboardDataSource dataSource) {
-
 		return null;
 	}
 
 	public RVDataSourceItem changeDataSourceItem(IRVUserContext userContext, String dashboardsID, RVDataSourceItem dataSourceItem) {
-
 		return null;
 	}
 }
