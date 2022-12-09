@@ -3,7 +3,7 @@ import TabItem from '@theme/TabItem';
 
 # Replacing MS Sql Server Data Source
 
-When embedding the Reveal SDK in your application, you can replace the connection details of a SQL Server database connection at runtime. This allows you to change tables, , based on the logged in user,
+When embedding the Reveal SDK in your application, you can replace the connection details of a SQL Server database connection at runtime. This allows you to change the table, port, database, schema, and host based on the logged in user. You can also provide custom queries and stored procedures.
 
 ***Step 1** - Create the data source provider.
 
