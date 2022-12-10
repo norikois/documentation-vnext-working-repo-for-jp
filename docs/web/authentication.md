@@ -39,7 +39,7 @@ public class AuthenticationProvider implements IRVAuthenticationProvider {
 
   <TabItem value="node" label="Node.js">    
 
-```js
+```ts
 const authenticationProvider = async (userContext: IRVUserContext | null, dataSource: RVDashboardDataSource) => {
     ...
 }
@@ -74,7 +74,7 @@ RevealEngineInitializer.initialize(new InitializeParameterBuilder().
 
   <TabItem value="node" label="Node.js">    
 
-```js
+```ts
 const revealOptions: RevealOptions = {
 	authenticationProvider: authenticationProvider
 };
@@ -174,7 +174,7 @@ if (dataSource instanceof RVSqlServerDataSource) {
 
   <TabItem value="node" label="Node.js">    
 
-```js
+```ts
 if (dataSource instanceof RVSqlServerDataSource) {
     return new RVUsernamePasswordDataSourceCredential();
 }
@@ -238,7 +238,7 @@ public class AuthenticationProvider implements IRVAuthenticationProvider {
 
   <TabItem value="node" label="Node.js">    
 
-```js
+```ts
 const authenticationProvider = async (userContext:IRVUserContext | null, dataSource: RVDashboardDataSource) => {
     if (dataSource instanceof RVGoogleDriveDataSource) {
         return new RVBearerTokenDataSourceCredential("token", "userid");
@@ -303,7 +303,7 @@ public class AuthenticationProvider implements IRVAuthenticationProvider {
 
   <TabItem value="node" label="Node.js">    
 
-```js
+```ts
 const authenticationProvider = async (userContext:IRVUserContext | null, dataSource: RVDashboardDataSource) => {
     if (dataSource instanceof RVS3DataSource) {
         return new RVAmazonWebServicesCredentials("key", "secret");

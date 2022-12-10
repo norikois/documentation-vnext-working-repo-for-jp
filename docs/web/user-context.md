@@ -49,7 +49,7 @@ The user context within the Reveal SDK is represented by the `IRVUserContext` in
 
   <TabItem value="node" label="Node.js">    
 
-  ```js
+  ```ts
   const userContextProvider = (request:IncomingMessage) => {
     // this can be used to store values coming from the request.
     var props = new Map<string, Object>();
@@ -88,8 +88,8 @@ The user context within the Reveal SDK is represented by the `IRVUserContext` in
 
   <TabItem value="node" label="Node.js">    
 
-  ```js
-  const revealOptions: RevealOptions {
+  ```ts
+  const revealOptions: RevealOptions = {
     userContextProvider: userContextProvider
   };
   app.use('/reveal-api/', reveal(revealOptions));
