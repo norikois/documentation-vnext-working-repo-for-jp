@@ -38,7 +38,8 @@ const sidebars = {
         },
         {
           type: "category", label: "Configuring the Server", items: [
-            { type: "doc", label: "ASP.NET ", id: "web/configuring-server-aspnet" },
+            { type: "doc", label: "ASP.NET", id: "web/configuring-server-aspnet" },
+            { type: "doc", label: "Spring Boot - Jersey", id: "web/configuring-server-spring-boot-jersey" },
           ]
         },
       ]
