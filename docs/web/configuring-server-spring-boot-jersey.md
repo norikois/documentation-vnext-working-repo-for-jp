@@ -33,7 +33,6 @@ Next, add the Reveal SDK as a dependency.
 import org.glassfish.jersey.server.ResourceConfig;
 import org.springframework.stereotype.Component;
 
-import com.infragistics.reveal.engine.init.InitializeParameterBuilder;
 import com.infragistics.reveal.engine.init.RevealEngineInitializer;
 
 import javax.ws.rs.ApplicationPath;
