@@ -1,3 +1,5 @@
+import Export from './_configuring-server-java-export.md';
+
 # Configuring a Tomcat Server
 
 ## Install
@@ -71,3 +73,7 @@ public class RevealServletContextListener implements ServletContextListener {
 	}
 }
 ```
+
+## Export
+
+<Export />
