@@ -95,8 +95,14 @@ const sidebars = {
     /* -------------------- Release Information -------------------- */
     {
       type: "category", label: "Release Information", collapsed: false, collapsible: false, className: "sidebar__header", items: [
-        { type: "doc", label: "API Reference - Server", id: "web/api-reference-server" },
-        { type: "doc", label: "API Reference - Client", id: "web/api-reference-client" },
+        { type: "category", label: "API Reference", items: [
+          { type: "category", label: "Server", items: [
+            { type: "doc", label: "ASP.NET", id: "web/api-reference-server" },
+            { type: "doc", label: "Java", id: "web/api-reference-server-java" },
+          ]
+          },
+          { type: "doc", label: "JavaScript", id: "web/api-reference-client" },
+        ]},
         { type: "doc", label: "Known Issues", id: "web/known-issues" },
         { type: "doc", label: "Release Notes", id: "web/release-notes" },
         { type: "doc", label: "Third-Party Software", id: "web/third-party-software" },

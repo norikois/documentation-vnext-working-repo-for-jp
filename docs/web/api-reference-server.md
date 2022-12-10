@@ -1,4 +1,5 @@
-# Reveal Server .NET API Reference
+# API Reference for ASP.NET
+
 Here you will find technical information about the Reveal SDK, specifically about the Reveal SDK Server .NET API.
 For a complete Reveal SDK Server API reference, please follow <a href="https://help.revealbi.io/api/aspnet/latest/Reveal.Sdk.html" target="_blank" rel="noopener\">this link</a>
 
