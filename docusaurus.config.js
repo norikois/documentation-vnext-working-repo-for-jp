@@ -91,8 +91,7 @@ const config = {
             position: "left",
             items: [
               { label: "Blogs", to: "https://www.revealbi.io/blog" },
-              // { label: "Developer Playground", to: "https://google.com" },
-              // { label: "Reveal University", to: "https://google.com" },              
+              { label: "Developer Playground", to: "playground" },           
               { label: "Samples", to: "https://github.com/RevealBi/sdk-samples-javascript" },
               { label: "Videos", to: "https://www.youtube.com/playlist?list=PLZ4rRHIJepBt-USWdh-9BimHh-GjPAGUH" }
             ]

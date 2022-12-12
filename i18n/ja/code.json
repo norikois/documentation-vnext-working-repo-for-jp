@@ -293,5 +293,83 @@
   "homepage.feature.video.title": {
     "message": "トレーニング ビデオ",
     "description": "The title of the Training Videos feature on the homepage"
-  }
+  },
+  "playground.runButton": {
+    "message": "実行"
+  },
+  "playground.resetButton": {
+    "message": "リセット"
+  },
+  "playground.sidebar.header.general": {
+    "message": "一般"
+  },
+  "playground.sidebar.createDashboard": {
+    "message": "ダッシュボードの作成"
+  },
+  "playground.sidebar.loadDashboard": {
+    "message": "ダッシュボードの読み込み"
+  },
+  "playground.sidebar.header.DataSources": {
+    "message": "データ ソース"
+  },
+  "playground.sidebar.excelFile": {
+    "message": "Excel ファイル"
+  },
+  "playground.sidebar.msSqlServer": {
+    "message": "MS Sql Server"
+  },
+  "playground.sidebar.header.exporting": {
+    "message": "エクスポート"
+  },
+  "playground.sidebar.showHideExportOptions": {
+    "message": "Show/Hide Export Options"
+  },
+  "playground.sidebar.customImageExport": {
+    "message": "Custom Image Export"
+  },
+  "playground.sidebar.header.filters": {
+    "message": "フィルタリング"
+  },
+  "playground.sidebar.getAllFilters": {
+    "message": "すべてのフィルターの取得"
+  },
+  "playground.sidebar.getSpecificFilter": {
+    "message": "特定のフィルターの取得"
+  },
+  "playground.sidebar.getAvailableFilterValues": {
+    "message": "利用可能なフィルター値の取得"
+  },
+  "playground.sidebar.setSelectedFilterValues": {
+    "message": "選択したフィルター値の設定"
+  },
+  "playground.sidebar.getSelectedFilterValues": {
+    "message": "選択したフィルター値の取得"
+  },
+  "playground.sidebar.clearSelectedFilters": {
+    "message": "選択したフィルターのクリア"
+  },
+  "playground.sidebar.hideFilters": {
+    "message": "フィルターの非表示"
+  },
+  "playground.sidebar.usingDateInterval": {
+    "message": "日付間隔の使用"
+  },
+  "playground.sidebar.usingCustomDateRange": {
+    "message": "カスタム日付範囲の使用"
+  },
+  "playground.sidebar.header.themes": {
+    "message": "テーマ"
+  },
+  "playground.sidebar.setTheme": {
+    "message": "テーマの適用"
+  },
+  "playground.sidebar.refreshTheme": {
+    "message": "Refresh Theme"
+  },
+  "playground.sidebar.cloneExistingTheme": {
+    "message": "既存のテーマのクローン"
+  },
+  "playground.sidebar.createCustomTheme": {
+    "message": "カスタム テーマの作成"
+  },
 }

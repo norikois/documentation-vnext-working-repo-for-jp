@@ -50,5 +50,9 @@
   "item.label.Videos": {
     "message": "Videos",
     "description": "Navbar item with label Videos"
+  },
+  "item.label.Developer Playground": {
+    "message": "Developer Playground",
+    "description": "Navbar item with label Developer Playground"
   }
 }

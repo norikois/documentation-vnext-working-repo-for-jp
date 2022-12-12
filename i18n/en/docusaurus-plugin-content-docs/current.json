@@ -45,7 +45,7 @@
   },
   "sidebar.webSidebar.doc.Spring Boot - Jersey": {
     "message": "Spring Boot - Jersey",
-    "description": "The label for the doc item Spring Boot - Jersey in sidebar webSidebar, linking to the doc web/getting-started-spring-boot-jersey"
+    "description": "The label for the doc item Spring Boot - Jersey in sidebar webSidebar, linking to the doc web/configuring-server-spring-boot-jersey"
   },
   "sidebar.webSidebar.doc.Angular": {
     "message": "Angular",
@@ -63,9 +63,9 @@
     "message": "React",
     "description": "The label for the doc item React in sidebar webSidebar, linking to the doc web/getting-started-react"
   },
-  "sidebar.webSidebar.doc.ASP.NET ": {
+  "sidebar.webSidebar.doc.ASP.NET": {
     "message": "ASP.NET ",
-    "description": "The label for the doc item ASP.NET  in sidebar webSidebar, linking to the doc web/configuring-server-aspnet"
+    "description": "The label for the doc item ASP.NET in sidebar webSidebar, linking to the doc web/configuring-server-aspnet"
   },
   "sidebar.webSidebar.doc.Creating": {
     "message": "Creating",
@@ -138,14 +138,6 @@
   "sidebar.webSidebar.doc.Tooltips": {
     "message": "Tooltips",
     "description": "The label for the doc item Tooltips in sidebar webSidebar, linking to the doc web/tooltips"
-  },
-  "sidebar.webSidebar.doc.API Reference - Server": {
-    "message": "API Reference - Server",
-    "description": "The label for the doc item API Reference - Server in sidebar webSidebar, linking to the doc web/api-reference-server"
-  },
-  "sidebar.webSidebar.doc.API Reference - Client": {
-    "message": "API Reference - Client",
-    "description": "The label for the doc item API Reference - Client in sidebar webSidebar, linking to the doc web/api-reference-client"
   },
   "sidebar.webSidebar.doc.Known Issues": {
     "message": "Known Issues",
@@ -247,10 +239,6 @@
     "message": "Tooltips",
     "description": "The label for the doc item Tooltips in sidebar wpfSidebar, linking to the doc wpf/tooltips"
   },
-  "sidebar.wpfSidebar.doc.API Reference": {
-    "message": "API Reference",
-    "description": "The label for the doc item API Reference in sidebar wpfSidebar, linking to the doc wpf/api-reference"
-  },
   "sidebar.wpfSidebar.doc.Known Issues": {
     "message": "Known Issues",
     "description": "The label for the doc item Known Issues in sidebar wpfSidebar, linking to the doc wpf/known-issues"
@@ -302,5 +290,9 @@
   "sidebar.wpfSidebar.category.Release Information": {
     "message": "Release Information",
     "description": "The label for category Release Information in sidebar wpfSidebar"
+  },
+  "sidebar.webSidebar.doc.Tomcat": {
+    "message": "Tomcat",
+    "description": "The label for the doc item Tomcat in sidebar webSidebar, linking to the doc web/configuring-server-tomcat"
   }
 }

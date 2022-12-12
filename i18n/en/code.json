@@ -293,5 +293,83 @@
   "homepage.feature.video.title": {
     "message": "Training Videos",
     "description": "The title of the Training Videos feature on the homepage"
+  },
+  "playground.runButton": {
+    "message": "Run"
+  },
+  "playground.resetButton": {
+    "message": "Reset"
+  },
+  "playground.sidebar.header.general": {
+    "message": "General"
+  },
+  "playground.sidebar.createDashboard": {
+    "message": "Create Dashboard"
+  },
+  "playground.sidebar.loadDashboard": {
+    "message": "Load Dashboard"
+  },
+  "playground.sidebar.header.DataSources": {
+    "message": "Data Sources"
+  },
+  "playground.sidebar.excelFile": {
+    "message": "Excel File"
+  },
+  "playground.sidebar.msSqlServer": {
+    "message": "MS Sql Server"
+  },
+  "playground.sidebar.header.exporting": {
+    "message": "Exporting"
+  },
+  "playground.sidebar.showHideExportOptions": {
+    "message": "Show/Hide Export Options"
+  },
+  "playground.sidebar.customImageExport": {
+    "message": "Custom Image Export"
+  },
+  "playground.sidebar.header.filters": {
+    "message": "Filters"
+  },
+  "playground.sidebar.getAllFilters": {
+    "message": "Get All Filters"
+  },
+  "playground.sidebar.getSpecificFilter": {
+    "message": "Get a Specific Filter"
+  },
+  "playground.sidebar.getAvailableFilterValues": {
+    "message": "Get Available Filter Values"
+  },
+  "playground.sidebar.setSelectedFilterValues": {
+    "message": "Set Selected Filter Values"
+  },
+  "playground.sidebar.getSelectedFilterValues": {
+    "message": "Get Selected Filter Values"
+  },
+  "playground.sidebar.clearSelectedFilters": {
+    "message": "Clear Selected Filters"
+  },
+  "playground.sidebar.hideFilters": {
+    "message": "Hide Filters"
+  },
+  "playground.sidebar.usingDateInterval": {
+    "message": "Using a Date Interval"
+  },
+  "playground.sidebar.usingCustomDateRange": {
+    "message": "Using a Custom Date Range"
+  },
+  "playground.sidebar.header.themes": {
+    "message": "Themes"
+  },
+  "playground.sidebar.setTheme": {
+    "message": "Set Theme"
+  },
+  "playground.sidebar.refreshTheme": {
+    "message": "Refresh Theme"
+  },
+  "playground.sidebar.cloneExistingTheme": {
+    "message": "Clone Existing Theme"
+  },
+  "playground.sidebar.createCustomTheme": {
+    "message": "Create Custom Theme"
   }
 }
