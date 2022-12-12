@@ -73,6 +73,7 @@ const config = {
             items: [
               { label: "Web", to: "web" },
               { label: "WPF", to: "wpf" },
+              { label: "DOM", to: "https://github.com/RevealBi/Reveal.Sdk.Dom" },
             ]
           },
           {
@@ -83,6 +84,17 @@ const config = {
               { label: "JAVA", to: "https://help.revealbi.io/api/java/latest/" },
               { label: "JavaScript", to: "https://help.revealbi.io/api/javascript/latest/" },
               { label: "WPF", to: "https://help.revealbi.io/api/wpf/latest/Reveal.Sdk.html" }
+            ]
+          },
+          {
+            label: "Learn",
+            position: "left",
+            items: [
+              { label: "Blogs", to: "https://www.revealbi.io/blog" },
+              // { label: "Developer Playground", to: "https://google.com" },
+              // { label: "Reveal University", to: "https://google.com" },              
+              { label: "Samples", to: "https://github.com/RevealBi/sdk-samples-javascript" },
+              { label: "Videos", to: "https://www.youtube.com/playlist?list=PLZ4rRHIJepBt-USWdh-9BimHh-GjPAGUH" }
             ]
           },
           // {
