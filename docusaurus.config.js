@@ -67,6 +67,24 @@ const config = {
           src: 'img/logo.png',
         },
         items: [
+          {
+            label: "Documentaion",
+            position: "left",
+            items: [
+              { label: "Web", to: "web" },
+              { label: "WPF", to: "wpf" },
+            ]
+          },
+          {
+            label: "API",
+            position: "left",
+            items: [
+              { label: "ASP.NET", to: "https://help.revealbi.io/api/aspnet/latest/Reveal.Sdk.html" },
+              { label: "JAVA", to: "https://help.revealbi.io/api/java/latest/" },
+              { label: "JavaScript", to: "https://help.revealbi.io/api/javascript/latest/" },
+              { label: "WPF", to: "https://help.revealbi.io/api/wpf/latest/Reveal.Sdk.html" }
+            ]
+          },
           // {
           //   type: "docsVersionDropdown",
           //   position: "left",
@@ -152,3 +170,4 @@ const config = {
 };
 
 module.exports = config;
+

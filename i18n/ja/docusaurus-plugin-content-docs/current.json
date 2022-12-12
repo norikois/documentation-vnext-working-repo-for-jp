@@ -139,14 +139,6 @@
     "message": "ツールチップ",
     "description": "The label for the doc item Tooltips in sidebar webSidebar, linking to the doc web/tooltips"
   },
-  "sidebar.webSidebar.doc.API Reference - Server": {
-    "message": "サーバー API リファレンス",
-    "description": "The label for the doc item API Reference - Server in sidebar webSidebar, linking to the doc web/api-reference-server"
-  },
-  "sidebar.webSidebar.doc.API Reference - Client": {
-    "message": "クライアント API リファレンス",
-    "description": "The label for the doc item API Reference - Client in sidebar webSidebar, linking to the doc web/api-reference-client"
-  },
   "sidebar.webSidebar.doc.Known Issues": {
     "message": "既知の問題",
     "description": "The label for the doc item Known Issues in sidebar webSidebar, linking to the doc web/known-issues"
@@ -246,10 +238,6 @@
   "sidebar.wpfSidebar.doc.Tooltips": {
     "message": "ツールチップ",
     "description": "The label for the doc item Tooltips in sidebar wpfSidebar, linking to the doc wpf/tooltips"
-  },
-  "sidebar.wpfSidebar.doc.API Reference": {
-    "message": "API リファレンス",
-    "description": "The label for the doc item API Reference in sidebar wpfSidebar, linking to the doc wpf/api-reference"
   },
   "sidebar.wpfSidebar.doc.Known Issues": {
     "message": "既知の問題",

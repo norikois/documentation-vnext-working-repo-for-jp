@@ -1,42 +1,53 @@
-# ダッシュボードの読み込み
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-アプリケーションに埋め込まれた `RevealView` コントロールに既存の Reveal ダッシュボードを表示する場合は、4 つのオプションから選択できます。
-- ファイル パスからダッシュボードを読み込み
-- ファイル ストリームからダッシュボードを読み込み
-- 埋め込まれたリソースからダッシュボードを読み込み
-- json からダッシュボードを読み込み
+# Loading Dashboards
 
-ダッシュボードはサーバー上にあります。クライアント アプリケーションは `$.ig.RVDashboard.loadDashboard` メソッドを呼び出し、読み込むダッシュボードの名前を渡します。ダッシュボードのリクエストがサーバーに送信され、サーバーはリクエストされたダッシュボードでクライアントに応答します。クライアントは、サーバーの応答で提供されたダッシュボードを取得し、`RevealView.dashboard` プロパティを設定します。
+Reveal Dashboards are stored on the server. The client application will make a call to the `$.ig.RVDashboard.loadDashboard` method passing in the name of the dashboard to load. The request for the dashboard is sent to the server and the server will respond to the client with the requested dashboard. The client will take the dashboard provided in the server response, and set the `RevealView.dashboard` property.
 
-**.rdash** ダッシュボード ファイルは次の方法で作成できます:
-- ダッシュボードを [Reveal BI Web サイト](https://app.revealbi.io/)から .rdash ファイルとしてエクスポートします。
-- ダッシュボードをネイティブの Reveal アプリケーションの 1 つから .rdash ファイルとしてエクスポートします。
-- Reveal SDK を使用してアプリケーションで作成されたダッシュボードを保存またはエクスポートします。
-- [サンプル ダッシュボード](https://github.com/RevealBi/sdk-samples-wpf/raw/master/SampleDashboards.zip)のダウンロード
+By default, the Reveal SDK uses a convention to load dashboards from a file path. Specifically, the Reveal SDK will look for dashboards in a **Dashboards** folder in the working directory on the server.
 
-## ファイル パスから読み込み
+1 - In the server application, create a folder named **Dashboards** in the working directory and place a dashboard file within the folder.
 
-デフォルトでは、Reveal SDK は規則を使用して、ファイル パスからダッシュボードを読み込みます。具体的には、Reveal SDK は、サーバーの **Dashboards** フォルダーでダッシュボードを検索します。このフォルダーの作成方法については、[サーバーの設定](getting-started-server.md#step-3---create-the-dashboards-folder)トピックを参照してください。
-
-1 - ASP.NET Core Web Api サーバー アプリケーションで、**Dashboards** という名前のフォルダーを作成し、そのフォルダー内にダッシュボード ファイルを配置します。
+<Tabs groupId="code">
+  <TabItem value="aspnet" label="ASP.NET" default>
 
 ![](images/loading-dashboards-default-directory.jpg)
 
-2 - クライアント アプリケーションで、`$.ig.RevealSdkSettings.setBaseUrl` メソッドを呼び出し、サーバーの URL を渡します。デバッグ時には、サーバーの URL は `https://localhost` の後にポート番号が続きます。例:
+  </TabItem>
 
-```javascript
-$.ig.RevealSdkSettings.setBaseUrl("https://localhost:/7111");   
+  <TabItem value="java" label="Java">
+
+:::danger Unsupported
+
+Java does not currently support a default dashboard loader. You must create a custom dashboard provider.
+
+:::
+
+  </TabItem>
+
+  <TabItem value="node" label="Node.js">    
+
+![](images/loading-dashboards-default-directory-node.jpg)
+
+  </TabItem>
+</Tabs>
+
+2 - In the client application, call the `$.ig.RevealSdkSettings.setBaseUrl` method and pass in your server URL. When debugging, the server URL will be `https://localhost` followed by a port number. For example:
+
+```js
+$.ig.RevealSdkSettings.setBaseUrl("https://localhost:/5111");   
 ```
 
 :::caution
 
-サーバーがクライアント アプリケーションとは異なる URL で実行されている場合は、`$.ig.RevealSdkSettings.setBaseUrl` を呼び出す必要があります。サーバー アプリケーションとクライアント アプリケーションの両方が同じ URL で実行されている場合、このメソッドは必要ありません。このメソッドを呼び出す必要があるのは 1 回だけです。
+Calling the `$.ig.RevealSdkSettings.setBaseUrl` is required when the server is running on a different URL than the client application. If both the server application and the client application are running on the same URL, this method is not required. This method only needs to be called once.
 
 :::
 
-3 - `$.ig.RVDashboard.loadDashboard` メソッドを呼び出し、ダッシュボード ファイルの名前を .rdash 拡張子なしで渡します。このメソッドには、サーバーから要求されているダッシュボードを提供するコールバックがあります。コールバックからダッシュボードを受け取ったら、`$.ig.RevealView` のインスタンスを取得し、応答のダッシュボードに `RevealView.dashboard` プロパティを設定します。
+3 - Make a call to the `$.ig.RVDashboard.loadDashboard` method and pass the name of the dashboard file without the .rdash extension. This method has a callback which will provide the dashboard being requested from the server. Once you have received the dashboard from the callback, get an instance of the `$.ig.RevealView` and set the `RevealView.dashboard` property to the dashboard in the response.
 
-```javascript
+```js
 $.ig.RVDashboard.loadDashboard("Sales", (dashboard) => {
     var revealView = new $.ig.RevealView("#revealView");
     revealView.dashboard = dashboard;
@@ -45,15 +56,109 @@ $.ig.RVDashboard.loadDashboard("Sales", (dashboard) => {
 
 :::info Get the Code
 
-このサンプルのソース コードは [GitHub](https://github.com/RevealBi/sdk-samples-javascript/tree/main/LoadingDashboards) にあります。
+The source code to this sample can be found on [GitHub](https://github.com/RevealBi/sdk-samples-javascript/tree/main/LoadingDashboards).
 
 :::
 
-## カスタム ファイル パスから読み込み
+## Custom Dashboard Provider
 
-デフォルトの **Dashboards** ファイル ディレクトリがアプリケーションのオプションではない場合は、代わりにダッシュボードを読み込むためのカスタム ファイル パスを指定できます。
+If the default **Dashboards** file directory is not an option for your application, you can provide a custom dashboard provider in which to load the dashboards instead.
 
-1 - ASP.NET Core Web API サーバー アプリケーションで、`IRVDashboardProvider`インターフェイスを実装する新しいクラスを作成します。`GetDashboardAsync` メソッドでカスタム ファイル ディレクトリからダッシュボードを読み込むロジックを追加します。この例では、ASP.NET Core Web API サーバー アプリケーションは **MyDashboardsFolder** という名前のフォルダーを使用してすべてのダッシュボードを格納します。
+1 - Create the dashboard provider.
+
+<Tabs groupId="code">
+  <TabItem value="aspnet" label="ASP.NET" default>
+
+```cs
+public class DashboardProvider : IRVDashboardProvider
+{
+    public Task<Dashboard> GetDashboardAsync(IRVUserContext userContext, string dashboardId)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task SaveDashboardAsync(IRVUserContext userContext, string dashboardId, Dashboard dashboard)
+    {
+        throw new NotImplementedException();
+    }
+}
+```
+
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+
+```java
+public class DashboardProvider implements IRVDashboardProvider {
+
+    @Override
+    public InputStream getDashboard(IRVUserContext userContext, String dashboardId) throws IOException {
+        return null;
+    }
+
+    @Override
+    public void saveDashboard(IRVUserContext arg0, String arg1, InputStream arg2) throws IOException {
+        return null;
+    }	
+}
+```
+
+  </TabItem>
+
+  <TabItem value="node" label="Node.js">    
+
+```ts
+const dashboardProvider = async (userContext:IRVUserContext | null, dashboardId: string) => {
+	return null;
+}
+```
+
+  </TabItem>
+</Tabs>
+
+2 - Register the dashboard provider with the Reveal SDK.
+
+<Tabs groupId="code">
+  <TabItem value="aspnet" label="ASP.NET" default>
+
+```cs
+builder.Services.AddControllers().AddReveal( builder =>
+{
+    builder.AddDashboardProvider<DashboardProvider>();
+});
+```
+
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+
+```java
+RevealEngineInitializer.initialize(new InitializeParameterBuilder().
+    setDashboardProvider(new DashboardProvider()).
+    build());
+```
+
+  </TabItem>
+  
+  <TabItem value="node" label="Node.js">    
+
+```ts
+const revealOptions: RevealOptions = {
+	dashboardProvider: dashboardProvider,
+};
+
+app.use("/", reveal(revealOptions));
+```
+
+  </TabItem>
+
+</Tabs>
+
+
+## Example: Load from File Path
+
+<Tabs groupId="code">
+  <TabItem value="aspnet" label="ASP.NET" default>
 
 ```cs
 public class DashboardProvider : IRVDashboardProvider
@@ -72,115 +177,74 @@ public class DashboardProvider : IRVDashboardProvider
 }
 ```
 
-2 - `Program.cs` ファイルの `AddReveal` メソッドを更新し、`RevealSetupBuilder.AddDashboardProvider` メソッドを使用して、作成したばかりの `IRVDashboardProvider` を  `RevealSetupBuilder` に追加します。
+  </TabItem>
 
-```cs
-builder.Services.AddControllers().AddReveal( builder =>
-{
-    builder.AddDashboardProvider<DashboardProvider>();
-});
-```
+  <TabItem value="java" label="Java">
 
-3 - クライアント アプリケーションで、`$.ig.RevealSdkSettings.setBaseUrl` メソッドを呼び出し、サーバーの URL を渡します。デバッグ時には、サーバーの URL は `https://localhost` の後にポート番号が続きます。例:
+```java
+public class RevealDashboardProvider implements IRVDashboardProvider {
 
-```javascript
-$.ig.RevealSdkSettings.setBaseUrl("https://localhost:/7111");   
-```
-
-:::caution
-
-サーバーがクライアント アプリケーションとは異なる URL で実行されている場合は、`$.ig.RevealSdkSettings.setBaseUrl` を呼び出す必要があります。サーバー アプリケーションとクライアント アプリケーションの両方が同じ URL で実行されている場合、このメソッドは必要ありません。このメソッドを呼び出す必要があるのは 1 回だけです。
-
-:::
-
-4 - `$.ig.RVDashboard.loadDashboard` メソッドを呼び出し、ダッシュボード ファイルの名前を .rdash 拡張子なしで渡します。このメソッドには、サーバーから要求されているダッシュボードを提供するコールバックがあります。コールバックからダッシュボードを受け取ったら、`$.ig.RevealView` のインスタンスを取得し、応答のダッシュボードに `RevealView.dashboard` プロパティを設定します。
-
-```javascript
-$.ig.RVDashboard.loadDashboard("Sales", (dashboard) => {
-    var revealView = new $.ig.RevealView("#revealView");
-    revealView.dashboard = dashboard;
-});
-```
-
-:::info Get the Code
-
-このサンプルのソース コードは [GitHub](https://github.com/RevealBi/sdk-samples-javascript/tree/main/LoadingDashboards-File).
-
-:::
-
-## ファイル ストリームから読み込み
-
-ファイル ストリームからの Reveal ダッシュボードの読み込みは、ファイル パスからのダッシュボードの読み込みと非常によく似ています。この場合、ダッシュボード ファイルのファイル パスを取得したら `Dashboard` オブジェクト インスタンスを作成する前に、それを `FileStream` に読み込みます。
-
-1 - ASP.NET Core Web API サーバー アプリケーションで、`IRVDashboardProvider`インターフェイスを実装する新しいクラスを作成します。`GetDashboardAsync` メソッドでカスタム ファイル ディレクトリからダッシュボードを読み込むロジックを追加します。この例では、`File.OpenRead` メソッドを使用して、ダッシュボード ファイルをファイル ストリームに読み込んでいます。次に、コンストラクター引数としてファイル ストリームを渡すことにより、新しい `Dashboard` オブジェクトを作成し、新しく作成された `Dashboard` インスタンスを返します。
-
-```cs
-public class DashboardProvider : IRVDashboardProvider
-{
-    public Task<Dashboard> GetDashboardAsync(IRVUserContext userContext, string dashboardId)
-    {
-        var filePath = Path.Combine(Environment.CurrentDirectory, $"Dashboards/{dashboardId}.rdash");
-        using (var stream = File.OpenRead(filePath))
-        {
-            var dashboard = new Dashboard(stream);
-            return Task.FromResult(dashboard);
-        }
+    @Override
+    public InputStream getDashboard(IRVUserContext userContext, String dashboardId) throws IOException {
+        InputStream dashboardStream = new FileInputStream("dashboards/" + dashboardId + ".rdash");
+        return dashboardStream;
     }
 
-    public Task SaveDashboardAsync(IRVUserContext userContext, string dashboardId, Dashboard dashboard)
-    {
-        throw new NotImplementedException();
-    }
+    @Override
+    public void saveDashboard(IRVUserContext arg0, String arg1, InputStream arg2) throws IOException {
+        
+    }	
 }
 ```
 
-2 - `Program.cs` ファイルの `AddReveal` メソッドを更新して、`RevealSetupBuilder.AddDashboardProvider` メソッドを使用して、作成したばかりの `IRVDashboardProvider` を  `RevealSetupBuilder` に追加します。
+  </TabItem>
 
-```cs
-builder.Services.AddControllers().AddReveal( builder =>
-{
-    builder.AddDashboardProvider<DashboardProvider>();
-});
+  <TabItem value="node" label="Node.js">    
+
+```ts
+const dashboardProvider = async (userContext:IRVUserContext | null, dashboardId: string) => {
+	return fs.createReadStream(`myDashboards/${dashboardId}.rdash`);
+}
 ```
 
-3 - クライアント アプリケーションで、`$.ig.RevealSdkSettings.setBaseUrl` メソッドを呼び出し、サーバーの URL を渡します。デバッグ時には、サーバーの URL は `https://localhost` の後にポート番号が続きます。例:
+  </TabItem>
+</Tabs>
 
-```javascript
-$.ig.RevealSdkSettings.setBaseUrl("https://localhost:/7111");   
-```
+:::info
 
-:::caution
-
-サーバーがクライアント アプリケーションとは異なる URL で実行されている場合は、`$.ig.RevealSdkSettings.setBaseUrl` を呼び出す必要があります。サーバー アプリケーションとクライアント アプリケーションの両方が同じ URL で実行されている場合、このメソッドは必要ありません。このメソッドを呼び出す必要があるのは 1 回だけです。
+The source code to this sample can be found on [GitHub](https://github.com/RevealBi/sdk-samples-javascript/tree/main/LoadingDashboards-File).
 
 :::
 
-4 - `$.ig.RVDashboard.loadDashboard` メソッドを呼び出し、ダッシュボード ファイルの名前を .rdash 拡張子なしで渡します。このメソッドには、サーバーから要求されているダッシュボードを提供するコールバックがあります。コールバックからダッシュボードを受け取ったら、`$.ig.RevealView` のインスタンスを取得し、応答のダッシュボードに `RevealView.dashboard` プロパティを設定します。
 
-```javascript
-$.ig.RVDashboard.loadDashboard("Sales", (dashboard) => {
-    var revealView = new $.ig.RevealView("#revealView");
-    revealView.dashboard = dashboard;
-});
-```
 
-:::info Get the Code
+## Example: Load from Resource
 
-このサンプルのソース コードは [GitHub](https://github.com/RevealBi/sdk-samples-javascript/tree/main/LoadingDashboards-FileStream).
+1 - Embed a Reveal dashboard **.rdash** file as a resource in your server application.
 
-:::
+<Tabs groupId="code">
+  <TabItem value="aspnet" label="ASP.NET" default>
 
-## リソースから読み込み
-
-アプリケーションでファイルを配布するためのもう 1 つのオプションは、ファイルをリソースとしてサーバー アプリケーションに埋め込むことです。
-
-1 - サーバー アプリケーションにリソースとして Reveal ダッシュボード **.rdash** ファイルを埋め込むには、Visual Studio でダッシュボードファイルのプロパティを開き、.rdash ファイルの **[ビルド アクション]** を **[理め込みリソース]** に設定します。
+To embed a Reveal dashboard **.rdash** file as a resource in your ASP.NET server application, open the Properties for the dashboard file in Visual Studio, and set the **Build Action** of the .rdash file to **EmbeddedResource**.
 
 ![](images/loading-dashboard-as-resource.jpg)
 
-ダッシュボードが**理め込みリソース**として定義されたら、`Assembly.GetManifestResourceStream` メソッドを使用してダッシュボードを読み込むことができます。このメソッドは、`Dashboard` オブジェクトの作成に使用できる `Stream` オブジェクトを返します。`Assembly.GetManifestResourceStream` メソッドで指定するリソースの`名前`には、.rdash ファイルの`名前空間`とファイル名が含まれている必要があることに注意してください。
+  </TabItem>
 
-2 - ASP.NET Core Web API サーバー アプリケーションで、`IRVDashboardProvider`インターフェイスを実装する新しいクラスを作成します。`GetDashboardAsync` メソッドの埋め込みリソースからダッシュボードを読み込むロジックを追加します。この例では、リソースの名前は、アプリケーションのルート名前空間 **RevealSdk.Server** に加えて、ダッシュボード ファイルを含むディレクトリである **Dashboards** で始まり、その後に `dashboardId` パラメーターを使用して構築された .rdash ファイルの名前が続きます。
+  <TabItem value="java" label="Java">
+
+To embed a Reveal dashboard **.rdash** file as a resource in your Java server application, place the dashboard file in the **resources** directory.
+
+![](images/loading-dashboard-as-resource-java.jpg)
+
+  </TabItem>
+
+</Tabs>
+
+2 - Create the dashboard provider.
+
+<Tabs groupId="code">
+  <TabItem value="aspnet" label="ASP.NET" default>
 
 ```cs
 public class DashboardProvider : IRVDashboardProvider
@@ -202,47 +266,48 @@ public class DashboardProvider : IRVDashboardProvider
 }
 ```
 
-3 - `Program.cs` ファイルの `AddReveal` メソッドを更新して、`RevealSetupBuilder.AddDashboardProvider` メソッドを使用して、作成したばかりの `IRVDashboardProvider` を  `RevealSetupBuilder` に追加します。
+:::note
 
-```cs
-builder.Services.AddControllers().AddReveal( builder =>
-{
-    builder.AddDashboardProvider<DashboardProvider>();
-});
-```
-
-4 - クライアント アプリケーションで、`$.ig.RevealSdkSettings.setBaseUrl` メソッドを呼び出し、サーバーの URL を渡します。デバッグ時には、サーバーの URL は `https://localhost` の後にポート番号が続きます。例:
-
-```javascript
-$.ig.RevealSdkSettings.setBaseUrl("https://localhost:/7111");   
-```
-
-:::caution
-
-サーバーがクライアント アプリケーションとは異なる URL で実行されている場合は、`$.ig.RevealSdkSettings.setBaseUrl` を呼び出す必要があります。サーバー アプリケーションとクライアント アプリケーションの両方が同じ URL で実行されている場合、このメソッドは必要ありません。このメソッドを呼び出す必要があるのは 1 回だけです。
+The `name` of the resource you will provide in the `Assembly.GetManifestResourceStream` method must include the `namespace` and file name of the .rdash file.
 
 :::
 
-5 - `$.ig.RVDashboard.loadDashboard` メソッドを呼び出し、ダッシュボード ファイルの名前を .rdash 拡張子なしで渡します。このメソッドには、サーバーから要求されているダッシュボードを提供するコールバックがあります。コールバックからダッシュボードを受け取ったら、`$.ig.RevealView` のインスタンスを取得し、応答のダッシュボードに `RevealView.dashboard` プロパティを設定します。
+  </TabItem>
 
-```javascript
-$.ig.RVDashboard.loadDashboard("Sales", (dashboard) => {
-    var revealView = new $.ig.RevealView("#revealView");
-    revealView.dashboard = dashboard;
-});
+  <TabItem value="java" label="Java">
+
+```java
+public class RevealDashboardProvider implements IRVDashboardProvider {
+
+    @Override
+    public InputStream getDashboard(IRVUserContext userContext, String dashboardId) throws IOException {
+        InputStream dashboardStream = getClass().getResourceAsStream("/dashboards/" + dashboardId + ".rdash");
+		return dashboardStream;
+    }
+
+    @Override
+    public void saveDashboard(IRVUserContext arg0, String arg1, InputStream arg2) throws IOException {
+        
+    }	
+}
 ```
+
+  </TabItem>
+
+</Tabs>
 
 :::info Get the Code
 
-このサンプルのソース コードは [GitHub](https://github.com/RevealBi/sdk-samples-javascript/tree/main/LoadingDashboards-Resource).
+The source code to this sample can be found on [GitHub](https://github.com/RevealBi/sdk-samples-javascript/tree/main/LoadingDashboards-Resource).
 
 :::
 
-## JSON から読み込み
+## Example: Load From JSON
 
-上級ユーザー、または Reveal ダッシュボードを .rdash ファイルではなく .json ファイルにシリアル化するユーザーの場合、サーバー アプリケーションで `Dashboard.LoadFromJsonAsync` メソッドを使用してこれらの JSON ベースのファイルを読み込むことができます。
+For advanced users, or users that serialize Reveal dashboards into .json files instead of .rdash files, you can load these JSON based files using the `Dashboard.LoadFromJsonAsync` method on the server application.
 
-1 - ASP.NET Core Web API サーバー アプリケーションで、`IRVDashboardProvider`インターフェイスを実装する新しいクラスを作成します。`GetDashboardAsync` メソッドで json ダッシュボード ファイルからダッシュボードを読み込むロジックを追加します。この例では、`File.ReadAllText` メソッドを使用して、ダッシュボード ファイルを JSON 文字列に読み込んでいます。次に、JSON 文字列を引数として `Dashboard.FromJsonString` メソッドに渡すことにより、新しい `Dashboard` オブジェクトを作成し、新しく作成された `Dashboard`インスタンスを返します。
+<Tabs groupId="code">
+  <TabItem value="aspnet" label="ASP.NET" default>
 
 ```cs
 public class DashboardProvider : IRVDashboardProvider
@@ -262,44 +327,37 @@ public class DashboardProvider : IRVDashboardProvider
 }
 ```
 
-:::caution
+  </TabItem>
 
-JSON にシリアル化された後に Reveal ダッシュボードのコンテンツを操作または変更すると、ダッシュボードの完全性が損なわれ、ダッシュボードのコンテンツに取り返しのつかない損傷が生じる可能性があります。これにより、エラーやダッシュボードの読み込みの失敗により、アプリケーションで実行時に例外がスローされる可能性があります。
+  <TabItem value="java" label="Java">
 
-:::
+:::danger Unsupported
 
-2 - `Program.cs` ファイルの `AddReveal` メソッドを更新して、`RevealSetupBuilder.AddDashboardProvider` メソッドを使用して、作成したばかりの `IRVDashboardProvider` を  `RevealSetupBuilder` に追加します。
-
-```cs
-builder.Services.AddControllers().AddReveal( builder =>
-{
-    builder.AddDashboardProvider<DashboardProvider>();
-});
-```
-
-3 - クライアント アプリケーションで、`$.ig.RevealSdkSettings.setBaseUrl` メソッドを呼び出し、サーバーの URL を渡します。デバッグ時には、サーバーの URL は `https://localhost` の後にポート番号が続きます。例:
-
-```javascript
-$.ig.RevealSdkSettings.setBaseUrl("https://localhost:/7111");   
-```
-
-:::caution
-
-サーバーがクライアント アプリケーションとは異なる URL で実行されている場合は、`$.ig.RevealSdkSettings.setBaseUrl` を呼び出す必要があります。サーバー アプリケーションとクライアント アプリケーションの両方が同じ URL で実行されている場合、このメソッドは必要ありません。このメソッドを呼び出す必要があるのは 1 回だけです。
+This feature is currently not supported by Java
 
 :::
 
-4 - `$.ig.RVDashboard.loadDashboard` メソッドを呼び出し、ダッシュボード ファイルの名前を .rdash 拡張子なしで渡します。このメソッドには、サーバーから要求されているダッシュボードを提供するコールバックがあります。コールバックからダッシュボードを受け取ったら、`$.ig.RevealView` のインスタンスを取得し、応答のダッシュボードに `RevealView.dashboard` プロパティを設定します。
+  </TabItem>
 
-```javascript
-$.ig.RVDashboard.loadDashboard("Sales", (dashboard) => {
-    var revealView = new $.ig.RevealView("#revealView");
-    revealView.dashboard = dashboard;
-});
-```
+  <TabItem value="node" label="Node.js">    
+
+:::danger Unsupported
+
+This feature is currently not supported by Node.js
+
+:::
+
+  </TabItem>
+</Tabs>
+
+:::caution
+
+Manipulating or changing the contents of a Reveal dashboard after it has been serialized to JSON can break the integrity of the dashboard and cause irreversible damage to the contents of the dashboard. This could result in runtime exceptions being thrown in your application due to errors and/or a failure to load the dashboard.
+
+:::
 
 :::info Get the Code
 
-このサンプルのソース コードは [GitHub](https://github.com/RevealBi/sdk-samples-javascript/tree/main/LoadingDashboards-Json).
+The source code to this sample can be found on [GitHub](https://github.com/RevealBi/sdk-samples-javascript/tree/main/LoadingDashboards-Json).
 
 :::
