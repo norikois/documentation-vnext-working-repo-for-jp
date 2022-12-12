@@ -30,5 +30,25 @@
   "item.label.JavaScript": {
     "message": "JavaScript",
     "description": "Navbar item with label JavaScript"
+  },
+  "item.label.Learn": {
+    "message": "Learn",
+    "description": "Navbar item with label Learn"
+  },
+  "item.label.DOM": {
+    "message": "DOM",
+    "description": "Navbar item with label DOM"
+  },
+  "item.label.Blogs": {
+    "message": "Blogs",
+    "description": "Navbar item with label Blogs"
+  },
+  "item.label.Samples": {
+    "message": "Samples",
+    "description": "Navbar item with label Samples"
+  },
+  "item.label.Videos": {
+    "message": "Videos",
+    "description": "Navbar item with label Videos"
   }
 }
