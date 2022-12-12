@@ -47,6 +47,10 @@ a.menu__link--active {
   background-image: linear-gradient(90deg, rgba(251, 179, 101, 1) 0%, rgba(236, 65, 122, 1) 40%);
 }
 
+.footer__link-item:hover {
+  color: var(--ifm-footer-link-color);
+}
+
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);

@@ -158,6 +158,26 @@ const config = {
               },
             ],
           },
+          {
+            title: "Legal",
+            items: [
+              {
+                label: "Privacy Policy",
+                href: "https://www.infragistics.com/legal/privacy",
+                "href_jp": "https://jp.infragistics.com/legal/privacy",
+              },
+              {
+                label: "Cookies",
+                href: "https://www.infragistics.com/legal/cookie-policy",
+                "href_jp": "https://jp.infragistics.com/legal/cookie-policy",
+              },
+              {
+                label: "Terms of Use",
+                href: "https://www.infragistics.com/legal/terms-of-use",
+                "href_jp": "https://jp.infragistics.com/legal/terms-of-use",
+              },
+            ]
+          }
         ],
         copyright: `Copyright © ${new Date().getFullYear()} Infragistics. All Rights Reserved.`,
       },
