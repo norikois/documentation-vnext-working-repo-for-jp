@@ -2,5 +2,33 @@
   "title": {
     "message": "Reveal",
     "description": "The title in the navbar"
+  },
+  "item.label.Documentaion": {
+    "message": "Documentaion",
+    "description": "Navbar item with label Documentaion"
+  },
+  "item.label.API": {
+    "message": "API",
+    "description": "Navbar item with label API"
+  },
+  "item.label.Web": {
+    "message": "Web",
+    "description": "Navbar item with label Web"
+  },
+  "item.label.WPF": {
+    "message": "WPF",
+    "description": "Navbar item with label WPF"
+  },
+  "item.label.ASP.NET": {
+    "message": "ASP.NET",
+    "description": "Navbar item with label ASP.NET"
+  },
+  "item.label.JAVA": {
+    "message": "JAVA",
+    "description": "Navbar item with label JAVA"
+  },
+  "item.label.JavaScript": {
+    "message": "JavaScript",
+    "description": "Navbar item with label JavaScript"
   }
 }

@@ -45,7 +45,7 @@
   },
   "sidebar.webSidebar.doc.Spring Boot - Jersey": {
     "message": "Spring Boot - Jersey",
-    "description": "The label for the doc item Spring Boot - Jersey in sidebar webSidebar, linking to the doc web/getting-started-spring-boot-jersey"
+    "description": "The label for the doc item Spring Boot - Jersey in sidebar webSidebar, linking to the doc web/configuring-server-spring-boot-jersey"
   },
   "sidebar.webSidebar.doc.Angular": {
     "message": "Angular",
@@ -63,9 +63,13 @@
     "message": "React",
     "description": "The label for the doc item React in sidebar webSidebar, linking to the doc web/getting-started-react"
   },
-  "sidebar.webSidebar.doc.ASP.NET ": {
+  "sidebar.webSidebar.doc.ASP.NET": {
     "message": "ASP.NET ",
-    "description": "The label for the doc item ASP.NET  in sidebar webSidebar, linking to the doc web/configuring-server-aspnet"
+    "description": "The label for the doc item ASP.NET in sidebar webSidebar, linking to the doc web/configuring-server-aspnet"
+  },
+  "sidebar.webSidebar.doc.Tomcat": {
+    "message": "Tomcat",
+    "description": "The label for the doc item Tomcat in sidebar webSidebar, linking to the doc web/configuring-server-tomcat"
   },
   "sidebar.webSidebar.doc.Creating": {
     "message": "作成",
