@@ -10,11 +10,14 @@ import styles from './styles.module.css';
 import Translate from '@docusaurus/Translate';
 import { ApiFeatures } from './_apiFeatures';
 
+import CodeEditor from '@site/src/components/CodeEditor';
+
 export default function Playground(): JSX.Element {
 
     const defaultCode = "//click on feature or type code directy into editor";
     const [srcDoc, setSrcDoc] = useState("");
     const [code, setCode] = useState(defaultCode);
+    const editorRef = useRef(null);
 
     useEffect(() => {
         runCode(code);
@@ -25,7 +28,7 @@ export default function Playground(): JSX.Element {
     }
 
     function runCode(code) {
-        
+
         const documentContents = `
             <!DOCTYPE html>
             <html lang="en">
@@ -59,13 +62,17 @@ export default function Playground(): JSX.Element {
             </body>
             </html>
         `;
-        
+
         setSrcDoc(documentContents);
     }
 
     function resetCode() {
         setCode(defaultCode);
     }
+
+    function handleEditorDidMount(editor, monaco) {
+        editorRef.current = editor;
+   }
 
     return (
         <Layout title="Developer Playground" description="">
@@ -78,6 +85,7 @@ export default function Playground(): JSX.Element {
                                 {ApiFeatures.map((item, idx) => {
                                     if (item.type) {
                                         return (
+                                            // @ts-ignore
                                             <DocSidebarItemHtml key={idx} item={item} />
                                         );
                                     }
@@ -96,11 +104,11 @@ export default function Playground(): JSX.Element {
                 <main className={clsx(MainStyles.docMainContainer)}>
                     <div className="col" style={{ padding: "0" }}>
                         <div className={styles.executionBar} >
-                            <button><Translate id="playground.runButton">Run</Translate></button>
+                            <button onClick={() => runCode(editorRef.current.getValue())}><Translate id="playground.runButton">Run</Translate></button>
                             <button onClick={() => resetCode()}><Translate id="playground.resetButton">Reset</Translate></button>
                         </div>
                         <div style={{ border: "0px solid black" }}>
-                            {/* <CodeEditor height="350px" value={snippet} language={"javascript"} ref={editorRef} /> */}
+                            <CodeEditor height="350px" value={code} language={"javascript"} ref={editorRef} />
                         </div>
                         <div className={styles.iFrameContainer}>
                             <iframe title="result" srcDoc={srcDoc} style={{ width: "100%", height: "825px" }} />
