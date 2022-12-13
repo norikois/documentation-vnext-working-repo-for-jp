@@ -1,3 +1,6 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Installation
 
 ## System Requirements
@@ -49,24 +52,42 @@ You can also use the NuGet feeds covered in the Infragistics NuGet Feed topic.
 
 ## Adding Your License Key
 
-By default, when you install the Reveal SDK for the first time using the Reveal SDK Installer only the **trial** product is installed. In order to unlock the **licensed** product, you must provide a license key in the installer.
+By default, when you install the Reveal SDK only the **trial** product is used. In order to unlock the **licensed** product, you must provide a license key in the application.
 
-Providing a license key to the installer can be done in two ways:
-1. Find the extracted Reveal SDK Installer EXE file and double click to start it.
-2. In Windows, go to **Setting -> Apps** and modify the Reveal SDK installation
+<Tabs groupId="code">
+  <TabItem value="aspnet" label="ASP.NET" default>
 
-![](images/install-modify-app.jpg)
+```cs
+services.AddMvc().AddReveal(builder => 
+{
+    builder.AddSettings(settings =>
+    {
+        settings.License = "LICENSE_KEY";
+    });
+});
+```
 
-Once you have either modified the existing install, or re-run the Reveal SDK Installer, you will be prompted with a screen to either "Repair", "Remove", or "Enter License".  Choose **Enter License**
+  </TabItem>
 
-![](images/install-modify-installer.jpg)
+  <TabItem value="java" label="Java">
 
-After you choose **Enter License**, you will be taken to a screen in which you can now enter your license key.
+```java
+RevealEngineInitializer.initialize(new InitializeParameterBuilder().
+    setLicense("LICENSE_KEY").
+    build());
+```
 
-![](images/install-enter-license-key.jpg)
+  </TabItem>
 
-:::info
+  <TabItem value="node" label="Node.js">    
 
-After successfully adding your license you will need to uninstall the **Reveal.Sdk.Web.AspNetCore.Trial** and install **Reveal.Sdk.Web.AspNetCore** nuget package.
+```ts
+const revealOptions: RevealOptions = {
+	license: "LICENSE_KEY",
+};
+app.use("/", reveal(revealOptions));
+```
 
-:::
+  </TabItem>
+</Tabs>
+
