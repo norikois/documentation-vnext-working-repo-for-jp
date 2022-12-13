@@ -49,25 +49,8 @@ Infragistics NuGet フィード トピックの NuGet フィードを使用す�
 
 ## ライセンス キーの追加
 
-デフォルトでは、Reveal SDK インストーラーを使用して Reveal SDK を初めてインストールする場合、**トライアル版**の製品のみがインストールされます。**ライセンス版**の製品のロックを解除するには、インストーラーでライセンス キーを提供する必要があります。
+By default, when you install the Reveal SDK only the **trial** product is used. In order to unlock the **licensed** product, you must provide a license key in the application.
 
-インストーラーにライセンス キーを提供する方法は 2 つあります。
-1. 解凍した Reveal SDK インストーラー EXE ファイルをダブルクリックして起動します。
-2. Windows では、**[設定] -> [アプリ]** に移動し、Reveal SDK インストールを変更します。
-
-![](images/install-modify-app.jpg)
-
-既存のインストールを変更するか、Reveal SDK インストーラーを再実行すると、[修復]、[削除]、または [製品キーの入力] のいずれかの画面が表示されます。  [**製品キーの入力**] を選択します。
-
-![](images/install-modify-installer.jpg)
-
-[**製品キーの入力**] を選択すると、ライセンス キーを入力する画面が表示されます。
-
-![](images/install-enter-license-key.jpg)
-
-
-:::info
-
-ライセンスを追加したら、**Reveal.Sdk.Wpf.Trial** をアンインストールし、**Reveal.Sdk.Wpf** nuget パッケージをインストールします。
-
-:::
+```cs
+RevealSdkSettings.License = "LICENSE_KEY";
+```

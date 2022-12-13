@@ -23,12 +23,6 @@
 
 ![](images/getting-started-nuget-packages-install.jpg)
 
-:::info
-
-トライアル版をお使いの場合、[NuGet.org](https://www.nuget.org/packages/Reveal.Sdk.Wpf.Trial/) にある **Reveal.Sdk.Wpf.Trial** NuGet パッケージをインストールできます。
-
-:::
-
 ### 手動
 
 1 - ソリューション エクスプローラーの [参照] ノードを右クリックし、**[参照の追加]** を選択します。
