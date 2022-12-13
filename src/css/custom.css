@@ -4,8 +4,39 @@
  * work well for content-centric websites.
  */
 
+ @font-face {
+  font-family: "Roboto";
+  src: url('/static/fonts/Roboto-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url('/static/fonts/Roboto-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url('/static/fonts/Roboto-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url('/static/fonts/Roboto-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
 /* You can override the default Infima variables here. */
 :root {
+  --ifm-font-family-monospace: "Roboto";
+  --ifm-font-family-base: "Roboto";
+
   --ifm-color-primary: #ec417a;
   --ifm-color-primary-dark: #e92667;
   --ifm-color-primary-darker: #e8185d;
@@ -14,6 +45,14 @@
   --ifm-color-primary-lighter: #f06a97;
   --ifm-color-primary-lightest: #f493b3;
   --ifm-code-font-size: 95%;
+
+
+
+  /* --ifm-hero-background-color: linear-gradient(90deg, rgba(251, 179, 101, 1) 0%, rgba(236, 65, 122, 1) 40%); */
+
+  /* --ifm-footer-background-color: */
+  /* --ifm-footer-link-hover-color: */
+
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
 

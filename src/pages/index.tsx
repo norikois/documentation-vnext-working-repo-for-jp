@@ -13,7 +13,7 @@ function HomepageHeader() {
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
-        <h1 className="hero__title"><Translate id="homepage.hero.title" description="The title of the hero section on the homepage">New to Reveal? We've got you covered!</Translate></h1>
+        <h1 className="hero__title" style={{fontSize: "55px"}}><Translate id="homepage.hero.title" description="The title of the hero section on the homepage">New to Reveal? We've got you covered!</Translate></h1>
         <p className="hero__subtitle"><Translate id="homepage.hero.subtitle" description="The subtitle of the hero section on the homepage">Get help with integration, data visualization design, dashboard creation, and more.</Translate></p>
       </div>
     </header>
