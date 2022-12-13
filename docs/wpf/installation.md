@@ -41,12 +41,6 @@ There is also a local NuGet package source automatically added to Visual Studio 
 
 ![](images/nuget-package-source-local-vs.jpg)
 
-:::info
-
-You can also use the NuGet feeds covered in the Infragistics NuGet Feed topic.
-
-:::
-
 ## Adding Your License Key
 
 By default, when you install the Reveal SDK only the **trial** product is used. In order to unlock the **licensed** product, you must provide a license key in the application.

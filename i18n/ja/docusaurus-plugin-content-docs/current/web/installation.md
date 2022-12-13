@@ -44,12 +44,6 @@ Reveal SDK NuGet パッケージをポイントする Visual Studio に自動的
 
 ![](images/nuget-package-source-local-vs.jpg)
 
-:::info
-
-Infragistics NuGet フィード トピックの NuGet フィードを使用することもできます。
-
-:::
-
 ## ライセンス キーの追加
 
 By default, when you install the Reveal SDK only the **trial** product is used. In order to unlock the **licensed** product, you must provide a license key in the application.
