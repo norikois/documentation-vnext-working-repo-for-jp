@@ -22,7 +22,7 @@ The steps below describe how to create a new ASP.NET Core Web API project. If yo
 
 ![](images/getting-started-nuget-packages-manage.jpg)
 
-2 - In the package manager dialog, open the **Browse** tab, select the **Infragistics (Local)** package source, and install the **Reveal.Sdk.Web.AspNetCore** NuGet package into the project.
+2 - In the package manager dialog, open the **Browse** tab, select the **Infragistics (Local)** package source, and install the **Reveal.Sdk.AspNetCore** NuGet package into the project.
 
 ![](images/getting-started-nuget-packages-install.jpg)
 
