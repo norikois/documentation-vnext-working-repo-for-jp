@@ -1,20 +1,68 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Excel ファイル データ ソースの追加
 
-**手順 1** - ASP.NET Web API サーバー アプリケーションで、Excel ファイルを含むフォルダーを作成します。
+**手順 1** - サーバー アプリケーションで、Excel ファイルを含むフォルダーを作成します。
+
+<Tabs groupId="code">
+  <TabItem value="aspnet" label="ASP.NET" default>
 
 ![](images/excel-file-folder.jpg)
 
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+
+![](images/excel-file-folder-java.jpg)
+
+  </TabItem>
+
+  <TabItem value="node" label="Node.js">    
+
+![](images/excel-file-folder-node.jpg)
+
+  </TabItem>
+</Tabs>
+
 **手順 2** - `RevealEmbedSettings.LocalFileStoragePath` プロパティを**手順 1** で作成したフォルダーの場所に設定します。
+
+<Tabs groupId="code">
+  <TabItem value="aspnet" label="ASP.NET" default>
 
 ```cs
 builder.Services.AddControllers().AddReveal( builder =>
 {
-    builder.AddSettings(builder =>
+    builder.AddSettings(settings =>
    {
-       builder.LocalFileStoragePath = "Data";
+       settings.LocalFileStoragePath = "Data";
    });
 });
 ```
+
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+
+```java
+RevealEngineInitializer.initialize(new InitializeParameterBuilder()
+.setLocalFilesStoragePath("data")
+.build());
+```
+
+  </TabItem>
+
+  <TabItem value="node" label="Node.js">    
+
+```ts
+const revealOptions: RevealOptions = {
+    localFileStoragePath: "data"
+}
+app.use('/', reveal(revealOptions));
+```
+
+  </TabItem>
+</Tabs>
 
 **手順 3** - `RevealView.onDataSourcesRequested` イベントのイベント ハンドラーを追加します。
 

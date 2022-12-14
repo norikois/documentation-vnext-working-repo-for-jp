@@ -1,20 +1,68 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Adding an Excel File Data Source
 
-**Step 1** - In the ASP.NET Web API server application, create a folder that will contain your Excel files.
+**Step 1** - In the server application, create a folder that will contain your Excel files.
+
+<Tabs groupId="code">
+  <TabItem value="aspnet" label="ASP.NET" default>
 
 ![](images/excel-file-folder.jpg)
 
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+
+![](images/excel-file-folder-java.jpg)
+
+  </TabItem>
+
+  <TabItem value="node" label="Node.js">    
+
+![](images/excel-file-folder-node.jpg)
+
+  </TabItem>
+</Tabs>
+
 **Step 2** - Set the `RevealEmbedSettings.LocalFileStoragePath` property to the location of the folder created in **Step 1**
+
+<Tabs groupId="code">
+  <TabItem value="aspnet" label="ASP.NET" default>
 
 ```cs
 builder.Services.AddControllers().AddReveal( builder =>
 {
-    builder.AddSettings(builder =>
+    builder.AddSettings(settings =>
    {
-       builder.LocalFileStoragePath = "Data";
+       settings.LocalFileStoragePath = "Data";
    });
 });
 ```
+
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+
+```java
+RevealEngineInitializer.initialize(new InitializeParameterBuilder()
+.setLocalFilesStoragePath("data")
+.build());
+```
+
+  </TabItem>
+
+  <TabItem value="node" label="Node.js">    
+
+```ts
+const revealOptions: RevealOptions = {
+    localFileStoragePath: "data"
+}
+app.use('/', reveal(revealOptions));
+```
+
+  </TabItem>
+</Tabs>
 
 **Step 3** - Add an event handler for the `RevealView.onDataSourcesRequested` event.
 
