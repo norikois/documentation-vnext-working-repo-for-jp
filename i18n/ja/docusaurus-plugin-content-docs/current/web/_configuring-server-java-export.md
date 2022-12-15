@@ -1,6 +1,6 @@
 In order to export dashboards to an **Image** (either programmatically or through user interaction) the Reveal SDK uses [Playwright](https://playwright.dev/java/). For exporting dashboards to **Excel**, **PDF** or **PowerPoint** the Reveal SDK uses an internal application called **ExportTool**.
 
-By default, the first time an end-user tries to export a dashboard to an image, PDF or PowerPoint, both Playwright and ExportTool trigger the required downloads automatically.  However, for some platforms there are some dependencies that need to be installed in advance, and also your server environment might restrict external downloads and you might need to setup these tools manually.
+デフォルトでは、エンドユーザーがダッシュボードを画像、PDF、PowerPoint に初めてエクスポートしようとすると、Playwright と ExportTool の両方が必要なダウンロードを自動的に開始します。ただし、プラットフォームによっては、事前にインストールが必要な依存関係があったり、サーバー環境が外部ダウンロードを制限している場合があり、これらのツールを手動で設定する必要がある場合があります。
 
 ### Playwright Configuration
 
